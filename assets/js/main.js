@@ -215,6 +215,49 @@
     });
   });
 
+  /* ---------- Drifting dandelion-seed particles ---------- */
+  var seedLayer = document.querySelector(".seeds");
+  if (seedLayer && !prefersReduced) {
+    var count = window.innerWidth < 700 ? 9 : 16;
+    for (var s = 0; s < count; s++) {
+      var seed = document.createElement("span");
+      seed.className = "seed";
+      seed.style.left = Math.random() * 100 + "%";
+      seed.style.animationDuration = 14 + Math.random() * 16 + "s";
+      seed.style.animationDelay = -(Math.random() * 20) + "s";
+      var scale = 0.5 + Math.random() * 1.1;
+      seed.style.transform = "scale(" + scale + ")";
+      seedLayer.appendChild(seed);
+    }
+  }
+
+  /* ---------- Timetable filtering ---------- */
+  var filterBtns = document.querySelectorAll("[data-filter]");
+  var sessionCards = document.querySelectorAll("[data-tags]");
+  var emptyState = document.querySelector(".tt-empty");
+  if (filterBtns.length && sessionCards.length) {
+    var active = "all";
+    function applyFilter() {
+      var shown = 0;
+      sessionCards.forEach(function (card) {
+        var tags = card.getAttribute("data-tags") || "";
+        var match = active === "all" || tags.indexOf(active) !== -1;
+        card.classList.toggle("hide", !match);
+        if (match) shown++;
+      });
+      if (emptyState) emptyState.classList.toggle("show", shown === 0);
+    }
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        active = btn.getAttribute("data-filter");
+        filterBtns.forEach(function (b) {
+          b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+        });
+        applyFilter();
+      });
+    });
+  }
+
   /* ---------- Footer year ---------- */
   var yr = document.querySelector("[data-year]");
   if (yr) yr.textContent = new Date().getFullYear();

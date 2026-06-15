@@ -1,37 +1,47 @@
-# 🌿 Miracle Breath
+# 🌬️ Miracle Breath
 
-> Breathwork, meditation & mindfulness in the heart of **Kelvedon, Essex**.
-> *Find your calm, one breath at a time.*
+> Transformational breathwork for **healing, balance, energy and inner change**.
+> Rooted in the **SOMA Breath** method, led by **Samantha Harden**.
 
-Miracle Breath is a wellness-studio **concept website**, designed as a fast,
-beautiful, fully static site that runs anywhere — and is ready to deploy to
-**GitHub Pages** out of the box.
+A calm, modern, premium concept website for Miracle Breath — a fast,
+fully static site that runs anywhere and deploys to **GitHub Pages** with
+zero configuration.
 
 ---
 
 ## ✨ Highlights
 
-- **Single-page, multi-section** marketing site with a calm, premium feel.
-- **Interactive breathing exercise** — choose a pattern (4·7·8, Box, 4·6) and
+- **Six considered pages** — Home, About, SOMA Breath, Healing, Session
+  Timetable and Contact.
+- **Brand-true design** — palette, logo and motifs drawn directly from the
+  Miracle Breath logo (soft sage green + warm gold on cream).
+- **Interactive breathing exercise** — choose a rhythm (4·7·8, Box, 4·6) and
   breathe along with an animated guide.
-- **Modern, responsive design** — looks great from mobile to widescreen.
-- **Accessible & considerate** — skip links, ARIA labels, keyboard-friendly
-  navigation and full `prefers-reduced-motion` support.
-- **Zero build step** — just HTML, CSS and vanilla JavaScript. No frameworks,
+- **Filterable session timetable** — by format (online / in person), class,
+  workshop or 1:1.
+- **Gentle motion** — drifting dandelion-seed particles, reveal-on-scroll and
+  a breathing hero, all honouring `prefers-reduced-motion`.
+- **Accessible & considerate** — skip links, ARIA labelling, keyboard-friendly
+  navigation, semantic structure.
+- **Zero build step** — plain HTML, CSS and vanilla JavaScript. No frameworks,
   no dependencies, no tracking.
-- **SEO-ready** — descriptive metadata, Open Graph tags and
-  `LocalBusiness` structured data.
+- **SEO-ready** — descriptive metadata, Open Graph tags and structured data.
 
 ## 🗂 Project structure
 
 ```
 .
-├── index.html            # The full single-page site
+├── index.html            # Home
+├── about.html            # About Samantha Harden
+├── soma-breath.html      # What is SOMA Breath?
+├── healing.html          # Healing & wellbeing benefits
+├── timetable.html        # Filterable session timetable
+├── contact.html          # Enquiry form & contact
 ├── 404.html              # Friendly custom not-found page
 ├── assets/
 │   ├── css/style.css     # Design system & all styles
-│   ├── js/main.js        # Interactions + breathing exercise
-│   └── img/              # SVG logo & favicon
+│   ├── js/main.js        # Interactions, breathing exercise, filters
+│   └── img/              # Logo lockup, emblem & favicon
 └── .nojekyll             # Serve files as-is on GitHub Pages
 ```
 
@@ -46,32 +56,26 @@ zero configuration:
 
 ## 🛠 Develop locally
 
-No tooling required. Any static server will do:
+No tooling required — any static server works:
 
 ```bash
-# Python
-python3 -m http.server 8000
-
-# or Node
-npx serve .
+python3 -m http.server 8000   # then open http://localhost:8000
+# or: npx serve .
 ```
-
-Then open <http://localhost:8000>.
 
 ## 🎨 Design notes
 
-- **Palette:** grounded sages, warm cream and a soft gold accent — calm,
-  natural, never clinical.
-- **Type:** *Fraunces* for expressive headings, *Nunito Sans* for clean,
-  readable body text.
-- **Motion:** gentle reveal-on-scroll, a breathing hero orb and subtle
-  hover lifts — all disabled automatically for reduced-motion users.
+- **Palette:** sage green `#8a9c80` + warm gold `#d6ad61` on cream `#faf8f2`,
+  sampled straight from the logo.
+- **Type:** *Fraunces* for expressive headings, *Nunito Sans* for clean body text.
+- **Motion:** soft, slow and optional — calm by default.
 
 ## 📝 About the content
 
-Miracle Breath is a **concept**. The business, practitioner (Elena Hart),
-testimonials and contact details are illustrative placeholders, ready to be
-swapped for the real thing.
+Miracle Breath is a **concept**. Samantha's full biography, contact details,
+final session dates, testimonials, certificate links and the formal
+waiver / health information are placeholders, ready to be swapped for the
+real thing as they're supplied.
 
 ---
 
