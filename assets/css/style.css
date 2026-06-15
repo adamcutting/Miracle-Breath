@@ -197,17 +197,26 @@ p { margin: 0 0 1.15em; }
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 100;
-  transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease),
-    padding 0.4s var(--ease);
+  transition: padding 0.4s var(--ease);
   padding-block: 1.1rem;
 }
-.site-header.scrolled {
+/* Frosted background lives on a pseudo-element, NOT the header itself —
+   putting backdrop-filter on the header would make it the containing block
+   for the position:fixed mobile menu and clip it to the header height. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background: rgba(251, 249, 244, 0.86);
   backdrop-filter: saturate(160%) blur(14px);
   -webkit-backdrop-filter: saturate(160%) blur(14px);
   box-shadow: 0 1px 0 rgba(31, 45, 40, 0.06);
-  padding-block: 0.7rem;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
 }
+.site-header.scrolled::before { opacity: 1; }
+.site-header.scrolled { padding-block: 0.7rem; }
 .nav {
   display: flex;
   align-items: center;
