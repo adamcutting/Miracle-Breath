@@ -29,7 +29,19 @@
   var toTop = document.querySelector(".to-top");
 
   var heroEl = document.querySelector(".hero");
-  var parallaxImgs = prefersReduced ? [] : document.querySelectorAll(".ambient__img");
+
+  /* Parallax — positions are cached on load/resize so the scroll loop never
+     reads layout (no forced reflow per frame). */
+  var parallaxItems = [];
+  function buildParallax() {
+    parallaxItems = [];
+    if (prefersReduced) return;
+    var y = window.scrollY || window.pageYOffset;
+    document.querySelectorAll(".ambient__img").forEach(function (img) {
+      var r = img.parentElement.getBoundingClientRect();
+      parallaxItems.push({ img: img, top: r.top + y, height: r.height });
+    });
+  }
 
   /* Scroll-based reveal safety net — guarantees anything reaching the
      viewport becomes visible even if the IntersectionObserver misses it. */
@@ -47,16 +59,17 @@
   }
 
   function applyParallax() {
-    if (!parallaxImgs.length) return;
+    if (!parallaxItems.length) return;
     var vh = window.innerHeight;
-    parallaxImgs.forEach(function (img) {
-      var sec = img.parentElement;
-      var rect = sec.getBoundingClientRect();
-      if (rect.bottom < -100 || rect.top > vh + 100) return;
-      var progress = (rect.top + rect.height / 2 - vh / 2) / vh; // ~ -1..1
+    var y = window.scrollY || window.pageYOffset;
+    for (var i = 0; i < parallaxItems.length; i++) {
+      var it = parallaxItems[i];
+      var relTop = it.top - y;
+      if (relTop + it.height < -100 || relTop > vh + 100) continue;
+      var progress = (relTop + it.height / 2 - vh / 2) / vh; // ~ -1..1
       var shift = Math.max(-28, Math.min(28, progress * -30));
-      img.style.transform = "scale(1.18) translate3d(0," + shift.toFixed(1) + "px,0)";
-    });
+      it.img.style.transform = "scale(1.18) translate3d(0," + shift.toFixed(1) + "px,0)";
+    }
   }
 
   var ticking = false;
@@ -76,7 +89,10 @@
     }
   }
   window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", applyParallax, { passive: true });
+  window.addEventListener("resize", function () { buildParallax(); applyParallax(); }, { passive: true });
+  // recompute once images/fonts settle (section heights can change)
+  window.addEventListener("load", function () { buildParallax(); applyParallax(); });
+  buildParallax();
   onScroll();
   applyParallax();
 

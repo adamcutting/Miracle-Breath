@@ -1829,7 +1829,7 @@ h1, h2, h3, h4 { text-wrap: balance; }
   z-index: -1;
   background:
     radial-gradient(120% 90% at 50% 40%, rgba(31,37,26,0.30), transparent 70%),
-    linear-gradient(180deg, rgba(31,37,26,0.62), rgba(31,37,26,0.66));
+    linear-gradient(180deg, rgba(31,37,26,0.66), rgba(31,37,26,0.72));
 }
 .ambient .container { position: relative; z-index: 1; }
 .ambient .eyebrow { color: var(--gold-300); justify-content: center; }
@@ -1875,6 +1875,11 @@ h1, h2, h3, h4 { text-wrap: balance; }
 @view-transition { navigation: auto; }
 ::view-transition-old(root),
 ::view-transition-new(root) { animation-duration: 0.45s; }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation: none !important; }
+}
 
 /* Hero entrance — gentle staggered rise on load */
 @keyframes heroUp {
@@ -1915,7 +1920,7 @@ h1, h2, h3, h4 { text-wrap: balance; }
 }
 .js .reveal--media.in { opacity: 1; transform: none; clip-path: inset(0 0 0 0 round var(--radius-lg)); }
 
-/* Parallax target (JS sets --p) */
+/* Parallax target (JS sets transform on scroll) */
 .ambient__img { will-change: transform; }
 
 /* Button sheen on hover */
@@ -1993,3 +1998,63 @@ h1, h2, h3, h4 { text-wrap: balance; }
   .gallery { grid-template-columns: 1fr; }
   .gallery figure:last-child { aspect-ratio: 4 / 3.4; }
 }
+
+/* =====================================================================
+   v7 — gold signature accent + card/form refinement (review-driven)
+   ===================================================================== */
+
+/* Signature: a small gold rule beneath centred section titles */
+.text-center .section-title::after,
+.cta-band h2::after {
+  content: "";
+  display: block;
+  width: 56px; height: 2px;
+  margin: 1.1rem auto 0;
+  background: linear-gradient(90deg, var(--gold-300), var(--gold-500), var(--gold-300));
+  border-radius: 2px;
+}
+.cta-band h2::after { background: linear-gradient(90deg, transparent, var(--gold-400), transparent); width: 80px; }
+
+/* Gold italic emphasis inside section titles */
+.section-title em { font-style: italic; color: var(--gold-700); }
+
+/* Timetable cards: more room, clearer price, calmer meta */
+.session-card { padding: 1.9rem; gap: 0.7rem; }
+.session-card .price-from {
+  font-size: 1.2rem;
+  margin-top: 0.2rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--sage-100);
+}
+.session-card .meta { gap: 0.45rem; }
+.session-card .tagpill { font-size: 0.7rem; padding: 0.22rem 0.6rem; }
+
+/* Contact form: softer, more considered fields */
+.contact-form { padding: 2.5rem; gap: 1.25rem; }
+.field input, .field select, .field textarea {
+  background: var(--cream-50);
+  border-width: 1.5px;
+  border-radius: var(--radius-sm);
+  padding: 0.95rem 1.05rem;
+}
+.field input:hover, .field select:hover, .field textarea:hover { border-color: var(--sage-400); }
+.field label { letter-spacing: 0.01em; }
+
+/* Intro-offer ribbon */
+.intro-offer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+  background: linear-gradient(180deg, var(--sage-800), var(--sage-900));
+  color: var(--sage-100);
+  border-radius: var(--radius);
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.75rem;
+}
+.intro-offer .tag {
+  background: var(--gold-500); color: var(--sage-900);
+  font-weight: 800; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.3rem 0.7rem; border-radius: var(--radius-pill);
+}
+.intro-offer strong { color: #fff; }
