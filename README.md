@@ -1,91 +1,67 @@
-# 🌬️ Miracle Breath
+# Miracle Breath
 
-> Transformational breathwork for **healing, balance, energy and inner change**.
-> Rooted in the **SOMA Breath** method, led by **Samantha Harden**.
+Website for Miracle Breath, a breathwork and meditation practice run by
+Samantha Harden, offering the SOMA Breath method online and in person.
 
-A calm, modern, premium concept website for Miracle Breath — a fast,
-fully static site that runs anywhere and deploys to **GitHub Pages** with
-zero configuration.
+Tagline: *Transformational breathwork for healing, balance, energy and inner change.*
 
----
+It's a static site built to run on GitHub Pages with no build step.
 
-## ✨ Highlights
+## Pages
 
-- **Six considered pages** — Home, About, SOMA Breath, Healing, Session
-  Timetable and Contact.
-- **Brand-true design** — palette, logo and motifs drawn directly from the
-  Miracle Breath logo (soft sage green + warm gold on cream).
-- **Interactive breathing exercise** — choose a rhythm (4·7·8, Box, 4·6) and
-  breathe along with an animated guide.
-- **Filterable session timetable** — by format (online / in person), class,
-  workshop or 1:1.
-- **Gentle motion** — drifting dandelion-seed particles, reveal-on-scroll and
-  a breathing hero, all honouring `prefers-reduced-motion`.
-- **Accessible & considerate** — skip links, ARIA labelling, keyboard-friendly
-  navigation, semantic structure.
-- **Zero build step** — plain HTML, CSS and vanilla JavaScript. No frameworks,
-  no dependencies, no tracking.
-- **SEO-ready** — descriptive metadata, Open Graph tags and structured data.
+- **Home** (`index.html`) — introduction, benefits, a taste of the practice
+- **About** (`about.html`) — Samantha's story, what to expect, qualifications
+- **SOMA Breath** (`soma-breath.html`) — what the method is and how it works
+- **Healing** (`healing.html`) — how breathwork can support wellbeing
+- **Timetable** (`timetable.html`) — sessions, filterable by format, with pricing
+- **Contact** (`contact.html`) — enquiry form and details
+- **404** (`404.html`) — custom not-found page
 
-## 🗂 Project structure
+## Built with
 
-```
-.
-├── index.html            # Home
-├── about.html            # About Samantha Harden
-├── soma-breath.html      # What is SOMA Breath?
-├── healing.html          # Healing & wellbeing benefits
-├── timetable.html        # Filterable session timetable
-├── contact.html          # Enquiry form & contact
-├── 404.html              # Friendly custom not-found page
-├── assets/
-│   ├── css/style.css     # Design system & all styles
-│   ├── js/main.js        # Interactions, breathing exercise, filters
-│   └── img/              # Logo lockup, emblem & favicon
-└── .nojekyll             # Serve files as-is on GitHub Pages
-```
+Plain HTML, CSS and vanilla JavaScript. No frameworks, no dependencies, no
+tracking. Type is Fraunces (headings) and Nunito Sans (body) from Google
+Fonts. The palette is taken from the logo: sage green (`#8a9c80`) and warm
+gold (`#d6ad61`) on cream (`#faf8f2`).
 
-## 🚀 Deploy to GitHub Pages
+Features worth noting:
 
-The site is plain static files with a `.nojekyll` marker, so it deploys with
-zero configuration:
+- Interactive guided-breathing exercise (4-7-8, box, 4-6 patterns)
+- Filterable session timetable
+- Photographic "ambient" bands and an image gallery
+- Subtle motion: cross-page view transitions, scroll reveals, image
+  parallax, a breathing-logo hero. All disabled under `prefers-reduced-motion`
+- Accessible: skip link, ARIA labelling, keyboard-friendly nav and widgets,
+  focus management on the mobile menu
+- WebP images with JPEG/PNG fallback; lazy loading; sized to avoid layout shift
 
-1. In **Settings → Pages**, set **Source** to **Deploy from a branch**.
-2. Choose your branch and the `/ (root)` folder, then **Save**.
-3. Your site goes live at `https://<user>.github.io/<repo>/`.
+## Running locally
 
-## 🛠 Develop locally
-
-No tooling required — any static server works:
+Any static server works:
 
 ```bash
-python3 -m http.server 8000   # then open http://localhost:8000
+python3 -m http.server 8000      # then open http://localhost:8000
 # or: npx serve .
 ```
 
-## 🎨 Design notes
+## Deploying to GitHub Pages
 
-- **Palette:** sage green `#8a9c80` + warm gold `#d6ad61` on cream `#faf8f2`,
-  sampled straight from the logo.
-- **Type:** *Fraunces* for expressive headings, *Nunito Sans* for clean body text.
-- **Motion:** soft, slow and optional — calm by default.
+The site is plain static files with a `.nojekyll` marker.
 
-## 🖼 Imagery
+1. Settings → Pages → Source → Deploy from a branch
+2. Pick the branch and the `/ (root)` folder, then Save
 
-The photographs (hero-adjacent "ambient" bands and the About portrait) are
-**royalty-free placeholders from [Unsplash](https://unsplash.com)**, chosen to
-match the calm sage-and-gold palette. They're intended as stand-ins for real
-photography of Samantha and the space — drop replacements into `assets/img/`
-using the same filenames (`about-portrait.jpg`, `ambient-breath.jpg`,
-`ambient-forest.jpg`, `ambient-bowl.jpg`) and they'll flow straight through.
+## Images
 
-## 📝 About the content
+The photographs are royalty-free placeholders from Unsplash, chosen to match
+the palette. They stand in for real photography of Samantha and the space.
+To swap them, replace the files in `assets/img/` keeping the same names
+(`about-portrait`, `ambient-breath`, `ambient-forest`, `ambient-bowl`,
+`ambient-water`, `glimpse-1/2/3`); both the `.jpg` and `.webp` versions.
 
-Miracle Breath is a **concept**. Samantha's full biography, contact details,
-final session dates, testimonials, certificate links and the formal
-waiver / health information are placeholders, ready to be swapped for the
-real thing as they're supplied.
+## Placeholder content
 
----
-
-<p align="center"><em>Inhale calm · exhale tension</em></p>
+This is a concept. Samantha's full biography, contact details, real session
+dates and booking, named testimonials, certificate links and the formal
+waiver / health information are placeholders to be replaced with real
+details. Prices shown are indicative.
