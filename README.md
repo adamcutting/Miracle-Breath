@@ -32,21 +32,17 @@ beautiful, fully static site that runs anywhere — and is ready to deploy to
 │   ├── css/style.css     # Design system & all styles
 │   ├── js/main.js        # Interactions + breathing exercise
 │   └── img/              # SVG logo & favicon
-├── .nojekyll             # Serve files as-is on GitHub Pages
-└── .github/workflows/    # Auto-deploy to GitHub Pages
+└── .nojekyll             # Serve files as-is on GitHub Pages
 ```
 
 ## 🚀 Deploy to GitHub Pages
 
-This repo ships with a workflow that publishes the site automatically.
+The site is plain static files with a `.nojekyll` marker, so it deploys with
+zero configuration:
 
-1. Push to the default branch.
-2. In **Settings → Pages**, set **Source** to **GitHub Actions**.
+1. In **Settings → Pages**, set **Source** to **Deploy from a branch**.
+2. Choose your branch and the `/ (root)` folder, then **Save**.
 3. Your site goes live at `https://<user>.github.io/<repo>/`.
-
-Prefer the classic route? Because the site is plain static files with a
-`.nojekyll` marker, you can also set **Pages → Source → Deploy from a branch**
-and pick the branch root — it just works.
 
 ## 🛠 Develop locally
 
