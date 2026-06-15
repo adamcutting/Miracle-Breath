@@ -33,18 +33,37 @@
   /* ---------- Mobile nav ---------- */
   var toggle = document.querySelector(".nav__toggle");
   var menu = document.querySelector(".nav__menu");
+  var isMobileNav = function () { return window.matchMedia("(max-width: 860px)").matches; };
+  function closeMenu(focusToggle) {
+    menu.classList.remove("open");
+    toggle.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+    if (focusToggle) toggle.focus();
+  }
   if (toggle && menu) {
     toggle.addEventListener("click", function () {
       var open = menu.classList.toggle("open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
       document.body.style.overflow = open ? "hidden" : "";
+      if (open) {
+        var first = menu.querySelector("a, button");
+        if (first) first.focus();
+      }
     });
     menu.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function () {
-        menu.classList.remove("open");
-        toggle.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
-      });
+      link.addEventListener("click", function () { closeMenu(false); });
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && menu.classList.contains("open")) closeMenu(true);
+    });
+    // keep focus within the panel while open on mobile
+    menu.addEventListener("keydown", function (e) {
+      if (e.key !== "Tab" || !menu.classList.contains("open") || !isMobileNav()) return;
+      var f = menu.querySelectorAll("a, button");
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
   }
 
