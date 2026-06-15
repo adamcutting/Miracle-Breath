@@ -10,23 +10,75 @@
 
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* ---------- Assign directional / media reveal variants ---------- */
+  document.querySelectorAll(".split").forEach(function (split) {
+    var reverse = split.classList.contains("reverse");
+    Array.prototype.forEach.call(split.children, function (child) {
+      if (!child.classList.contains("reveal")) child.classList.add("reveal");
+      if (child.matches(".split__art, .portrait-card, .split__media")) {
+        child.classList.add("reveal--media");
+      } else {
+        child.classList.add(reverse ? "reveal--left" : "reveal--right");
+      }
+    });
+  });
+
   /* ---------- Header scroll state + progress ---------- */
   var header = document.querySelector(".site-header");
   var progress = document.querySelector(".scroll-progress");
   var toTop = document.querySelector(".to-top");
 
+  var heroEl = document.querySelector(".hero");
+  var parallaxImgs = prefersReduced ? [] : document.querySelectorAll(".ambient__img");
+
+  /* Scroll-based reveal safety net — guarantees anything reaching the
+     viewport becomes visible even if the IntersectionObserver misses it. */
+  var _revealCache = null;
+  function revealInView() {
+    if (prefersReduced) return;
+    if (!_revealCache) _revealCache = document.querySelectorAll(".reveal");
+    var vh = window.innerHeight;
+    _revealCache.forEach(function (el) {
+      if (el.classList.contains("in")) return;
+      // Reveal anything whose top has reached (or passed) the lower viewport —
+      // including elements already scrolled above the fold.
+      if (el.getBoundingClientRect().top < vh * 0.92) el.classList.add("in");
+    });
+  }
+
+  function applyParallax() {
+    if (!parallaxImgs.length) return;
+    var vh = window.innerHeight;
+    parallaxImgs.forEach(function (img) {
+      var sec = img.parentElement;
+      var rect = sec.getBoundingClientRect();
+      if (rect.bottom < -100 || rect.top > vh + 100) return;
+      var progress = (rect.top + rect.height / 2 - vh / 2) / vh; // ~ -1..1
+      var shift = Math.max(-28, Math.min(28, progress * -30));
+      img.style.transform = "scale(1.18) translate3d(0," + shift.toFixed(1) + "px,0)";
+    });
+  }
+
+  var ticking = false;
   function onScroll() {
     var y = window.scrollY || window.pageYOffset;
     if (header) header.classList.toggle("scrolled", y > 24);
+    if (heroEl) heroEl.classList.toggle("scrolled-past", y > 120);
     if (toTop) toTop.classList.toggle("show", y > 600);
     if (progress) {
       var h = document.documentElement;
       var max = h.scrollHeight - h.clientHeight;
       progress.style.width = (max > 0 ? (y / max) * 100 : 0) + "%";
     }
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(function () { applyParallax(); revealInView(); ticking = false; });
+    }
   }
   window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", applyParallax, { passive: true });
   onScroll();
+  applyParallax();
 
   if (toTop) {
     toTop.addEventListener("click", function () {

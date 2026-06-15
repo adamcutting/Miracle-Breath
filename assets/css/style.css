@@ -1820,7 +1820,7 @@ h1, h2, h3, h4 { text-wrap: balance; }
   height: 100%;
   object-fit: cover;
   z-index: -2;
-  transform: scale(1.03);
+  transform: scale(1.18);
 }
 .ambient::after {
   content: "";
@@ -1865,4 +1865,92 @@ h1, h2, h3, h4 { text-wrap: balance; }
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* =====================================================================
+   v6 — motion & micro-interaction layer
+   ===================================================================== */
+
+/* Smooth cross-document page transitions (progressive enhancement) */
+@view-transition { navigation: auto; }
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: 0.45s; }
+
+/* Hero entrance — gentle staggered rise on load */
+@keyframes heroUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: none; }
+}
+.hero__breath { animation: heroUp 1s var(--ease) both; }
+.hero .eyebrow { animation: heroUp 0.9s var(--ease) 0.08s both; }
+.hero h1 { animation: heroUp 0.9s var(--ease) 0.16s both; }
+.hero__lead { animation: heroUp 0.9s var(--ease) 0.26s both; }
+.hero__actions { animation: heroUp 0.9s var(--ease) 0.36s both; }
+.hero__trustline { animation: heroUp 0.9s var(--ease) 0.46s both; }
+
+/* Animated gold shimmer across the italic hero accent */
+.hero h1 em {
+  background: linear-gradient(100deg, var(--sage-600) 0%, var(--gold-600) 45%, var(--sage-600) 90%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmerText 7s linear infinite;
+}
+@keyframes shimmerText {
+  to { background-position: -220% 0; }
+}
+
+/* Directional reveals (added by JS to split children / media) */
+.js .reveal--left  { opacity: 0; transform: translateX(-34px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+.js .reveal--right { opacity: 0; transform: translateX(34px);  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+.js .reveal--left.in, .js .reveal--right.in { opacity: 1; transform: none; }
+
+/* Media panels reveal with a soft upward wipe + scale */
+.js .reveal--media {
+  opacity: 0;
+  transform: scale(0.965);
+  clip-path: inset(8% 0 8% 0 round var(--radius-lg));
+  transition: opacity 1s var(--ease), transform 1.1s var(--ease), clip-path 1.1s var(--ease);
+}
+.js .reveal--media.in { opacity: 1; transform: none; clip-path: inset(0 0 0 0 round var(--radius-lg)); }
+
+/* Parallax target (JS sets --p) */
+.ambient__img { will-change: transform; }
+
+/* Button sheen on hover */
+.btn { position: relative; overflow: hidden; }
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -120%;
+  width: 60%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.35), transparent);
+  transform: skewX(-18deg);
+  transition: left 0.6s var(--ease);
+  pointer-events: none;
+}
+.btn:hover::after { left: 140%; }
+.btn--ghost::after { background: linear-gradient(100deg, transparent, rgba(138,156,128,0.18), transparent); }
+
+/* Feature/step/pillar cards: soft gold ring on hover */
+.pillar, .step, .feature-card, .session-card, .price-card, .cred, .expect__item {
+  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease),
+    border-color 0.45s var(--ease), background 0.45s var(--ease);
+}
+.pillar:hover, .step:hover, .cred:hover, .expect__item:hover {
+  border-color: var(--gold-400);
+}
+
+/* Nav link: gentle lift of the active/hover label */
+.nav__links a { transition: color 0.25s var(--ease); }
+
+/* Scroll-hint fades out once scrolling */
+.hero.scrolled-past .scroll-hint { opacity: 0; }
+
+/* Respect reduced motion: kill parallax + shimmer + wipes */
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 em { animation: none; background: none; -webkit-background-clip: border-box; background-clip: border-box; color: var(--sage-600); }
+  .js .reveal--media { clip-path: none; }
+  .ambient__img { transform: none !important; }
 }
