@@ -4,6 +4,10 @@
 (function () {
   "use strict";
 
+  // Signal that the interaction script is running (used by the reveal failsafe)
+  window.__mbReady = true;
+  document.documentElement.classList.add("js");
+
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- Header scroll state + progress ---------- */

@@ -77,7 +77,8 @@ body {
   margin: 0;
   font-family: var(--font-body);
   color: var(--ink);
-  background: var(--cream-50);
+  background-color: var(--cream-50);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
   line-height: 1.65;
   font-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
   -webkit-font-smoothing: antialiased;
@@ -1061,14 +1062,17 @@ p { margin: 0 0 1.15em; }
   .footer__grid { grid-template-columns: 1fr; }
 }
 
-/* ---------- Reveal-on-scroll ---------- */
-.reveal {
+/* ---------- Reveal-on-scroll ----------
+   Fail-safe: content is fully visible by default. The hidden/animated
+   state only applies once JS confirms support (html.js), so a JS failure,
+   a missed observer, or no-JS all leave the page fully readable. */
+.js .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  transform: translateY(26px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
   will-change: opacity, transform;
 }
-.reveal.in { opacity: 1; transform: none; }
+.js .reveal.in { opacity: 1; transform: none; }
 .reveal.d1 { transition-delay: 0.08s; }
 .reveal.d2 { transition-delay: 0.16s; }
 .reveal.d3 { transition-delay: 0.24s; }
@@ -1213,7 +1217,9 @@ p { margin: 0 0 1.15em; }
   gap: clamp(2rem, 5vw, 4.5rem);
   align-items: center;
 }
-.split.reverse .split__media { order: 2; }
+.split.reverse .split__media,
+.split.reverse .split__art,
+.split.reverse .portrait-card { order: 2; }
 .split__media {
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -1611,4 +1617,147 @@ p { margin: 0 0 1.15em; }
 /* reduce hero min-height crowding on short screens */
 @media (max-height: 760px) and (min-width: 901px) {
   .hero { min-height: auto; padding-block: 8rem 4rem; }
+}
+
+/* =====================================================================
+   v4 — premium uplift
+   ===================================================================== */
+
+/* Warmer, more layered shadow scale */
+:root {
+  --shadow-sm: 0 1px 2px rgba(51,61,44,0.05), 0 3px 10px rgba(51,61,44,0.05);
+  --shadow: 0 6px 16px rgba(51,61,44,0.06), 0 18px 44px rgba(51,61,44,0.10);
+  --shadow-lg: 0 12px 28px rgba(51,61,44,0.10), 0 40px 90px rgba(51,61,44,0.16);
+  --shadow-gold: 0 14px 36px rgba(176,140,60,0.28);
+}
+
+/* (Removed fixed grain overlay — it broke compositing/scroll. Subtle
+   texture is baked safely into the body background instead, see body{}) */
+
+/* Premium typography */
+h1, h2, h3, h4 { text-wrap: balance; }
+.section-intro, .hero__lead, p { text-wrap: pretty; }
+.hero h1 {
+  font-size: clamp(2.7rem, 1.5rem + 5vw, 5.25rem);
+  letter-spacing: -0.025em;
+  line-height: 1.0;
+}
+.section-title { letter-spacing: -0.02em; line-height: 1.06; }
+.page-hero h1 { letter-spacing: -0.022em; }
+.eyebrow {
+  font-size: 0.74rem;
+  letter-spacing: 0.32em;
+}
+.eyebrow::before { width: 30px; background: linear-gradient(90deg, transparent, var(--gold-500)); }
+
+/* More generous breathing room */
+.section { padding-block: clamp(4rem, 9vw, 8.5rem); }
+.section--lg { padding-block: clamp(5rem, 12vw, 11rem); }
+.section--sm { padding-block: clamp(2.5rem, 5vw, 4rem); }
+
+/* Refined buttons — subtle depth + gold-tinted hover */
+.btn {
+  background-image: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(0,0,0,0.04));
+  letter-spacing: 0.02em;
+}
+.btn--ghost { background-image: none; }
+.btn--gold:hover { box-shadow: var(--shadow-gold); }
+.btn--lg { padding: 1.15rem 2.3rem; }
+
+/* Cards: hairline border + softer, deeper hover */
+.feature-card, .step, .price-card, .session-card, .testi-card, .cred, .pillar, .expect__item {
+  border-color: rgba(51,61,44,0.08);
+}
+.feature-card:hover, .price-card:hover, .session-card:hover, .step:hover, .pillar:hover {
+  transform: translateY(-6px);
+}
+
+/* Richer, gently shifting hero backdrop */
+.hero {
+  background:
+    radial-gradient(120% 90% at 82% 6%, rgba(214,173,97,0.22), transparent 52%),
+    radial-gradient(95% 80% at 8% 96%, rgba(138,156,128,0.24), transparent 50%),
+    radial-gradient(70% 60% at 50% 40%, rgba(246,220,160,0.10), transparent 60%),
+    linear-gradient(180deg, var(--cream-100), var(--cream-50));
+  background-size: 200% 200%, 200% 200%, 160% 160%, 100% 100%;
+  animation: heroDrift 26s ease-in-out infinite alternate;
+}
+@keyframes heroDrift {
+  0% { background-position: 0% 0%, 100% 100%, 50% 50%, 0 0; }
+  100% { background-position: 12% 8%, 88% 92%, 54% 46%, 0 0; }
+}
+
+/* Soft cream wave easing the hero into the page (on-brand) */
+.hero::after, .page-hero::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: clamp(48px, 7vw, 96px);
+  background: var(--cream-50);
+  z-index: 1;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0 60 C 240 8 480 8 720 48 C 960 88 1200 96 1440 52 L1440 100 L0 100 Z'/%3E%3C/svg%3E") bottom/100% 100% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0 60 C 240 8 480 8 720 48 C 960 88 1200 96 1440 52 L1440 100 L0 100 Z'/%3E%3C/svg%3E") bottom/100% 100% no-repeat;
+}
+.page-hero::after { background: var(--cream-50); }
+
+/* Standalone decorative wave divider element (for color-block seams) */
+.wave-sep {
+  display: block;
+  width: 100%;
+  height: clamp(40px, 6vw, 80px);
+  margin: 0;
+  border: 0;
+  line-height: 0;
+}
+.wave-sep svg { width: 100%; height: 100%; display: block; }
+
+/* keep hero content above the wave + grain */
+.hero > .container, .page-hero > .container { z-index: 2; }
+
+/* Premium detail: gold hairline under section eyebrows in dark sections */
+.breathe-section .eyebrow::before { background: linear-gradient(90deg, transparent, var(--gold-400)); }
+
+/* price-note: cleaner wrapping on small screens */
+@media (max-width: 540px) {
+  .price-note { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+  .price-note .dot { display: none; }
+}
+
+/* Hero small-screen: prevent overflow / scroll-hint collision */
+@media (max-width: 600px) {
+  .hero { min-height: auto; padding-block: 7.5rem 3.5rem; }
+  .hero__breath { width: min(300px, 70%); margin-bottom: 1.25rem; }
+  .scroll-hint { display: none; }
+}
+@media (max-height: 720px) {
+  .scroll-hint { display: none; }
+}
+
+/* Testimonials: a touch more refinement */
+.testi-card { border-color: rgba(51,61,44,0.06); }
+.testi-card blockquote { font-weight: 400; }
+
+/* Section titles & intros: elegant max widths */
+.section-intro { font-size: 1.12rem; line-height: 1.7; }
+
+/* Premium framing for SVG art panels — adds depth & a hairline of light */
+.split__art, .portrait-card {
+  box-shadow: var(--shadow-lg);
+}
+.split__art::after, .portrait-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), inset 0 0 0 1px rgba(51,61,44,0.06);
+  background:
+    radial-gradient(120% 80% at 50% -10%, rgba(255,255,255,0.16), transparent 50%),
+    radial-gradient(100% 60% at 50% 115%, rgba(51,61,44,0.18), transparent 60%);
+}
+.split__art::after, .portrait-card::after { z-index: 1; }
+.about__badge {
+  border: 1px solid rgba(255,255,255,0.5);
+  box-shadow: var(--shadow);
+  z-index: 2;
 }
