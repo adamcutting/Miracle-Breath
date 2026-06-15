@@ -293,26 +293,53 @@ p { margin: 0 0 1.15em; }
 .nav__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 @media (max-width: 860px) {
-  .nav__toggle { display: flex; }
+  /* Keep the logo + close button floating ABOVE the panel so the menu
+     can always be dismissed and the brand stays anchored. */
+  .nav__toggle { display: flex; position: relative; z-index: 130; }
+  .brand { position: relative; z-index: 130; }
+
   .nav__menu {
     position: fixed;
-    inset: 0 0 0 auto;
-    width: min(82vw, 360px);
-    background: var(--cream-50);
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 2rem;
-    padding: 2rem 2.5rem;
-    transform: translateX(100%);
-    transition: transform 0.45s var(--ease);
-    box-shadow: var(--shadow-lg);
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 120;
+    background:
+      radial-gradient(90% 60% at 50% 8%, rgba(214,173,97,0.12), transparent 60%),
+      linear-gradient(180deg, var(--cream-50), var(--cream-100));
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 5.5rem 1.5rem 2.5rem;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.5s var(--ease);
   }
   .nav__menu.open { transform: translateX(0); }
-  .nav__links { flex-direction: column; align-items: flex-start; gap: 1.4rem; }
-  .nav__links a { font-size: 1.3rem; font-family: var(--font-display); }
-  .nav__cta { flex-direction: column; align-items: stretch; width: 100%; }
+
+  .nav__links { flex-direction: column; align-items: center; gap: 0.25rem; width: 100%; }
+  .nav__links li { width: 100%; text-align: center; }
+  .nav__links a {
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    color: var(--sage-900);
+    display: inline-block;
+    padding: 0.55rem 1rem;
+  }
+  .nav__links a::after { display: none; }
+  .nav__links a.is-active { color: var(--gold-700); }
+
+  /* a slim gold rule between links and the CTA */
+  .nav__cta {
+    flex-direction: column;
+    align-items: stretch;
+    width: min(320px, 86%);
+    margin-top: 1.25rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--sage-200);
+  }
   .nav__cta .btn { width: 100%; }
 }
 
