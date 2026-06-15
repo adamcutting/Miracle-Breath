@@ -70,6 +70,15 @@ python3 -m http.server 8000   # then open http://localhost:8000
 - **Type:** *Fraunces* for expressive headings, *Nunito Sans* for clean body text.
 - **Motion:** soft, slow and optional — calm by default.
 
+## 🖼 Imagery
+
+The photographs (hero-adjacent "ambient" bands and the About portrait) are
+**royalty-free placeholders from [Unsplash](https://unsplash.com)**, chosen to
+match the calm sage-and-gold palette. They're intended as stand-ins for real
+photography of Samantha and the space — drop replacements into `assets/img/`
+using the same filenames (`about-portrait.jpg`, `ambient-breath.jpg`,
+`ambient-forest.jpg`, `ambient-bowl.jpg`) and they'll flow straight through.
+
 ## 📝 About the content
 
 Miracle Breath is a **concept**. Samantha's full biography, contact details,
