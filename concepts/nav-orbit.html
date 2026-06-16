@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Miracle Breath — Concept: Orbit Navigation</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Nunito+Sans:opsz,wght@6..12,400;6..12,700;6..12,800&display=swap" rel="stylesheet" />
+<style>
+  :root{--gold:#f2c45a;--aqua:#5fd0c5;--font-d:"Fraunces",Georgia,serif;--font-b:"Nunito Sans",system-ui,sans-serif;--ease:cubic-bezier(.22,1,.36,1)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font-b);color:#e9f5f2;background:#0b2c2a;overflow:hidden;height:100svh;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  #bg{position:fixed;inset:0;z-index:-2;width:100%;height:100%}
+  .sparkles{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+  .sparkle{position:absolute;width:5px;height:5px;border-radius:50% 50% 50% 0;background:radial-gradient(circle at 30% 30%,#fff,var(--gold));opacity:0;filter:drop-shadow(0 0 7px rgba(242,196,90,.9));animation:rise linear infinite}
+  @keyframes rise{0%{transform:translateY(105vh) scale(.5);opacity:0}12%{opacity:1}100%{transform:translateY(-10vh) scale(1.1);opacity:0}}
+
+  .back{position:fixed;top:1.1rem;left:clamp(1rem,4vw,2rem);z-index:40;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;opacity:.7;transition:.3s;display:flex;align-items:center;gap:.5rem}
+  .back:hover{opacity:1;color:var(--gold)}
+  .brandmark{position:fixed;top:1.1rem;right:clamp(1rem,4vw,2rem);z-index:40;display:flex;align-items:center;gap:.5rem;font-family:var(--font-d);font-weight:600}
+  .brandmark img{width:30px;height:30px}
+
+  .stage{position:relative;height:100svh;display:grid;place-items:center}
+  .orbit{position:absolute;inset:0}
+  .decor{position:absolute;top:50%;left:50%;border:1px dashed rgba(95,208,197,.22);border-radius:50%;transform:translate(-50%,-50%)}
+  .node{position:absolute;top:0;left:0;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;
+    background:none;border:none;color:inherit;cursor:pointer;transition:transform .35s var(--ease)}
+  .node .dot{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;
+    background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.5),rgba(95,208,197,.15));
+    border:1px solid rgba(95,208,197,.5);box-shadow:0 0 0 0 rgba(95,208,197,.4);transition:.35s var(--ease);backdrop-filter:blur(4px)}
+  .node .dot svg{width:26px;height:26px;color:#cdeee9}
+  .node .label{font-weight:700;font-size:.82rem;letter-spacing:.04em;white-space:nowrap;opacity:.85;transition:.3s}
+  .node:hover .dot,.node:focus-visible .dot{transform:scale(1.15);border-color:var(--gold);box-shadow:0 0 28px rgba(242,196,90,.6);background:radial-gradient(circle at 35% 30%,#fff,var(--gold))}
+  .node:hover .dot svg,.node:focus-visible .dot svg{color:#0e3a38}
+  .node:hover .label,.node:focus-visible .label{opacity:1;color:var(--gold)}
+
+  .sun{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(40vmin,260px);aspect-ratio:1;display:grid;place-items:center;pointer-events:none;text-align:center}
+  .sun .glow{position:absolute;inset:-30%;border-radius:50%;background:radial-gradient(circle,rgba(242,196,90,.45),transparent 60%);animation:pulse 9s var(--ease) infinite}
+  .sun img{width:62%;filter:drop-shadow(0 0 30px rgba(242,196,90,.7));animation:pulse 9s var(--ease) infinite}
+  @keyframes pulse{0%,100%{transform:scale(.94)}50%{transform:scale(1.06)}}
+  .center-info{position:absolute;top:calc(50% + min(22vmin,150px));left:50%;transform:translateX(-50%);text-align:center;width:min(34ch,82vw);pointer-events:none;transition:opacity .35s}
+  .center-info .ci-title{font-family:var(--font-d);font-size:1.5rem;color:#fff}
+  .center-info .ci-teaser{color:#bfe0db;font-size:.96rem;margin-top:.25rem}
+  .hint{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);z-index:20;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:#bfe0db;opacity:.6}
+
+  /* opened section overlay */
+  .view{position:fixed;inset:0;z-index:50;display:grid;place-items:center;text-align:center;padding:6rem 1.5rem;
+    background:radial-gradient(60% 50% at 50% 30%,rgba(242,196,90,.16),transparent 60%),linear-gradient(160deg,#0e3a38,#0b2624);
+    opacity:0;visibility:hidden;transform:scale(1.04);transition:opacity .5s var(--ease),transform .5s var(--ease),visibility .5s}
+  .view.open{opacity:1;visibility:visible;transform:none}
+  .view .vinner{max-width:36ch}
+  .view .eyebrow{font-weight:800;letter-spacing:.32em;text-transform:uppercase;font-size:.74rem;color:var(--gold);margin-bottom:1rem}
+  .view h2{font-family:var(--font-d);font-weight:600;font-size:clamp(2.2rem,1.4rem+3.6vw,4rem);color:#fff;line-height:1.05}
+  .view p{color:#cfe7e3;margin-top:1rem;font-size:1.12rem}
+  .view .vactions{margin-top:2rem;display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.95rem 1.8rem;border-radius:999px;font-weight:800;cursor:pointer;border:none;transition:transform .3s var(--ease)}
+  .btn:hover{transform:translateY(-3px)}
+  .btn.gold{background:linear-gradient(135deg,var(--gold),#ffd877);color:#0e3a38}
+  .btn.ghost{background:transparent;border:1.5px solid rgba(207,231,227,.4);color:#e9f5f2}
+
+  @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+  @media(max-width:560px){.node .label{font-size:.72rem}.node .dot{width:54px;height:54px}}
+</style>
+</head>
+<body>
+  <canvas id="bg"></canvas>
+  <div class="sparkles" id="sparkles" aria-hidden="true"></div>
+  <a class="back" href="index.html">← All concepts</a>
+  <span class="brandmark"><img src="../assets/img/emblem-sm.png" alt=""/>Miracle Breath</span>
+
+  <div class="stage">
+    <div class="orbit" id="orbit" role="navigation" aria-label="Orbit menu"></div>
+    <div class="sun" aria-hidden="true">
+      <span class="glow"></span>
+      <picture><source srcset="../assets/img/emblem-sm.png" type="image/webp"><img src="../assets/img/emblem-sm.png" alt=""/></picture>
+    </div>
+    <div class="center-info" id="info">
+      <div class="ci-title">Miracle Breath</div>
+      <div class="ci-teaser">Choose a path — hover to explore, tap to enter.</div>
+    </div>
+  </div>
+  <p class="hint" aria-hidden="true">Hover pauses the orbit</p>
+
+  <div class="view" id="view" role="dialog" aria-modal="true" aria-label="Section">
+    <div class="vinner">
+      <p class="eyebrow" id="v-eyebrow"></p>
+      <h2 id="v-title"></h2>
+      <p id="v-body"></p>
+      <div class="vactions">
+        <a class="btn gold" id="v-cta" href="../timetable.html">Explore →</a>
+        <button class="btn ghost" id="v-back">↺ Back to orbit</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function(){
+  var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var ic={
+    welcome:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>',
+    soma:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12c3-6 15-6 18 0-3 6-15 6-18 0Z"/><circle cx="12" cy="12" r="2.5"/></svg>',
+    healing:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9Z"/></svg>',
+    sessions:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>',
+    about:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 21v-1a7 7 0 0 1 14 0v1"/></svg>',
+    contact:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>'
+  };
+  var items=[
+    {k:"welcome",label:"Welcome",eyebrow:"Begin here",title:"Find your calm",teaser:"A breath of calm, energy and change.",body:"A calm space to slow down and breathe properly again — guided breathwork and meditation to quiet a busy mind.",href:"../index.html"},
+    {k:"soma",label:"SOMA Breath",eyebrow:"The method",title:"What is SOMA Breath?",teaser:"Rhythmic breath, music and stillness.",body:"Ancient breathing practice shaped for modern life — rhythmic breathing, music and meditation woven into one experience.",href:"../soma-breath.html"},
+    {k:"healing",label:"Healing",eyebrow:"Wellbeing",title:"Healing through the breath",teaser:"Somewhere to put it all down.",body:"Settle a frazzled nervous system, loosen what you've been holding, and feel at home in your body again.",href:"../healing.html"},
+    {k:"sessions",label:"Sessions",eyebrow:"Timetable",title:"Find a session",teaser:"Online & in person. First class £8.",body:"Group classes, workshops and private 1:1s — online and in person. Your first class is £8, no commitment.",href:"../timetable.html"},
+    {k:"about",label:"About",eyebrow:"Your guide",title:"Meet Samantha",teaser:"The person you'll breathe with.",body:"A Level 2 SOMA certified instructor with an ADHD Awareness Diploma — warm, unfussy, and here to meet you where you are.",href:"../about.html"},
+    {k:"contact",label:"Contact",eyebrow:"Say hello",title:"Let's connect",teaser:"Ready to explore your breath?",body:"Whatever kind of day it's been, your next breath is a good place to start. Get in touch about sessions and events.",href:"../contact.html"}
+  ];
+  var orbit=document.getElementById("orbit"),info=document.getElementById("info");
+  var nodes=items.map(function(it,i){
+    var b=document.createElement("button");b.className="node";b.type="button";
+    b.innerHTML='<span class="dot">'+ic[it.k]+'</span><span class="label">'+it.label+'</span>';
+    b.setAttribute("aria-label",it.label);
+    b.addEventListener("mouseenter",function(){preview(it);});
+    b.addEventListener("focus",function(){preview(it);});
+    b.addEventListener("mouseleave",resetInfo);b.addEventListener("blur",resetInfo);
+    b.addEventListener("click",function(){open(it);});
+    orbit.appendChild(b);return b;
+  });
+  function preview(it){info.innerHTML='<div class="ci-title">'+it.title+'</div><div class="ci-teaser">'+it.teaser+'</div>';}
+  function resetInfo(){info.innerHTML='<div class="ci-title">Miracle Breath</div><div class="ci-teaser">Choose a path — hover to explore, tap to enter.</div>';}
+
+  var angle=0,paused=false,R=0,cx=0,cy=0;
+  function layout(){
+    var w=innerWidth,h=innerHeight;cx=w/2;cy=h/2;
+    R=Math.min(w,h)*(w<560?0.34:0.32);
+    // decorative ring
+    var d=document.querySelector(".decor");
+    if(!d){d=document.createElement("span");d.className="decor";orbit.appendChild(d);}
+    d.style.width=d.style.height=(R*2)+"px";
+  }
+  function place(){
+    nodes.forEach(function(n,i){
+      var a=angle+(i/nodes.length)*Math.PI*2;
+      var x=cx+Math.cos(a)*R, y=cy+Math.sin(a)*R;
+      n.style.left=x+"px";n.style.top=y+"px";
+    });
+  }
+  layout();place();
+  addEventListener("resize",function(){layout();place();});
+  orbit.addEventListener("mouseenter",function(){paused=true;});
+  orbit.addEventListener("mouseleave",function(){paused=false;});
+  orbit.addEventListener("focusin",function(){paused=true;});
+  orbit.addEventListener("focusout",function(){paused=false;});
+  var last=performance.now();
+  function loop(now){var dt=(now-last)/1000;last=now;if(!paused&&!reduce){angle+=dt*0.08;place();}requestAnimationFrame(loop);}
+  requestAnimationFrame(loop);
+
+  // sparkles + canvas glow bg
+  if(!reduce){var sp=document.getElementById("sparkles");for(var i=0;i<20;i++){var s=document.createElement("span");s.className="sparkle";s.style.left=Math.random()*100+"%";s.style.animationDuration=(12+Math.random()*12)+"s";s.style.animationDelay=(-Math.random()*18)+"s";s.style.transform="scale("+(.5+Math.random())+")";sp.appendChild(s);}}
+  var cv=document.getElementById("bg"),ctx=cv.getContext("2d"),dpr=Math.min(devicePixelRatio||1,2),W,H;
+  function rs(){W=cv.width=innerWidth*dpr;H=cv.height=innerHeight*dpr;}rs();addEventListener("resize",rs);
+  function hx(c,a){var n=parseInt(c.slice(1),16);return"rgba("+(n>>16)+","+((n>>8)&255)+","+(n&255)+","+a+")";}
+  var blobs=[["#14524c",.8],["#123b5a",.7],["#0e6b62",.7]].map(function(p){return{c:p[0],a:p[1],bx:Math.random(),by:Math.random(),sx:.05+Math.random()*.03,sy:.04+Math.random()*.03,ph:Math.random()*6.28};});
+  function bg(t){ctx.globalCompositeOperation="source-over";ctx.fillStyle="#0b2624";ctx.fillRect(0,0,W,H);ctx.globalCompositeOperation="lighter";if(ctx.filter!==undefined)ctx.filter="blur("+(80*dpr)+"px)";blobs.forEach(function(b){var x=(b.bx+Math.sin(t*b.sx+b.ph)*.18)*W,y=(b.by+Math.cos(t*b.sy+b.ph)*.18)*H,r=Math.max(W,H)*.5;var g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,hx(b.c,b.a));g.addColorStop(1,hx(b.c,0));ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r,0,6.2832);ctx.fill();});if(ctx.filter!==undefined)ctx.filter="none";}
+  var st=performance.now();function bgloop(n){bg((n-st)/1000);if(!reduce)requestAnimationFrame(bgloop);}if(reduce)bg(2);else requestAnimationFrame(bgloop);
+
+  // open / close section view
+  var view=document.getElementById("view");
+  function open(it){
+    document.getElementById("v-eyebrow").textContent=it.eyebrow;
+    document.getElementById("v-title").textContent=it.title;
+    document.getElementById("v-body").textContent=it.body;
+    document.getElementById("v-cta").setAttribute("href",it.href);
+    view.classList.add("open");document.getElementById("v-back").focus();
+  }
+  function close(){view.classList.remove("open");}
+  document.getElementById("v-back").addEventListener("click",close);
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")close();});
+})();
+</script>
+</body>
+</html>
