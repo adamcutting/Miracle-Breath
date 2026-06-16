@@ -2058,3 +2058,71 @@ h1, h2, h3, h4 { text-wrap: balance; }
   padding: 0.3rem 0.7rem; border-radius: var(--radius-pill);
 }
 .intro-offer strong { color: #fff; }
+
+/* =====================================================================
+   v8 — visual appeal: logo-derived wave dividers, arched imagery,
+   warmer photo cohesion
+   ===================================================================== */
+
+/* Organic wave dividers echoing the logo's waves.
+   Sage-tinted sections (.services) meet cream with a soft curve. */
+.services { position: relative; }
+.services::before,
+.services::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  height: clamp(30px, 4vw, 56px);
+  background: var(--cream-50);
+  z-index: 1;
+  pointer-events: none;
+}
+.services::before {
+  top: -1px;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 0 H1440 V42 C1160 76 940 70 720 46 C500 22 280 16 0 46 Z'/%3E%3C/svg%3E") top center/100% 100% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 0 H1440 V42 C1160 76 940 70 720 46 C500 22 280 16 0 46 Z'/%3E%3C/svg%3E") top center/100% 100% no-repeat;
+}
+.services::after {
+  bottom: -1px;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 80 H1440 V38 C1160 4 940 10 720 34 C500 58 280 64 0 34 Z'/%3E%3C/svg%3E") bottom center/100% 100% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 80 H1440 V38 C1160 4 940 10 720 34 C500 58 280 64 0 34 Z'/%3E%3C/svg%3E") bottom center/100% 100% no-repeat;
+}
+.services > .container { position: relative; z-index: 2; }
+
+/* Arched image framing — echoes the round emblem */
+.gallery figure:first-child,
+.gallery figure:nth-child(2),
+.gallery figure:last-child {
+  border-radius: 220px 220px var(--radius) var(--radius);
+}
+.portrait-card { border-radius: 240px 240px var(--radius-lg) var(--radius-lg); }
+.portrait-card .about__badge { border-radius: var(--radius); }
+@media (max-width: 760px) {
+  .gallery figure:last-child { border-radius: 160px 160px var(--radius) var(--radius); }
+}
+
+/* Warm, cohesive wash over photographs so the set feels branded */
+.gallery figure::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(214,173,97,0.10), transparent 40%),
+    linear-gradient(0deg, rgba(51,61,44,0.16), transparent 55%);
+  mix-blend-mode: multiply;
+}
+.portrait-card .photo { filter: saturate(0.96) contrast(1.02); }
+
+/* Richer drifting hero aurora */
+.hero {
+  background:
+    radial-gradient(60% 50% at 78% 12%, rgba(214,173,97,0.26), transparent 60%),
+    radial-gradient(55% 55% at 12% 88%, rgba(138,156,128,0.28), transparent 60%),
+    radial-gradient(45% 40% at 60% 55%, rgba(246,220,160,0.16), transparent 65%),
+    radial-gradient(50% 50% at 30% 25%, rgba(188,208,198,0.20), transparent 60%),
+    linear-gradient(180deg, var(--cream-100), var(--cream-50));
+  background-size: 200% 200%, 200% 200%, 180% 180%, 200% 200%, 100% 100%;
+  animation: heroDrift 30s ease-in-out infinite alternate;
+}
