@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Miracle Breath — Immersive Concept Lab</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Nunito+Sans:opsz,wght@6..12,400;6..12,700;6..12,800&display=swap" rel="stylesheet" />
+<style>
+  :root{--font-d:"Fraunces",Georgia,serif;--font-b:"Nunito Sans",system-ui,sans-serif;--ease:cubic-bezier(.22,1,.36,1)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font-b);color:#222;background:#0d1715;-webkit-font-smoothing:antialiased;min-height:100vh}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1100px;margin:0 auto;padding:clamp(2.5rem,6vw,5rem) clamp(1.2rem,4vw,2rem)}
+  .top{color:#fff;text-align:center;margin-bottom:3rem}
+  .top .brand{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--font-d);font-size:1.2rem;font-weight:600;margin-bottom:1.5rem}
+  .top .brand img{width:38px;height:38px}
+  .top .eyebrow{font-weight:800;letter-spacing:.32em;text-transform:uppercase;font-size:.74rem;color:#f2c45a;margin-bottom:1rem}
+  .top h1{font-family:var(--font-d);font-weight:600;font-size:clamp(2.2rem,1.4rem+4vw,4rem);line-height:1.04;letter-spacing:-.02em}
+  .top p{color:#9fb3ad;margin-top:1rem;max-width:54ch;margin-inline:auto;font-size:1.08rem}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem}
+  .card{position:relative;border-radius:22px;overflow:hidden;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;
+    padding:1.8rem;color:#fff;text-decoration:none;transition:transform .4s var(--ease),box-shadow .4s var(--ease);box-shadow:0 16px 40px rgba(0,0,0,.35)}
+  .card:hover{transform:translateY(-8px);box-shadow:0 28px 70px rgba(0,0,0,.5)}
+  .card .tag{font-weight:800;letter-spacing:.2em;text-transform:uppercase;font-size:.68rem;opacity:.85}
+  .card h2{font-family:var(--font-d);font-weight:600;font-size:1.7rem;margin:.3rem 0 .5rem}
+  .card p{font-size:.94rem;opacity:.9;max-width:34ch}
+  .card .go{margin-top:1rem;font-weight:800;font-size:.86rem;display:inline-flex;align-items:center;gap:.4rem}
+  .card::before{content:"";position:absolute;inset:0;z-index:-1}
+  .c-aurora::before{background:radial-gradient(70% 70% at 25% 20%,#d9c8f0,transparent 60%),radial-gradient(60% 60% at 80% 30%,#bfe3ec,transparent 60%),radial-gradient(70% 60% at 70% 90%,#f6d9c6,transparent 60%),linear-gradient(160deg,#efe6fb,#fbfaff)}
+  .c-aurora{color:#322e4a}
+  .c-jewel::before{background:radial-gradient(60% 50% at 50% 25%,rgba(242,196,90,.4),transparent 60%),linear-gradient(160deg,#0e3a38,#0b2c2a)}
+  .c-journey::before{background:linear-gradient(110deg,#ffd9c4 0 20%,#e9fffb 20% 40%,#0e3a38 40% 60%,#f1eafc 60% 80%,#ff9f8f 80% 100%)}
+  .c-journey{color:#1a1a1a}
+  .c-live::before{background:linear-gradient(160deg,#586b4b,#333d2c)}
+
+  .foot{color:#7c8c87;text-align:center;margin-top:2.5rem;font-size:.9rem}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <span class="brand"><img src="../assets/img/emblem-sm.png" alt=""/>Miracle Breath</span>
+      <p class="eyebrow">Immersive Concept Lab</p>
+      <h1>Three ways the whole site could feel like one breath.</h1>
+      <p>Early, interactive concepts exploring an immersive, continuous-flow experience. Open one, scroll slowly, and notice how it moves. Best on desktop, but they work on mobile too.</p>
+    </div>
+
+    <div class="grid">
+      <a class="card c-aurora" href="aurora.html">
+        <span class="tag">Concept 01</span>
+        <h2>Aurora Flow</h2>
+        <p>A living, colour-shifting gradient with drifting gold sparkles. Light, dreamy and sparkly — calm but full of colour.</p>
+        <span class="go">Open concept →</span>
+      </a>
+      <a class="card c-jewel" href="jewel.html">
+        <span class="tag">Concept 02</span>
+        <h2>Jewel Glow</h2>
+        <p>Deep teal and indigo, where the gold logo genuinely glows and a breathing orb pulses. Premium, magical, full of sparkle.</p>
+        <span class="go">Open concept →</span>
+      </a>
+      <a class="card c-journey" href="journey.html">
+        <span class="tag">Concept 03</span>
+        <h2>Horizontal Journey</h2>
+        <p>Scroll moves you sideways through every mood — sunrise, turquoise, jewel, aurora, coral — as one flowing story.</p>
+        <span class="go">Open concept →</span>
+      </a>
+      <a class="card c-live" href="../index.html">
+        <span class="tag">For reference</span>
+        <h2>The current site</h2>
+        <p>The calm, grounded version that's live now — for comparison against the immersive concepts.</p>
+        <span class="go">View live site →</span>
+      </a>
+    </div>
+
+    <p class="foot">Concepts are experimental and separate from the live site. Motion respects “reduce motion” settings.</p>
+  </div>
+</body>
+</html>
