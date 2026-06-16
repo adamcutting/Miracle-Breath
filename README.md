@@ -44,12 +44,23 @@ python3 -m http.server 8000      # then open http://localhost:8000
 # or: npx serve .
 ```
 
-## Deploying to GitHub Pages
+## Deploying to Cloudflare Pages
 
-The site is plain static files with a `.nojekyll` marker.
+Hosted on Cloudflare Pages (free), connected to this GitHub repo — it
+rebuilds automatically on every push.
 
-1. Settings → Pages → Source → Deploy from a branch
-2. Pick the branch and the `/ (root)` folder, then Save
+In the Cloudflare dashboard: **Workers & Pages → Create → Pages → Connect to
+Git**, pick this repo, then:
+
+- **Framework preset:** None
+- **Build command:** *(leave empty)*
+- **Build output directory:** `/`
+
+That's it — it's plain static files. `_headers` adds caching and security
+headers. A custom domain (e.g. `www.miraclebreath.com`) can be attached under
+the project's **Custom domains** tab.
+
+The site also still works on GitHub Pages (the `.nojekyll` marker is harmless).
 
 ## Images
 

@@ -1,0 +1,19 @@
+# Cloudflare Pages headers
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+# Cache images for a day, revalidate in the background
+/assets/img/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# Fonts (Google Fonts are remote; this covers any local ones later)
+/assets/fonts/*
+  Cache-Control: public, max-age=2592000
+
+# Everything else: always revalidate so edits show immediately,
+# plus baseline security headers
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
