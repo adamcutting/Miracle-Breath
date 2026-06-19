@@ -204,94 +204,173 @@
     counters.forEach(function (c) { cio.observe(c); });
   }
 
-  /* ---------- Interactive breathing exercise ---------- */
-  var circle = document.querySelector(".breath-circle");
-  var phaseEl = document.querySelector(".breath-phase");
-  var countEl = document.querySelector(".breath-count");
-  var startBtn = document.querySelector("[data-breath-toggle]");
-  var patternBtns = document.querySelectorAll("[data-pattern]");
+  /* ---------- Guided breathing ---------- */
+  (function () {
+    var stage = document.querySelector(".breath-stage");
+    if (!stage) return;
 
-  var patterns = {
-    calm:   { name: "Calm 4-7-8",   phases: [["Breathe in", 4], ["Hold", 7], ["Breathe out", 8]] },
-    box:    { name: "Box 4-4-4-4",  phases: [["Breathe in", 4], ["Hold", 4], ["Breathe out", 4], ["Hold", 4]] },
-    relax:  { name: "Relax 4-6",    phases: [["Breathe in", 4], ["Breathe out", 6]] },
-  };
+    var orb = stage.querySelector(".breath-orb");
+    var fill = stage.querySelector(".bp-fill");
+    var phaseEl = document.querySelector(".breath-phase");
+    var countEl = document.querySelector(".breath-count");
+    var startBtn = document.querySelector("[data-breath-toggle]");
+    var soundBtn = document.querySelector("[data-breath-sound]");
+    var patternBtns = Array.prototype.slice.call(document.querySelectorAll("[data-pattern]"));
+    var hintEl = document.querySelector("#breath-hint");
+    var roundsEl = document.querySelector(".breath-rounds");
 
-  var current = "calm";
-  var running = false;
-  var timer = null;
-  var phaseIndex = 0;
-  var remaining = 0;
+    var R = 112, CIRC = 2 * Math.PI * R;
+    if (fill) { fill.style.strokeDasharray = CIRC; fill.style.strokeDashoffset = CIRC; }
 
-  function setCircle(scale, seconds) {
-    if (!circle) return;
-    circle.style.transitionDuration = seconds + "s";
-    circle.style.transform = "scale(" + scale + ")";
-  }
+    var PATTERNS = {
+      calm:  { hint: "Best for winding down and sleep.", rounds: 4,
+        phases: [{ l: "Breathe in", s: 4, t: "in" }, { l: "Hold", s: 7, t: "hold" }, { l: "Breathe out", s: 8, t: "out" }] },
+      box:   { hint: "Best for steady focus and reset.", rounds: 4,
+        phases: [{ l: "Breathe in", s: 4, t: "in" }, { l: "Hold", s: 4, t: "hold" }, { l: "Breathe out", s: 4, t: "out" }, { l: "Hold", s: 4, t: "holdEmpty" }] },
+      relax: { hint: "Best for an easy, gentle calm.", rounds: 5,
+        phases: [{ l: "Breathe in", s: 4, t: "in" }, { l: "Breathe out", s: 6, t: "out" }] }
+    };
 
-  function runPhase() {
-    var phases = patterns[current].phases;
-    var phase = phases[phaseIndex];
-    var label = phase[0];
-    var secs = phase[1];
-    remaining = secs;
+    var current = "calm", running = false, finished = false;
+    var raf = null, rmTimer = null, phaseIdx = 0, phaseStart = 0, round = 0;
 
-    if (phaseEl) phaseEl.textContent = label;
+    /* optional, lazily-created soft tones */
+    var actx = null, soundOn = false;
+    function ensureAudio() {
+      if (!actx) { try { actx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { actx = null; } }
+      if (actx && actx.state === "suspended") actx.resume();
+    }
+    function tone(freq, dur) {
+      if (!soundOn || !actx) return;
+      var o = actx.createOscillator(), g = actx.createGain(), t = actx.currentTime;
+      o.type = "sine"; o.frequency.value = freq;
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.linearRampToValueAtTime(0.05, t + Math.min(0.6, dur * 0.4));
+      g.gain.linearRampToValueAtTime(0.0001, t + dur);
+      o.connect(g); g.connect(actx.destination);
+      o.start(t); o.stop(t + dur + 0.1);
+    }
+    function cue(type, secs) { if (type === "in") tone(330, secs); else if (type === "out") tone(247, secs); }
 
-    if (!prefersReduced) {
-      if (/in/i.test(label)) setCircle(1.5, secs);
-      else if (/out/i.test(label)) setCircle(0.8, secs);
-      // hold: keep current scale
+    function easeInOut(x) { return 0.5 - 0.5 * Math.cos(Math.PI * x); }
+    function fullness(type, t) {
+      if (type === "in") return easeInOut(t);
+      if (type === "hold") return 1;
+      if (type === "out") return easeInOut(1 - t);
+      return 0; // holdEmpty
     }
 
-    if (countEl) countEl.textContent = remaining + "s";
-    timer = setInterval(function () {
-      remaining -= 1;
-      if (countEl) countEl.textContent = (remaining > 0 ? remaining : 0) + "s";
-      if (remaining <= 0) {
-        clearInterval(timer);
-        phaseIndex = (phaseIndex + 1) % phases.length;
-        if (running) runPhase();
+    function buildDots() {
+      if (!roundsEl) return;
+      roundsEl.innerHTML = "";
+      for (var i = 0; i < PATTERNS[current].rounds; i++) {
+        var d = document.createElement("span"); d.className = "breath-dot"; roundsEl.appendChild(d);
       }
-    }, 1000);
-  }
+    }
+    function paintDots() {
+      if (!roundsEl) return;
+      var dots = roundsEl.children;
+      for (var i = 0; i < dots.length; i++) dots[i].classList.toggle("on", i < round);
+    }
+    function setPhase(label) {
+      if (!phaseEl || phaseEl.textContent === label) return;
+      phaseEl.textContent = label;
+      phaseEl.style.animation = "none"; void phaseEl.offsetWidth; phaseEl.style.animation = "phaseIn .5s var(--ease)";
+    }
+    function render(f) {
+      if (orb) {
+        orb.style.transform = "scale(" + (0.56 + f * 0.44).toFixed(3) + ")";
+        orb.style.boxShadow = "0 0 " + (30 + f * 60).toFixed(0) + "px rgba(242,196,90," + (0.25 + f * 0.45).toFixed(2) + ")";
+      }
+      if (fill) fill.style.strokeDashoffset = (CIRC * (1 - f)).toFixed(1);
+    }
 
-  function startBreathing() {
-    running = true;
-    phaseIndex = 0;
-    if (startBtn) startBtn.textContent = "Pause";
-    if (circle) circle.classList.add("is-running");
-    runPhase();
-  }
+    function advance(now) {
+      phaseIdx++;
+      if (phaseIdx >= PATTERNS[current].phases.length) { phaseIdx = 0; round++; paintDots(); }
+      if (round >= PATTERNS[current].rounds) { finish(); return false; }
+      var p = PATTERNS[current].phases[phaseIdx];
+      setPhase(p.l); cue(p.t, p.s);
+      phaseStart = now;
+      return true;
+    }
 
-  function stopBreathing() {
-    running = false;
-    clearInterval(timer);
-    if (startBtn) startBtn.textContent = "Begin";
-    if (phaseEl) phaseEl.textContent = "Ready when you are";
-    if (countEl) countEl.textContent = patterns[current].name;
-    if (circle) { circle.classList.remove("is-running"); setCircle(1, 1); }
-  }
+    function frame(now) {
+      var p = PATTERNS[current].phases[phaseIdx];
+      var elapsed = (now - phaseStart) / 1000;
+      var t = Math.min(1, elapsed / p.s);
+      render(fullness(p.t, t));
+      if (countEl) countEl.textContent = Math.max(0, Math.ceil(p.s - elapsed)) || "";
+      if (elapsed >= p.s) { if (!advance(now)) return; }
+      raf = requestAnimationFrame(frame);
+    }
 
-  if (startBtn) {
-    startBtn.addEventListener("click", function () {
-      if (running) stopBreathing();
-      else startBreathing();
-    });
-  }
+    /* reduced-motion: timed phases, no per-frame scaling */
+    function rmStep() {
+      var p = PATTERNS[current].phases[phaseIdx];
+      setPhase(p.l); cue(p.t, p.s);
+      render(p.t === "hold" ? 1 : (p.t === "in" ? 1 : 0));
+      var rem = p.s; if (countEl) countEl.textContent = rem;
+      rmTimer = setInterval(function () {
+        rem--; if (countEl) countEl.textContent = Math.max(0, rem);
+        if (rem <= 0) {
+          clearInterval(rmTimer);
+          phaseIdx++;
+          if (phaseIdx >= PATTERNS[current].phases.length) { phaseIdx = 0; round++; paintDots(); }
+          if (round >= PATTERNS[current].rounds) { finish(); return; }
+          rmStep();
+        }
+      }, 1000);
+    }
 
-  patternBtns.forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      current = btn.getAttribute("data-pattern");
-      patternBtns.forEach(function (b) {
-        b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+    function start() {
+      finished = false; running = true; round = 0; phaseIdx = 0; paintDots();
+      stage.classList.add("running");
+      if (startBtn) startBtn.textContent = "Pause";
+      ensureAudio();
+      var p = PATTERNS[current].phases[0];
+      setPhase(p.l); cue(p.t, p.s);
+      phaseStart = performance.now();
+      if (prefersReduced) rmStep(); else raf = requestAnimationFrame(frame);
+    }
+    function halt() {
+      running = false; stage.classList.remove("running");
+      if (raf) { cancelAnimationFrame(raf); raf = null; }
+      if (rmTimer) { clearInterval(rmTimer); rmTimer = null; }
+    }
+    function stop() {
+      halt(); finished = false;
+      if (startBtn) startBtn.textContent = "Begin";
+      render(0); setPhase("Ready"); if (countEl) countEl.textContent = "";
+      round = 0; paintDots();
+    }
+    function finish() {
+      halt(); finished = true;
+      if (orb) { orb.style.transform = "scale(0.8)"; orb.style.boxShadow = "0 0 70px rgba(242,196,90,0.5)"; }
+      if (fill) fill.style.strokeDashoffset = 0;
+      setPhase("Beautifully done"); if (countEl) countEl.textContent = "";
+      if (startBtn) startBtn.textContent = "Again";
+    }
+
+    if (startBtn) startBtn.addEventListener("click", function () { if (running) stop(); else start(); });
+    patternBtns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        current = btn.getAttribute("data-pattern");
+        patternBtns.forEach(function (b) { b.setAttribute("aria-pressed", b === btn ? "true" : "false"); });
+        if (hintEl) hintEl.textContent = PATTERNS[current].hint;
+        stop(); buildDots(); paintDots();
       });
-      stopBreathing();
     });
-  });
+    if (soundBtn) soundBtn.addEventListener("click", function () {
+      soundOn = !soundOn;
+      soundBtn.setAttribute("aria-pressed", soundOn ? "true" : "false");
+      soundBtn.classList.toggle("on", soundOn);
+      if (soundOn) ensureAudio();
+    });
 
-  // initialise label
-  if (countEl) countEl.textContent = patterns[current].name;
+    buildDots(); paintDots(); render(0);
+    if (hintEl) hintEl.textContent = PATTERNS[current].hint;
+  })();
 
   /* ---------- Forms (front-end only demo) ---------- */
   document.querySelectorAll("[data-demo-form]").forEach(function (form) {

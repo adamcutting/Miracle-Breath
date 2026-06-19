@@ -198,26 +198,37 @@
           <p class="section-intro center-block">A simple taste of rhythmic breathing. Choose a pattern and follow the circle — full SOMA journeys go much deeper.</p>
         </div>
         <div class="breath-box reveal">
-          <div class="breath-pattern-toggle" role="group" aria-label="Choose a breathing pattern">
-            <button data-pattern="calm" aria-pressed="true">Calm 4·7·8</button>
-            <button data-pattern="box" aria-pressed="false">Box 4·4·4·4</button>
-            <button data-pattern="relax" aria-pressed="false">Relax 4·6</button>
+          <div class="breath-patterns" role="group" aria-label="Choose a breathing pattern">
+            <button data-pattern="calm" aria-pressed="true">Calm <span>4·7·8</span></button>
+            <button data-pattern="box" aria-pressed="false">Box <span>4·4·4·4</span></button>
+            <button data-pattern="relax" aria-pressed="false">Relax <span>4·6</span></button>
           </div>
-          <div class="breath-visual" aria-hidden="true">
-            <span class="breath-ring"></span><span class="breath-ring"></span><span class="breath-ring"></span>
-            <div class="breath-circle"></div>
+          <p class="breath-hint" id="breath-hint">Best for winding down and sleep.</p>
+
+          <div class="breath-stage">
+            <svg class="breath-progress" viewBox="0 0 240 240" aria-hidden="true">
+              <circle class="bp-track" cx="120" cy="120" r="112" />
+              <circle class="bp-fill" cx="120" cy="120" r="112" />
+            </svg>
+            <span class="breath-ring"></span>
+            <span class="breath-ring"></span>
+            <div class="breath-orb" aria-hidden="true"></div>
+            <div class="breath-readout">
+              <p class="breath-phase" aria-live="polite">Ready</p>
+              <p class="breath-count" aria-hidden="true"></p>
+            </div>
           </div>
-          <div>
-            <p class="breath-phase" aria-live="polite">Ready when you are</p>
-            <p class="breath-count" aria-hidden="true">Calm 4-7-8</p>
-          </div>
+
+          <div class="breath-rounds" aria-hidden="true"></div>
+
           <div class="breath-controls">
-            <button class="btn btn--gold btn--lg" data-breath-toggle>Begin</button>
+            <button class="btn btn--lg" data-breath-toggle>Begin</button>
+            <button class="breath-sound" data-breath-sound type="button" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+              Sound
+            </button>
           </div>
-          <p style="font-size:0.82rem;color:var(--sage-300);max-width:46ch;margin:0">
-            A gentle taster, not medical advice. Please don't practise while driving; if you feel
-            light-headed, simply return to normal breathing.
-          </p>
+          <p class="breath-note">A gentle taster, not medical advice. Please don't practise while driving; if you feel light-headed, simply return to normal breathing.</p>
         </div>
       </div>
     </section>
