@@ -352,4 +352,22 @@
   /* ---------- Footer year ---------- */
   var yr = document.querySelector("[data-year]");
   if (yr) yr.textContent = new Date().getFullYear();
+
+  /* ---------- Jewel theme: rising gold sparkles ---------- */
+  if (!prefersReduced) {
+    var spLayer = document.createElement("div");
+    spLayer.className = "jewel-sparkles";
+    spLayer.setAttribute("aria-hidden", "true");
+    var spCount = window.innerWidth < 700 ? 12 : 20;
+    for (var sp = 0; sp < spCount; sp++) {
+      var spark = document.createElement("span");
+      spark.className = "jewel-spark";
+      spark.style.left = Math.random() * 100 + "%";
+      spark.style.animationDuration = (12 + Math.random() * 14) + "s";
+      spark.style.animationDelay = -(Math.random() * 20) + "s";
+      spark.style.transform = "scale(" + (0.5 + Math.random()) + ")";
+      spLayer.appendChild(spark);
+    }
+    document.body.appendChild(spLayer);
+  }
 })();

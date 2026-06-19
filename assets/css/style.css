@@ -2127,3 +2127,208 @@ h1, h2, h3, h4 { text-wrap: balance; }
   background-size: 200% 200%, 200% 200%, 180% 180%, 200% 200%, 100% 100%;
   animation: heroDrift 30s ease-in-out infinite alternate;
 }
+
+/* =====================================================================
+   JEWEL THEME  — deep teal/indigo retheme (inspired by the Jewel concept)
+   Appended last so it overrides the calm-light base by source order.
+   Strategy: remap the single-purpose tokens (light-bg-only / dark-text-only)
+   to flip most surfaces at once, then patch the hardcoded #fff cards and
+   recolour the already-dark elements to jewel-teal.
+   ===================================================================== */
+:root {
+  /* jewel palette */
+  --j-base: #08211f;
+  --j-base-2: #0b2c2a;
+  --j-teal: #0e3a38;
+  --j-indigo: #123b5a;
+  --j-plum: #3a2152;
+  --j-text: #e9f5f2;
+  --j-soft: #bfe0db;
+  --j-aqua: #5fd0c5;
+  --j-gold: #f2c45a;
+  --j-glass: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.028));
+  --j-border: rgba(95,208,197,0.18);
+  --j-border-2: rgba(95,208,197,0.36);
+
+  /* safe remaps — each of these tokens is used ONLY as a light surface or
+     ONLY as dark text in the base sheet, so repointing them is non-destructive */
+  --ink: #e9f5f2;        /* body + input text */
+  --muted: #9fc4bd;      /* secondary text -> soft teal */
+  --cream-50: #0b2c2a;   /* light surfaces -> jewel surface */
+  --cream-100: #0e2f2c;
+  --cream-200: #123b39;
+  --gold-700: #ecc06b;   /* gold text -> brighter for dark bg */
+  --gold-600: #e2b45e;
+}
+
+/* ---------- base + animated jewel backdrop ---------- */
+body { color: var(--j-text); background-color: var(--j-base); background-image: none; }
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -3; pointer-events: none;
+  background:
+    radial-gradient(46% 46% at 18% 22%, rgba(20,82,76,0.95), transparent 60%),
+    radial-gradient(42% 42% at 82% 26%, rgba(18,59,90,0.85), transparent 60%),
+    radial-gradient(52% 52% at 72% 88%, rgba(58,33,82,0.72), transparent 60%),
+    radial-gradient(48% 48% at 24% 82%, rgba(14,107,98,0.7), transparent 60%),
+    var(--j-base);
+  background-size: 200% 200%, 200% 200%, 200% 200%, 200% 200%, 100% 100%;
+  animation: jewelDrift 30s ease-in-out infinite alternate;
+}
+body::after { /* breathing central gold glow */
+  content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none;
+  background: radial-gradient(38% 28% at 50% 40%, rgba(242,196,90,0.16), transparent 70%);
+  animation: jewelBreathe 10s ease-in-out infinite;
+}
+@keyframes jewelDrift {
+  0%   { background-position: 0% 0%, 100% 0%, 100% 100%, 0% 100%, 0 0; }
+  100% { background-position: 22% 12%, 78% 22%, 68% 88%, 16% 78%, 0 0; }
+}
+@keyframes jewelBreathe { 0%,100% { opacity: 0.55; } 50% { opacity: 1; } }
+
+/* rising gold sparkles (layer injected by main.js) */
+.jewel-sparkles { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.jewel-spark {
+  position: absolute; width: 5px; height: 5px; border-radius: 50% 50% 50% 0;
+  background: radial-gradient(circle at 30% 30%, #fff, var(--j-gold));
+  opacity: 0; filter: drop-shadow(0 0 7px rgba(242,196,90,0.9));
+  animation: jewelRise linear infinite;
+}
+@keyframes jewelRise {
+  0% { transform: translateY(105vh) rotate(0) scale(.5); opacity: 0; }
+  12% { opacity: 1; } 88% { opacity: 0.7; }
+  100% { transform: translateY(-10vh) rotate(240deg) scale(1.05); opacity: 0; }
+}
+
+/* ---------- type ---------- */
+h1, h2, h3, h4 { color: #fff; }
+.hero h1 em, h1 em, h2 em {
+  background: linear-gradient(100deg, var(--j-aqua), var(--j-gold));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.eyebrow { color: var(--j-gold); }
+.eyebrow::before, .eyebrow.center::before { background: var(--j-gold); }
+/* dark titles that sat on light cards -> light */
+.tt-row .cls, .testi-card .who strong, .price-card .price, .faq-item summary,
+.contact__item strong, .mini-row .mt, .price-note strong, .notice h3 { color: #fff; }
+.testi-card blockquote, .quote-feature blockquote, .tt-row .day,
+.session-card .when, .price-from, .about__badge strong { color: var(--j-soft); }
+
+/* ---------- header / nav ---------- */
+.site-header::before { background: rgba(8,33,31,0.72); box-shadow: 0 1px 0 var(--j-border); }
+.brand { color: #fff; }
+.brand small { color: var(--j-gold); }
+.nav__links a { color: var(--j-soft); }
+.nav__links a:hover, .nav__links a.is-active { color: #fff; }
+.nav__links a::after { background: var(--j-gold); }
+.nav__toggle span { background: var(--j-text); }
+.nav__menu {
+  background:
+    radial-gradient(90% 60% at 50% 8%, rgba(242,196,90,0.12), transparent 60%),
+    linear-gradient(180deg, var(--j-base-2), var(--j-base));
+}
+.nav__cta, .hero__meta { border-top-color: var(--j-border); }
+
+/* ---------- buttons ---------- */
+.btn {
+  --btn-fg: #08211f;
+  background: linear-gradient(135deg, var(--j-gold), #ffd877);
+  background-image: linear-gradient(135deg, var(--j-gold), #ffd877);
+  color: #08211f; border-color: transparent;
+  box-shadow: 0 14px 36px rgba(242,196,90,0.32);
+}
+.btn:hover { box-shadow: 0 20px 48px rgba(242,196,90,0.46); }
+.btn--ghost {
+  --btn-fg: var(--j-text);
+  background: transparent; background-image: none; color: var(--j-text);
+  border: 1.5px solid var(--j-border-2); box-shadow: none;
+}
+.btn--ghost:hover { background: rgba(95,208,197,0.10); }
+.btn--light { background: #eef6f4; background-image: none; color: #08211f; }
+.btn:focus-visible { outline-color: var(--j-gold); }
+
+/* ---------- glass cards + borders ---------- */
+.feature-card, .service-row, .tt-row, .testi-card, .price-card, .faq-item,
+.contact-form, .step, .cred, .session-card, .mini-row, .pillar, .expect__item,
+.notice, .price-note, .map-card {
+  background: var(--j-glass);
+  border: 1px solid var(--j-border);
+  -webkit-backdrop-filter: blur(7px); backdrop-filter: blur(7px);
+  box-shadow: 0 18px 44px rgba(0,6,5,0.32);
+}
+.feature-card:hover, .cred:hover, .mini-row:hover, .expect__item:hover,
+.pillar:hover, .service-row:hover, .tt-row:hover { border-color: var(--j-gold); background: rgba(255,255,255,0.06); }
+.feature-card .icon, .expect__item .ei, .cred .seal, .session-card .date-badge,
+.tt-row .level, .tagpill.inperson { background: rgba(95,208,197,0.14); color: var(--j-soft); }
+.tagpill { background: rgba(255,255,255,0.06); color: var(--j-soft); }
+.tagpill.online { background: rgba(95,208,197,0.16); color: #9fe0d8; }
+.tagpill.workshop { background: rgba(242,196,90,0.16); color: var(--j-gold); }
+.notice { border-left: 4px solid var(--j-gold); }
+
+/* filter chips */
+.chip { color: var(--j-soft); border: 1.5px solid var(--j-border-2); background: transparent; }
+.chip:hover { border-color: var(--j-aqua); }
+.chip[aria-pressed="true"] { background: var(--j-gold); color: #08211f; border-color: var(--j-gold); }
+
+/* form fields */
+.field input, .field select, .field textarea {
+  background: rgba(255,255,255,0.05); border: 1.5px solid var(--j-border); color: var(--j-text);
+}
+.field input::placeholder, .field textarea::placeholder { color: rgba(233,245,242,0.45); }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--j-aqua); }
+.field label { color: var(--j-soft); }
+
+/* ---------- already-dark elements -> jewel ---------- */
+.trust { background: rgba(8,33,31,0.55); }
+.cta-band {
+  background:
+    radial-gradient(90% 130% at 50% 0%, rgba(14,107,98,0.55), transparent 60%),
+    linear-gradient(160deg, var(--j-teal), var(--j-base));
+  border: 1px solid var(--j-border);
+}
+.breathe-section, .intro-offer {
+  background:
+    radial-gradient(90% 120% at 50% 0%, rgba(14,107,98,0.5), transparent 60%),
+    linear-gradient(160deg, var(--j-teal), var(--j-base));
+}
+.price-card.featured {
+  background: linear-gradient(165deg, var(--j-teal), var(--j-indigo));
+  border-color: var(--j-border-2);
+}
+.site-footer { background: linear-gradient(180deg, var(--j-base-2), #061715); color: var(--j-soft); }
+.footer__bottom { border-top-color: var(--j-border); }
+.to-top { background: linear-gradient(135deg, var(--j-gold), #ffd877); color: #08211f; }
+.to-top:hover { background: #ffd877; }
+.skip-link { background: var(--j-gold); color: #08211f; }
+
+/* ---------- glowing orbs + logo (jewel signature) ---------- */
+.breath-circle, .orb {
+  background: radial-gradient(circle at 36% 30%, #fff, #ffe9a8 25%, var(--j-gold) 60%, #c98f2f);
+  box-shadow: 0 0 70px rgba(242,196,90,0.7), inset 0 0 40px rgba(255,255,255,0.45);
+}
+.breath-ring, .orb::before, .orb::after { border-color: rgba(95,208,197,0.4); }
+.hero__breath img, .hero__logo, .split__media .emblem-soft {
+  filter: drop-shadow(0 0 52px rgba(242,196,90,0.45));
+}
+
+/* ---------- portrait badge ---------- */
+.about__badge { background: rgba(8,33,31,0.82); border: 1px solid var(--j-border); }
+.about__badge strong { color: #fff; }
+.about__badge span { color: var(--j-soft); }
+
+/* sections that used a light sage band -> let the jewel field flow through
+   (--sage-100 is dual-use as light text elsewhere, so override here, not the token) */
+.services { background: transparent; }
+.services::before, .services::after { background: transparent; }
+
+/* ---------- heroes: let the jewel field show through ---------- */
+.hero, .page-hero { background: transparent; }
+.hero::after, .page-hero::after { background: linear-gradient(transparent, var(--j-base)); }
+.scroll-hint { color: var(--j-soft); }
+.scroll-hint .mouse { border-color: rgba(95,208,197,0.5); }
+.scroll-hint .mouse::after { background: var(--j-gold); }
+
+@media (prefers-reduced-motion: reduce) {
+  body::before, body::after { animation: none !important; }
+}
+
