@@ -2225,13 +2225,13 @@ h1, h2, h3, h4 { color: #fff; }
 
 /* ---------- buttons ---------- */
 .btn {
-  --btn-fg: #08211f;
-  background: linear-gradient(135deg, var(--j-gold), #ffd877);
-  background-image: linear-gradient(135deg, var(--j-gold), #ffd877);
-  color: #08211f; border-color: transparent;
-  box-shadow: 0 14px 36px rgba(242,196,90,0.32);
+  --btn-fg: #06251f;
+  background: linear-gradient(135deg, #5fcfca, #8fe0ea);
+  background-image: linear-gradient(135deg, #5fcfca, #8fe0ea);
+  color: #06251f; border-color: transparent;
+  box-shadow: 0 14px 36px rgba(63,176,190,0.34);
 }
-.btn:hover { box-shadow: 0 20px 48px rgba(242,196,90,0.46); }
+.btn:hover { box-shadow: 0 20px 48px rgba(95,208,197,0.5); }
 .btn--ghost {
   --btn-fg: var(--j-text);
   background: transparent; background-image: none; color: var(--j-text);
@@ -2291,8 +2291,8 @@ h1, h2, h3, h4 { color: #fff; }
 }
 .site-footer { background: linear-gradient(180deg, var(--j-base-2), #061715); color: var(--j-soft); }
 .footer__bottom { border-top-color: var(--j-border); }
-.to-top { background: linear-gradient(135deg, var(--j-gold), #ffd877); color: #08211f; }
-.to-top:hover { background: #ffd877; }
+.to-top { background: linear-gradient(135deg, #5fcfca, #8fe0ea); color: #06251f; }
+.to-top:hover { background: #8fe0ea; }
 .skip-link { background: var(--j-gold); color: #08211f; }
 
 /* ---------- glowing orbs + logo (jewel signature) ---------- */
