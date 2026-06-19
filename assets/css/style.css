@@ -2336,3 +2336,13 @@ h1, h2, h3, h4 { color: #fff; }
   body::before, body::after { animation: none !important; }
 }
 
+/* registered-trademark mark */
+.rmark {
+  font-size: 0.42em;
+  vertical-align: super;
+  line-height: 0;
+  font-weight: 600;
+  opacity: 0.75;
+  margin-left: 0.06em;
+}
+
