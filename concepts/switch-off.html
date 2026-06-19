@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Miracle Breath — Concept: Switch Off</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,360;0,9..144,400;0,9..144,500;1,9..144,360;1,9..144,400&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --cream:#faf8f2;--cream2:#f4efe4;--sage9:#333d2c;--sage8:#424e38;--sage7:#586b4b;--sage:#8a9c80;
+    --gold5:#d6ad61;--gold7:#8a6a28;--gold3:#f6dca0;--cool:#8c97a4;
+    --font-d:"Fraunces",Georgia,serif;--font-b:"Nunito Sans",system-ui,sans-serif;--ease:cubic-bezier(.22,1,.36,1)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font-b);color:var(--sage8);line-height:1.7;
+    background:radial-gradient(90% 55% at 50% -8%,#fdfbf4,transparent 62%),linear-gradient(180deg,var(--cream),var(--cream2));
+    min-height:100svh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  :focus-visible{outline:3px solid var(--gold5);outline-offset:3px;border-radius:4px}
+
+  /* ---- top bar ---- */
+  .bar{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;
+    padding:1.2rem clamp(1.3rem,5vw,3.4rem)}
+  .bar .b{font-family:var(--font-d);font-weight:500;display:flex;align-items:center;gap:.55rem;font-size:1.05rem;color:var(--sage9)}
+  .bar .b img{width:30px;height:30px}
+  .bar a.back{font-weight:800;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;opacity:.55;color:var(--sage8)}
+  .bar a.back:hover{opacity:1}
+
+  /* ---- hero ---- */
+  .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:7.5rem 1.4rem 5rem}
+  #field{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+  .hero .inner{position:relative;z-index:2;max-width:46rem}
+  .eyebrow{font-weight:800;letter-spacing:.32em;text-transform:uppercase;font-size:.72rem;color:var(--gold7);
+    display:inline-block;margin-bottom:1.5rem;opacity:0;transform:translateY(10px);
+    transition:opacity .9s var(--ease) .25s,transform .9s var(--ease) .25s}
+  h1{font-family:var(--font-d);font-weight:360;line-height:1.05;letter-spacing:-.022em;color:var(--sage9);
+    font-size:clamp(2.6rem,1.5rem+5.4vw,5.4rem);max-width:15ch;margin:0 auto;
+    opacity:0;transform:translateY(16px);transition:opacity 1s var(--ease) .4s,transform 1s var(--ease) .4s}
+  h1 em{font-style:italic;font-weight:360;color:var(--gold7)}
+  .lead{font-size:clamp(1.06rem,.98rem+.5vw,1.28rem);color:var(--sage7);max-width:40ch;margin:1.6rem auto 0;
+    opacity:0;transform:translateY(12px);transition:opacity 1s var(--ease) .6s,transform 1s var(--ease) .6s}
+  .lead b{color:var(--sage8);font-weight:700}
+  .actions{display:flex;flex-wrap:wrap;gap:.8rem 1.2rem;align-items:center;justify-content:center;margin-top:2.2rem;
+    opacity:0;transform:translateY(12px);transition:opacity 1s var(--ease) .8s,transform 1s var(--ease) .8s}
+  .in .eyebrow,.in h1,.in .lead,.in .actions{opacity:1;transform:none}
+
+  .btn{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--font-b);font-weight:800;font-size:.98rem;
+    padding:.95rem 1.7rem;border-radius:999px;border:1.5px solid transparent;cursor:pointer;
+    background:var(--sage7);color:#fff;box-shadow:0 12px 30px rgba(51,61,44,.18);
+    transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .3s}
+  .btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(51,61,44,.26)}
+  .btn .ar{transition:transform .35s var(--ease)}.btn:hover .ar{transform:translateX(4px)}
+  .btn-ghost{background:transparent;color:var(--sage8);border:0;box-shadow:none;padding:.95rem .4rem;
+    font-weight:700;font-size:.92rem;letter-spacing:.01em;position:relative}
+  .btn-ghost .dot{width:9px;height:9px;border-radius:50%;background:var(--gold5);box-shadow:0 0 0 0 rgba(214,173,97,.5);display:inline-block}
+  .btn-ghost:hover{color:var(--sage9)}
+
+  /* live breathing guide that appears while "breathe with it" is on */
+  .guide{height:1.3rem;margin-top:1.3rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;
+    color:var(--gold7);opacity:0;transition:opacity .5s var(--ease)}
+  .guide.on{opacity:.95}
+
+  .scroll-cue{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);z-index:2;
+    font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;color:var(--sage7);opacity:.5}
+
+  /* ---- reframe beat ---- */
+  section{position:relative;z-index:2}
+  .beat{padding:clamp(5rem,12vh,9rem) 1.5rem;display:grid;place-items:center;text-align:center}
+  .beat .inner{max-width:34ch;opacity:0;transform:translateY(26px);transition:.9s var(--ease)}
+  .beat.in .inner{opacity:1;transform:none}
+  .beat .script{font-family:var(--font-d);font-style:italic;font-weight:360;color:var(--sage);
+    font-size:clamp(1.7rem,1.2rem+2vw,2.6rem);line-height:1.1}
+  .beat h2{font-family:var(--font-d);font-weight:400;color:var(--sage9);letter-spacing:-.02em;
+    font-size:clamp(2rem,1.3rem+3vw,3.4rem);line-height:1.08;margin-top:.1rem}
+  .beat p{color:var(--sage7);font-size:1.12rem;max-width:46ch;margin:1.5rem auto 0}
+
+  /* ---- what changes ---- */
+  .changes{padding:0 clamp(1.3rem,5vw,2rem) clamp(4rem,9vh,7rem);max-width:1080px;margin:0 auto}
+  .changes .lab{text-align:center;font-weight:800;letter-spacing:.3em;text-transform:uppercase;font-size:.72rem;color:var(--gold7);margin-bottom:2.6rem}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.2rem}
+  .ch{background:rgba(255,255,255,.6);border:1px solid rgba(138,156,128,.22);border-radius:20px;padding:2rem 1.7rem;
+    opacity:0;transform:translateY(22px);transition:.8s var(--ease)}
+  .ch.in{opacity:1;transform:none}
+  .ch:nth-child(2){transition-delay:.12s}.ch:nth-child(3){transition-delay:.24s}
+  .ch .ico{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;margin-bottom:1.1rem;
+    background:radial-gradient(circle at 35% 30%,var(--gold3),var(--gold5));color:var(--sage9)}
+  .ch .ico svg{width:20px;height:20px;stroke:var(--sage9);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .ch h3{font-family:var(--font-d);font-weight:500;font-size:1.3rem;color:var(--sage9);letter-spacing:-.01em;margin-bottom:.5rem}
+  .ch p{color:var(--sage7);font-size:1rem}
+
+  /* ---- quote ---- */
+  .quote{padding:clamp(4rem,10vh,8rem) 1.5rem;text-align:center}
+  .quote blockquote{font-family:var(--font-d);font-weight:360;font-size:clamp(1.7rem,1.2rem+2.4vw,3rem);line-height:1.22;
+    color:var(--sage9);max-width:22ch;margin:0 auto;letter-spacing:-.015em;
+    opacity:0;transform:translateY(20px);transition:.9s var(--ease)}
+  .quote.in blockquote{opacity:1;transform:none}
+  .quote blockquote b{color:var(--gold7);font-weight:360;font-style:italic}
+  .quote .who{margin-top:1.6rem;font-size:.78rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--sage)}
+
+  /* ---- cta ---- */
+  .cta-wrap{padding:0 clamp(1.3rem,5vw,2rem) clamp(4rem,9vh,7rem)}
+  .cta{max-width:1000px;margin:0 auto;border-radius:30px;text-align:center;padding:clamp(3rem,7vw,5rem) 1.6rem;
+    color:#fff;position:relative;overflow:hidden;
+    background:radial-gradient(80% 90% at 50% 0%,#586b4b,transparent 70%),linear-gradient(165deg,#3a4636,#262e1d)}
+  .cta .e{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.72rem;color:var(--gold3);margin-bottom:1rem}
+  .cta h2{font-family:var(--font-d);font-weight:400;font-size:clamp(1.9rem,1.3rem+2.6vw,3.1rem);line-height:1.08;letter-spacing:-.02em;max-width:18ch;margin:0 auto}
+  .cta p{color:#d4dccb;margin:1.1rem auto 2rem;max-width:48ch;font-size:1.05rem}
+  .cta .row{display:flex;flex-wrap:wrap;gap:.8rem 1.3rem;justify-content:center;align-items:center}
+  .cta .btn{background:var(--gold5);color:var(--sage9);box-shadow:0 14px 34px rgba(0,0,0,.3)}
+  .cta a.text{color:#eadfc6;font-weight:700;font-size:.95rem}.cta a.text:hover{color:#fff}
+
+  /* ---- switch pill ---- */
+  .switch{position:fixed;bottom:1.1rem;left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:.3rem;align-items:center;
+    background:rgba(255,255,255,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(214,173,97,.28);padding:.32rem;border-radius:999px;box-shadow:0 10px 28px rgba(51,61,44,.14);
+    font-size:.75rem;font-weight:800}
+  .switch a{padding:.42rem .85rem;border-radius:999px;opacity:.62;color:var(--sage8);white-space:nowrap}
+  .switch a:hover{opacity:1}
+  .switch a.cur{background:var(--sage9);color:#fff;opacity:1}
+
+  .foot{text-align:center;color:var(--sage);font-size:.86rem;padding:0 1.5rem 6rem}
+
+  @media (max-width:560px){
+    .hero{padding-top:6rem}
+    .switch{font-size:.68rem}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{animation:none!important;transition:none!important}
+    .eyebrow,h1,.lead,.actions,.beat .inner,.ch,.quote blockquote{opacity:1!important;transform:none!important}
+  }
+</style>
+</head>
+<body>
+  <header class="bar">
+    <span class="b"><img src="../assets/img/emblem-sm.png" alt=""/>Miracle Breath</span>
+    <a class="back" href="index.html">← all concepts</a>
+  </header>
+
+  <section class="hero" id="hero">
+    <canvas id="field" aria-hidden="true"></canvas>
+    <div class="inner">
+      <span class="eyebrow">For the mind that won't switch off</span>
+      <h1>You don't have to <em>clear your mind.</em></h1>
+      <p class="lead">Most apps tell you to stop thinking. SOMA Breath gives a busy head a <b>rhythm to follow</b> — so it finally has somewhere to land. Beginner-friendly, ADHD-aware, grounded in real science.</p>
+      <div class="actions">
+        <a class="btn" href="../timetable.html">Find a session <span class="ar">→</span></a>
+        <button class="btn-ghost" id="breathe" type="button" aria-pressed="false"><span class="dot" aria-hidden="true"></span> Breathe with it</button>
+      </div>
+      <div class="guide" id="guide" aria-live="polite"></div>
+    </div>
+    <span class="scroll-cue" aria-hidden="true">Scroll</span>
+  </section>
+
+  <section class="beat" id="beat">
+    <div class="inner">
+      <p class="script">not less thinking —</p>
+      <h2>a steadier rhythm.</h2>
+      <p>If "just clear your mind" has never worked for you, you're not doing it wrong. A racing mind doesn't need switching off. It needs something steady to follow. That's the whole point of the breath.</p>
+    </div>
+  </section>
+
+  <section class="changes">
+    <p class="lab">What actually changes</p>
+    <div class="cards" id="cards">
+      <article class="ch">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg></span>
+        <h3>Sleep comes easier</h3>
+        <p>A longer exhale tells your body the day is done. For most people, that's the first thing they notice — falling asleep without the mental rerun.</p>
+      </article>
+      <article class="ch">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></span>
+        <h3>Focus without the fight</h3>
+        <p>A few minutes resets an overloaded head. The next task feels less like white-knuckling and more like just getting on with it.</p>
+      </article>
+      <article class="ch">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 14c2-4 6-4 8 0s6 4 8 0M4 9c2-4 6-4 8 0s6 4 8 0"/></svg></span>
+        <h3>Calm you can reach</h3>
+        <p>A simple rhythm you can use on a walk, at your desk, or in the pickup queue. No incense, no chanting, no clearing your mind required.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="quote" id="quote">
+    <blockquote>"As someone with ADHD, being told I didn't have to <b>'clear my mind'</b> changed everything. I could finally just breathe."</blockquote>
+    <p class="who">A sample reflection · 1:1 session</p>
+  </section>
+
+  <div class="cta-wrap">
+    <div class="cta">
+      <p class="e">Start where you are</p>
+      <h2>Come as you are — busy head and all.</h2>
+      <p>No experience needed. No clearing your mind. Just one unhurried session to feel what a steadier rhythm actually does.</p>
+      <div class="row">
+        <a class="btn" href="../timetable.html">Find a session <span class="ar">→</span></a>
+        <a class="text" href="../about.html">Read Samantha's story →</a>
+      </div>
+    </div>
+  </div>
+
+  <p class="foot">Concept · audience-first direction. Designed for the overstimulated, often neurodivergent mind. Motion respects "reduce motion" settings.</p>
+
+  <nav class="switch" aria-label="Concept navigation">
+    <a href="index.html">← All concepts</a>
+    <a href="switch-off.html" class="cur">Switch Off</a>
+    <a href="../index.html">Current site</a>
+  </nav>
+
+<script>
+(function(){
+  document.documentElement.classList.add("js");
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- reveals (fail-safe) ---------- */
+  var hero = document.getElementById("hero");
+  requestAnimationFrame(function(){ hero.classList.add("in"); });
+  var revealEls = [].slice.call(document.querySelectorAll(".beat, .ch, .quote"));
+  if ("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} });
+    }, {threshold:.25});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else { revealEls.forEach(function(el){ el.classList.add("in"); }); }
+
+  /* ---------- signature: scatter -> settle ---------- */
+  var cv = document.getElementById("field");
+  var ctx = cv.getContext("2d");
+  var W=0,H=0,DPR=1,cx=0,cy=0,parts=[],raf=null,start=null;
+  var ptr = {x:-9999,y:-9999,on:false};
+
+  // a busy scatter of "thoughts" that gathers into a calm breathing emblem
+  // (concentric rings + a core) above the headline — echoing the sun-over-waves logo
+  var RINGS = [[1,0],[9,28],[15,58],[22,90],[28,124]]; // [count, base radius] = 75 marks
+
+  function build(){
+    parts = [];
+    RINGS.forEach(function(ring,ri){
+      var n = ring[0], r = ring[1];
+      for (var k=0;k<n;k++){
+        var a = (k/n)*Math.PI*2 + ri*0.5;
+        parts.push({
+          a:a, r:r, ring:ri,
+          sx:Math.random(), sy:Math.random(),        // scatter home (fraction of viewport)
+          ph:Math.random()*Math.PI*2,                // tremble phase
+          sp:0.7+Math.random()*0.9,                  // tremble speed
+          px:0, py:0, ox:0, oy:0                      // current + pointer offset
+        });
+      }
+    });
+  }
+
+  function resize(){
+    DPR = Math.min(2, window.devicePixelRatio||1);
+    var rect = cv.getBoundingClientRect();
+    W = rect.width; H = rect.height;
+    cv.width = Math.round(W*DPR); cv.height = Math.round(H*DPR);
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    cx = W*0.5; cy = H*0.23;   // emblem gathers above the headline; text area stays clear
+  }
+
+  function lerp(a,b,t){ return a+(b-a)*t; }
+  function easeOut(t){ return 1-Math.pow(1-t,3); }
+
+  // breathing: ambient gentle sine, or guided 4-7-8 when "on"
+  var guided = false;
+  var guideEl = document.getElementById("guide");
+  var btn = document.getElementById("breathe");
+  var gStart = 0;
+  // guided cycle (compressed so it's felt, not clinical): in 4s / hold 2s / out 6s
+  var IN=4000, HOLD=2000, OUT=6000, CYCLE=IN+HOLD+OUT;
+  function breath(now){
+    if (guided){
+      var t = (now - gStart) % CYCLE, label, val;
+      if (t < IN){ label="Breathe in"; val = easeOut(t/IN); }            // 0 -> 1 expand
+      else if (t < IN+HOLD){ label="Hold"; val = 1; }
+      else { label="And out"; val = 1 - easeOut((t-IN-HOLD)/OUT); }      // 1 -> 0 contract
+      if (guideEl.textContent !== label) guideEl.textContent = label;
+      return -0.5 + val;     // -0.5 .. 0.5
+    } else {
+      return 0.5*Math.sin(now/3400);   // slow ambient
+    }
+  }
+
+  var SCATTER_HOLD = 750;   // let the "busy mind" noise be seen before it gathers
+  function frame(now){
+    if (start===null) start = now;
+    var settle = easeOut(Math.min(1, Math.max(0, (now-start-SCATTER_HOLD)/2600)));  // hold, then settle over 2.6s
+    var b = breath(now);
+    var rscale = Math.max(0.7, Math.min(1.15, Math.min(W,H)/620));
+    var pulse = 1 + b*0.12*settle;                        // breathing only once settled
+
+    ctx.clearRect(0,0,W,H);
+
+    for (var i=0;i<parts.length;i++){
+      var p = parts[i];
+      // target on its ring (breathing)
+      var tx = cx + Math.cos(p.a) * p.r * rscale * pulse;
+      var ty = cy + Math.sin(p.a) * p.r * rscale * pulse;
+      // scatter home with a restless tremble (a busy mind)
+      var jitter = (1-settle);
+      var hx = p.sx*W + Math.sin(now*0.0014*p.sp + p.ph)*26*jitter;
+      var hy = p.sy*H + Math.cos(now*0.0016*p.sp + p.ph)*26*jitter;
+      var x = lerp(hx, tx, settle);
+      var y = lerp(hy, ty, settle);
+
+      // pointer nudge — a stray thought, eased back
+      if (ptr.on){
+        var dx = x-ptr.x, dy = y-ptr.y, d2 = dx*dx+dy*dy;
+        if (d2 < 14000){ var f=(1-d2/14000)*24; var d=Math.sqrt(d2)||1; p.ox += (dx/d)*f; p.oy += (dy/d)*f; }
+      }
+      p.ox *= 0.88; p.oy *= 0.88;
+      x += p.ox; y += p.oy;
+
+      // cool slate (scattered noise) -> warm gold (settled rhythm)
+      var rr = Math.round(lerp(120,214,settle));
+      var gg = Math.round(lerp(134,173,settle));
+      var bb = Math.round(lerp(154,97,settle));
+      var alpha = lerp(0.42, 0.82, settle) + b*0.10*settle;
+      var rad = lerp(2.1, 3.0, settle);
+      var glow = lerp(0, 9, settle);
+
+      ctx.beginPath();
+      ctx.shadowBlur = glow; ctx.shadowColor = "rgba(214,173,97,0.7)";
+      ctx.fillStyle = "rgba("+rr+","+gg+","+bb+","+alpha+")";
+      ctx.arc(x,y,rad,0,Math.PI*2);
+      ctx.fill();
+    }
+    ctx.shadowBlur = 0;
+    raf = requestAnimationFrame(frame);
+  }
+
+  function staticDraw(){
+    // reduced-motion: draw the settled, warm, breathing form once
+    var rscale = Math.max(0.7, Math.min(1.15, Math.min(W,H)/620));
+    ctx.clearRect(0,0,W,H);
+    for (var i=0;i<parts.length;i++){
+      var p = parts[i];
+      var x = cx + Math.cos(p.a)*p.r*rscale, y = cy + Math.sin(p.a)*p.r*rscale;
+      ctx.beginPath();
+      ctx.shadowBlur = 8; ctx.shadowColor = "rgba(214,173,97,0.6)";
+      ctx.fillStyle = "rgba(214,173,97,0.8)";
+      ctx.arc(x,y,3,0,Math.PI*2); ctx.fill();
+    }
+    ctx.shadowBlur = 0;
+  }
+
+  build(); resize();
+  if (reduce){
+    staticDraw();
+    btn.style.display = "none";
+  } else {
+    raf = requestAnimationFrame(frame);
+    btn.addEventListener("click", function(){
+      guided = !guided;
+      btn.setAttribute("aria-pressed", guided ? "true" : "false");
+      guideEl.classList.toggle("on", guided);
+      if (guided){ gStart = performance.now(); start = performance.now()-(SCATTER_HOLD+2600); } // ensure settled
+      else { guideEl.textContent = ""; }
+    });
+    // pointer interaction (desktop)
+    hero.addEventListener("pointermove", function(e){
+      var rect = cv.getBoundingClientRect();
+      ptr.x = e.clientX-rect.left; ptr.y = e.clientY-rect.top; ptr.on = true;
+    });
+    hero.addEventListener("pointerleave", function(){ ptr.on = false; });
+  }
+
+  var rt;
+  window.addEventListener("resize", function(){
+    clearTimeout(rt);
+    rt = setTimeout(function(){ resize(); if(reduce) staticDraw(); }, 150);
+  });
+})();
+</script>
+</body>
+</html>
