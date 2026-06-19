@@ -2220,11 +2220,9 @@ h1, h2, h3, h4 { color: #fff; }
 .nav__links a:hover, .nav__links a.is-active { color: #fff; }
 .nav__links a::after { background: var(--j-gold); }
 .nav__toggle span { background: var(--j-text); }
-.nav__menu {
-  background:
-    radial-gradient(90% 60% at 50% 8%, rgba(242,196,90,0.12), transparent 60%),
-    linear-gradient(180deg, var(--j-base-2), var(--j-base));
-}
+/* the mobile overlay menu's dark background comes from the re-mapped cream
+   tokens in the existing @media rule — desktop .nav__menu stays transparent
+   so there's no filled band with a hard left edge behind the nav */
 .nav__cta, .hero__meta { border-top-color: var(--j-border); }
 
 /* ---------- buttons ---------- */
