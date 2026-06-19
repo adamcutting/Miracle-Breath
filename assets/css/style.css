@@ -2279,6 +2279,9 @@ h1, h2, h3, h4 { color: #fff; }
 .field input::placeholder, .field textarea::placeholder { color: rgba(233,245,242,0.45); }
 .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--j-aqua); }
 .field label { color: var(--j-soft); }
+/* native select popup + options render dark/legible (not light-on-light) */
+.field select { color-scheme: dark; }
+.field select option { background: #0b2c2a; color: var(--j-text); }
 
 /* ---------- already-dark elements -> jewel ---------- */
 .trust { background: rgba(8,33,31,0.55); }
