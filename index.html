@@ -111,24 +111,11 @@
     <!-- ============ WELCOME ============ -->
     <section class="section" id="welcome" aria-labelledby="welcome-title">
       <div class="container split">
-        <div class="split__art reveal" role="img" aria-label="Concentric rings radiating outward like a calm breath">
-          <svg viewBox="0 0 500 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <radialGradient id="welc" cx="50%" cy="50%" r="60%"><stop offset="0" stop-color="#586b4b"/><stop offset="1" stop-color="#333d2c"/></radialGradient>
-            </defs>
-            <rect width="500" height="400" fill="url(#welc)"/>
-            <g fill="none" stroke="#a6b69b" opacity="0.5">
-              <circle cx="250" cy="200" r="40" stroke-width="1.5"/>
-              <circle cx="250" cy="200" r="80" stroke-width="1.5" opacity="0.75"/>
-              <circle cx="250" cy="200" r="120" stroke-width="1.25" opacity="0.55"/>
-              <circle cx="250" cy="200" r="160" stroke-width="1" opacity="0.4"/>
-            </g>
-            <circle cx="250" cy="200" r="34" fill="#e9c371" opacity="0.9"/>
-            <circle cx="250" cy="200" r="34" fill="none" stroke="#f6dca0" stroke-width="1.5"/>
-            <g stroke="#d6ad61" stroke-width="2" stroke-linecap="round" opacity="0.8">
-              <path d="M250 150v-22M250 272v-22M300 200h22M178 200h22M285 165l15-15M200 250l-15 15M300 250l-15-15M215 165l-15-15" transform="translate(0,0)"/>
-            </g>
-          </svg>
+        <div class="split__art reveal">
+          <picture>
+            <source srcset="assets/img/welcome-forest.webp" type="image/webp" />
+            <img src="assets/img/welcome-forest.jpg" width="1100" height="880" alt="A child sitting among daisies in a sunlit forest at golden hour" loading="lazy" decoding="async" />
+          </picture>
         </div>
         <div class="reveal d1">
           <p class="eyebrow">Welcome</p>
