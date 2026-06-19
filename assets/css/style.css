@@ -1287,6 +1287,11 @@ p { margin: 0 0 1.15em; }
 .steps.cols {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
+/* five-up grid that stays balanced (no lonely trailing tile) */
+.steps.steps--5 { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 1040px) { .steps.steps--5 { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 680px)  { .steps.steps--5 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px)  { .steps.steps--5 { grid-template-columns: 1fr; } }
 .step {
   background: #fff;
   border: 1px solid var(--sage-200);
