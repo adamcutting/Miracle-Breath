@@ -157,6 +157,7 @@ p { margin: 0 0 1.15em; }
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
+  white-space: nowrap;
   padding: 0.95rem 1.7rem;
   border-radius: var(--radius-pill);
   font-family: var(--font-body);
@@ -232,6 +233,8 @@ p { margin: 0 0 1.15em; }
   font-weight: 600;
   color: var(--sage-900);
   letter-spacing: -0.01em;
+  flex: none;
+  white-space: nowrap;
 }
 .brand__mark {
   width: 38px;
@@ -251,7 +254,7 @@ p { margin: 0 0 1.15em; }
 .nav__links {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -262,6 +265,7 @@ p { margin: 0 0 1.15em; }
   color: var(--sage-800);
   position: relative;
   padding-block: 0.25rem;
+  white-space: nowrap;
 }
 .nav__links a::after {
   content: "";
@@ -276,7 +280,7 @@ p { margin: 0 0 1.15em; }
 .nav__links a:hover::after,
 .nav__links a.is-active::after { width: 100%; }
 
-.nav__menu { display: flex; align-items: center; gap: 2.25rem; }
+.nav__menu { display: flex; align-items: center; gap: 1.6rem; }
 .nav__cta { display: inline-flex; gap: 0.75rem; align-items: center; }
 
 .nav__toggle {
@@ -302,7 +306,7 @@ p { margin: 0 0 1.15em; }
 .nav__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-@media (max-width: 860px) {
+@media (max-width: 1024px) {
   /* Keep the logo + close button floating ABOVE the panel so the menu
      can always be dismissed and the brand stays anchored. */
   .nav__toggle { display: flex; position: relative; z-index: 130; }
@@ -1163,7 +1167,7 @@ p { margin: 0 0 1.15em; }
 .skip-link {
   position: absolute;
   left: 1rem;
-  top: -3rem;
+  top: -4.5rem;
   background: var(--sage-800);
   color: #fff;
   padding: 0.6rem 1rem;

@@ -105,7 +105,7 @@
   /* ---------- Mobile nav ---------- */
   var toggle = document.querySelector(".nav__toggle");
   var menu = document.querySelector(".nav__menu");
-  var isMobileNav = function () { return window.matchMedia("(max-width: 860px)").matches; };
+  var isMobileNav = function () { return window.matchMedia("(max-width: 1024px)").matches; };
   function closeMenu(focusToggle) {
     menu.classList.remove("open");
     toggle.setAttribute("aria-expanded", "false");
