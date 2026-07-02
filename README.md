@@ -57,7 +57,7 @@ Git**, pick this repo, then:
 - **Build output directory:** `/`
 
 That's it — it's plain static files. `_headers` adds caching and security
-headers. A custom domain (e.g. `www.miraclebreath.com`) can be attached under
+headers. A custom domain (e.g. `miraclebreath.co.uk`) can be attached under
 the project's **Custom domains** tab.
 
 The site also still works on GitHub Pages (the `.nojekyll` marker is harmless).

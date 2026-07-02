@@ -5,7 +5,7 @@ Website for **Miracle Breath**, a breathwork & meditation practice run by
 Tagline: *Transformational breathwork for healing, balance, energy and inner change.*
 
 It is a **hand-coded static site** (no build step) designed to feel calm,
-spacious and premium. Domain (intended): `www.miraclebreath.com`.
+spacious and premium. Live domain: `miraclebreath.co.uk` (Cloudflare).
 
 ## Stack & conventions
 - Plain **HTML + CSS + vanilla JS**. No frameworks, no dependencies, no build.
