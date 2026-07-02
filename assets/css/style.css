@@ -1046,7 +1046,7 @@ p { margin: 0 0 1.15em; }
 }
 .footer__grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  grid-template-columns: 1.6fr 1fr 1fr;
   gap: 2.5rem;
 }
 .site-footer .brand { color: #fff; }
