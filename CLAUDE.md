@@ -42,7 +42,9 @@ spacious and premium. Live domain: `miraclebreath.co.uk` (Cloudflare).
 - **Live on Cloudflare Pages** (project `miracle-breath`, direct upload via
   wrangler — not yet git-connected). Domains: `miraclebreath.co.uk` + `www`.
 - Deploy: copy site files to a dist folder **excluding `concepts/`, README.md,
-  CLAUDE.md** (concepts are internal experiments, must not go live), then
+  CLAUDE.md, and `timetable.html`** (concepts are internal experiments;
+  timetable is hidden until real dates/booking exist — its nav/footer/CTA
+  links are removed from live pages, restore them when it returns), then
   `npx wrangler pages deploy <dist> --project-name=miracle-breath --branch=main`
   with `CLOUDFLARE_ACCOUNT_ID`/`CLOUDFLARE_API_TOKEN` env vars
   (credentials in `../CF_token.txt`, not in this repo).
