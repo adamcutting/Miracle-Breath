@@ -38,20 +38,35 @@ spacious and premium. Live domain: `miraclebreath.co.uk` (Cloudflare).
 - Logo **waves** → organic wave dividers on `.services` sections.
 - Warm wash over photos for cohesion. Gold rule under centred section titles.
 
-## Deployment
-- Hosting target: **Cloudflare Pages** (connected to this GitHub repo).
-  Build command: *none*. Output directory: `/` (repo root). Static.
+## Deployment (LIVE)
+- **Live on Cloudflare Pages** (project `miracle-breath`, direct upload via
+  wrangler — not yet git-connected). Domains: `miraclebreath.co.uk` + `www`.
+- Deploy: copy site files to a dist folder **excluding `concepts/`, README.md,
+  CLAUDE.md** (concepts are internal experiments, must not go live), then
+  `npx wrangler pages deploy <dist> --project-name=miracle-breath --branch=main`
+  with `CLOUDFLARE_ACCOUNT_ID`/`CLOUDFLARE_API_TOKEN` env vars
+  (credentials in `../CF_token.txt`, not in this repo).
 - `_headers` sets caching + security headers for Cloudflare Pages.
-- `.nojekyll` is a leftover from GitHub Pages; harmless on Cloudflare.
 
-## Known placeholders / not-yet-done (concept stage)
-- Real contact details, final bio, named testimonials, certificate links,
-  and final prices are **placeholders**.
+## Email & forms
+- **Zoho Mail free plan (EU DC)** hosts mail: `samantha@` (owner) and `adam@`.
+  DNS: Zoho MX ×3, SPF (`include:zohomail.eu`), DKIM (`zmail._domainkey`),
+  DMARC p=none. Cloudflare Email Routing is disabled — do not re-enable while
+  Zoho MX is live.
+- Contact + newsletter forms POST to **FormSubmit** AJAX endpoint
+  (`formsubmit.co/ajax/samantha@miraclebreath.co.uk`), handler in `main.js`
+  (`[data-send-form]`). Free, no account; first submission requires one-time
+  activation click from samantha@'s inbox.
+
+## Known gaps / not-yet-done
+- Final bio, named testimonials, and final prices still need owner sign-off.
+- Certificate links removed pending real documents (SOMA cert PDF incoming).
 - Timetable is a **filterable card list**, not a real calendar/booking system,
   and has no date filter. Session buttons say "Ask about this" (brief asked
-  for "Book / Enquire").
+  for "Book / Enquire"). Owner must confirm listed dates are real.
 - No **Waiver & Important Information** (liability disclaimer) section yet —
   only short health notes on SOMA & Healing.
+- No real social channels; footer icons currently link to the contact page.
 
 ## Planned direction (agreed with owner)
 Hand the "moving parts" to friendly tools so a **non-technical owner** can run

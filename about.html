@@ -65,7 +65,7 @@
     <!-- ============ STORY ============ -->
     <section class="section" aria-labelledby="story-title">
       <div class="container split">
-        <div class="portrait-card reveal" role="img" aria-label="Calm, atmospheric image evoking the practice; Samantha's own portrait coming soon">
+        <div class="portrait-card reveal" role="img" aria-label="Calm, atmospheric image evoking the practice">
           <picture><source srcset="assets/img/about-portrait.webp" type="image/webp"><img class="photo" src="assets/img/about-portrait.jpg" width="900" height="1125" alt="" loading="lazy" decoding="async"></picture>
           <div class="about__badge"><strong>Samantha Harden</strong><span>Founder · Level 2 SOMA Certified Instructor</span></div>
         </div>
@@ -165,7 +165,7 @@
         <div class="reveal">
           <p class="eyebrow">Training &amp; credentials</p>
           <h2 class="section-title" id="quals-title">Qualified, certified and always learning</h2>
-          <p class="section-intro">Samantha holds the following professional qualifications. Certificates are available to view below.</p>
+          <p class="section-intro">Samantha holds the following professional qualifications.</p>
         </div>
         <div class="creds">
           <article class="cred reveal d1">
@@ -173,7 +173,6 @@
             <div>
               <h3>Level 2 SOMA Certified Instructor</h3>
               <p>Trained and certified in the SOMA Breath method to guide rhythmic breathwork, meditation and journey experiences safely.</p>
-              <a class="cert-link" href="#" aria-label="View SOMA certificate (coming soon)">View certificate <span aria-hidden="true">↗</span></a>
             </div>
           </article>
           <article class="cred reveal d2">
@@ -181,13 +180,8 @@
             <div>
               <h3>ADHD Awareness Diploma</h3>
               <p>Specialist understanding of attention, focus and neurodiversity, informing a genuinely inclusive, ADHD-friendly approach to breathwork.</p>
-              <a class="cert-link" href="#" aria-label="View ADHD Awareness Diploma (coming soon)">View certificate <span aria-hidden="true">↗</span></a>
             </div>
           </article>
-        </div>
-        <div class="notice reveal">
-          <h3>A note on the certificate links</h3>
-          <p>This is a concept site — certificate links are placeholders for now and will point to the verified documents once added.</p>
         </div>
       </div>
     </section>
@@ -246,7 +240,8 @@
         <div class="footer__col">
           <h4>Get in touch</h4>
           <ul>
-            <li>Contact details to follow</li>
+            <li><a href="mailto:samantha@miraclebreath.co.uk">samantha@miraclebreath.co.uk</a></li>
+            <li><a href="tel:+447867725291">07867 725291</a></li>
             <li>Online &amp; in person</li>
             <li><a href="contact.html">Send an enquiry</a></li>
           </ul>
@@ -254,16 +249,17 @@
         <div class="footer__col">
           <h4>Stay in the loop</h4>
           <p style="color:var(--sage-400);font-size:0.92rem;margin:0">Gentle notes, session news and the occasional breathing tip. No spam, ever.</p>
-          <form class="newsletter" data-demo-form>
+          <form class="newsletter" data-send-form="https://formsubmit.co/ajax/samantha@miraclebreath.co.uk">
+            <input type="hidden" name="_subject" value="Newsletter signup — miraclebreath.co.uk" />
             <label class="sr-only" for="nl">Email address</label>
-            <input id="nl" type="email" placeholder="you@example.com" required />
+            <input id="nl" name="email" type="email" placeholder="you@example.com" required />
             <button class="btn btn--gold" type="submit">Join</button>
           </form>
           <p class="form-status" role="status" aria-live="polite" style="color:var(--sage-300);margin-top:0.5rem"></p>
         </div>
       </div>
       <div class="footer__bottom">
-        <span>© <span data-year>2026</span> Miracle Breath · A breathwork &amp; wellbeing concept.</span>
+        <span>© <span data-year>2026</span> Miracle Breath · Breathwork &amp; wellbeing.</span>
         <span>SOMA Breath · Online &amp; in person · UK</span>
       </div>
     </div>

@@ -372,16 +372,40 @@
     if (hintEl) hintEl.textContent = PATTERNS[current].hint;
   })();
 
-  /* ---------- Forms (front-end only demo) ---------- */
-  document.querySelectorAll("[data-demo-form]").forEach(function (form) {
+  /* ---------- Forms (AJAX submit) ---------- */
+  document.querySelectorAll("[data-send-form]").forEach(function (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var status = form.querySelector(".form-status");
-      if (status) {
-        status.textContent = "Thank you — this is a concept site, so nothing was sent. We'd love to hear from you for real soon!";
-        status.classList.add("ok");
-      }
-      form.reset();
+      var status = form.querySelector(".form-status") ||
+        (form.nextElementSibling && form.nextElementSibling.classList.contains("form-status") ? form.nextElementSibling : null);
+      var button = form.querySelector('button[type="submit"]');
+      var isNewsletter = form.classList.contains("newsletter");
+      var setStatus = function (msg, ok) {
+        if (!status) return;
+        status.textContent = msg;
+        status.classList.toggle("ok", ok);
+      };
+      if (button) button.disabled = true;
+      setStatus("Sending…", true);
+      var payload = {};
+      new FormData(form).forEach(function (value, key) { payload[key] = value; });
+      fetch(form.getAttribute("data-send-form"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(payload)
+      }).then(function (res) {
+        if (!res.ok) throw new Error("send failed");
+        return res.json();
+      }).then(function () {
+        setStatus(isNewsletter
+          ? "Lovely — you're on the list."
+          : "Thank you — your message is on its way. I usually reply within two working days.", true);
+        form.reset();
+      }).catch(function () {
+        setStatus("Sorry, something went wrong. Please email samantha@miraclebreath.co.uk directly.", false);
+      }).finally(function () {
+        if (button) button.disabled = false;
+      });
     });
   });
 
