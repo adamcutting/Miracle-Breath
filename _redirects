@@ -1,0 +1,3 @@
+# Timetable hidden for now — redirect old URLs home (remove when timetable returns)
+/timetable / 301
+/timetable.html / 301
