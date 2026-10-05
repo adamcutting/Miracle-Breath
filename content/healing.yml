@@ -53,7 +53,9 @@ who:
       text: For anyone feeling stretched thin and longing to feel like themselves again.
 notice:
   title: Supportive, not a substitute
-  text: Breathwork can be a wonderful complement to your wellbeing, but it isn't a replacement for medical or mental-health care. If you have a health condition or any concerns, please consult your GP or a qualified professional. A full waiver and important information will be shared before your first session.
+  text: Breathwork can be a wonderful complement to your wellbeing, but it isn't a replacement for medical or mental-health care. If you have a health condition or any concerns, please consult your GP or a qualified professional. You'll be asked to read and sign the participation and waiver agreement before your first session.
+  document: /assets/docs/miracle-breath-participation-waiver.pdf
+  link_label: Read the participation & waiver agreement (PDF)
 band:
   image: /assets/photos/ambient-forest.jpg
   eyebrow: Room to breathe

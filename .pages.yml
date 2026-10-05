@@ -127,6 +127,8 @@ components:
     fields:
       - { name: title, label: Heading, type: string, required: true }
       - { name: text, label: Text, type: text, required: true }
+      - { name: document, label: Linked document (optional), type: file, description: "e.g. the participation & waiver agreement PDF. Upload a new version in Documents to replace it.", options: { media: documents } }
+      - { name: link_label, label: Link words, type: string, description: "Shown when a document is linked." }
   pillar_cards:
     type: object
     label: Cards

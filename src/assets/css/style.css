@@ -2356,3 +2356,13 @@ h1, h2, h3, h4 { color: #fff; }
   margin-left: 0.06em;
 }
 
+
+/* Document links (certificates, waiver) — legible gold on the dark cards */
+.cred a.cert-link, .notice a.cert-link {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--j-gold);
+  border-bottom: 1.5px solid var(--j-gold);
+  padding-bottom: 1px;
+}
+.cred a.cert-link:hover, .notice a.cert-link:hover { color: var(--j-text); }

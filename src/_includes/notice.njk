@@ -1,9 +1,12 @@
-{#- Boxed health / safety notice. Expects `notice` (title, text). -#}
+{#- Boxed health / safety notice. Expects `notice` (title, text, optional document + link_label). -#}
     <section class="section" aria-label="Important information">
       <div class="container">
         <div class="notice reveal">
           <h3>{{ notice.title | heading | safe }}</h3>
           {{ notice.text | md | safe }}
+          {%- if notice.document %}
+          <p style="margin-top:0.8rem"><a class="cert-link" href="{{ notice.document }}" target="_blank" rel="noopener">{{ (notice.link_label or "Read the full agreement") | inline | safe }} <span aria-hidden="true">↗</span></a></p>
+          {%- endif %}
         </div>
       </div>
     </section>

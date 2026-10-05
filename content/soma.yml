@@ -65,7 +65,9 @@ try_it:
   note: A gentle taster, not medical advice. Please don't practise while driving; if you feel light-headed, simply return to normal breathing.
 notice:
   title: Important information
-  text: Breathwork is generally safe and gentle, but some techniques aren't suitable for everyone. If you are pregnant or have a heart condition, epilepsy, high blood pressure or a respiratory condition, please speak with Samantha and your GP before taking part. A full waiver and health guidance will be provided before your first session.
+  text: Breathwork is generally safe and gentle, but some techniques aren't suitable for everyone. If you are pregnant or have a heart condition, epilepsy, high blood pressure or a respiratory condition, please speak with Samantha and your GP before taking part. You'll be asked to read and sign the participation and waiver agreement before your first session.
+  document: /assets/docs/miracle-breath-participation-waiver.pdf
+  link_label: Read the participation & waiver agreement (PDF)
 cta:
   eyebrow: Ready to go deeper?
   title: Experience a full SOMA Breath journey
