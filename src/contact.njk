@@ -36,6 +36,9 @@ pageKey: contact
         {#- Enquiries always go to samantha@ via FormSubmit (activated for that address). Changing it needs a new activation. #}
         <form class="contact-form reveal d1" data-send-form="https://formsubmit.co/ajax/samantha@miraclebreath.co.uk" aria-labelledby="contact-title">
           <input type="hidden" name="_subject" value="New enquiry — miraclebreath.co.uk" />
+          {%- if site.enquiry_copy_to %}
+          <input type="hidden" name="_cc" value="{{ site.enquiry_copy_to }}" />
+          {%- endif %}
           <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" />
           <div class="field">
             <label for="name">Your name</label>

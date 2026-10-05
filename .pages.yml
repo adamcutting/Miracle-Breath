@@ -454,3 +454,4 @@ content:
       - { name: footer_about, label: Footer description, type: text }
       - { name: footer_where, label: Footer location line, type: string }
       - { name: footer_tagline, label: Footer bottom line, type: string }
+      - { name: enquiry_copy_to, label: Also send enquiries to, type: string, description: "A copy of every enquiry-form message also goes to this address (as well as samantha@miraclebreath.co.uk). Leave empty to stop the copies. Several addresses can be separated with commas." }
