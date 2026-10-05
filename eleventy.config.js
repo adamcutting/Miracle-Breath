@@ -46,6 +46,23 @@ export default function (eleventyConfig) {
     return digits.startsWith("0") ? "+44" + digits.slice(1) : digits;
   });
 
+  // Class times as written in the CMS ("9–10pm", "12–1pm", "8.30–9.30pm")
+  // -> { start: "21:00", end: "22:00" } for structured data. null if unreadable.
+  eleventyConfig.addFilter("timeRange", (s) => {
+    const m = String(s ?? "").toLowerCase().replace(/\s/g, "")
+      .match(/^(\d{1,2})(?:[.:](\d{2}))?(am|pm)?[–—-](\d{1,2})(?:[.:](\d{2}))?(am|pm)$/);
+    if (!m) return null;
+    const to24 = (h, min, ap) => {
+      h = Number(h) % 12 + (ap === "pm" ? 12 : 0);
+      return String(h).padStart(2, "0") + ":" + (min || "00");
+    };
+    // "12–1pm": a start written without am/pm takes the end's, unless that would make it later than the end
+    let startAp = m[3] || m[6];
+    if (!m[3] && m[6] === "pm" && Number(m[1]) % 12 > Number(m[4]) % 12) startAp = "am";
+    if (!m[3] && Number(m[1]) === 12) startAp = "pm";
+    return { start: to24(m[1], m[2], startAp), end: to24(m[4], m[5], m[6]) };
+  });
+
 
   /* ---------- Photos ---------- */
 

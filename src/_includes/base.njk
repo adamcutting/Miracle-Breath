@@ -35,21 +35,47 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/style.css" />
+{%- set sameAs = [] %}{% for k, v in site.social %}{% if v %}{% set sameAs = (sameAs.push(v), sameAs) %}{% endif %}{% endfor %}
+{%- set business = {
+    "@type": "HealthAndBeautyBusiness",
+    "@id": site.url + "/#business",
+    "name": "Miracle Breath",
+    "url": site.url,
+    "logo": site.url + "/assets/img/logo-full.png",
+    "image": site.url + "/assets/img/og-image.jpg",
+    "founder": { "@type": "Person", "name": "Samantha Harden", "jobTitle": "Certified SOMA Breath Instructor" },
+    "email": site.email,
+    "telephone": (site.phone | tel) if site.phone else undefined,
+    "address": { "@type": "PostalAddress", "addressLocality": "Feering", "addressRegion": "Essex", "addressCountry": "GB" },
+    "areaServed": ["Essex", "United Kingdom"],
+    "sameAs": sameAs if sameAs.length else undefined
+  } %}
 {%- if pageKey == "home" %}
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "HealthAndBeautyBusiness",
-    "name": "Miracle Breath",
-    "description": {{ seo.description | dump | safe }},
-    "founder": { "@type": "Person", "name": "Samantha Harden" },
-    "areaServed": "United Kingdom (online & in person)",
-    "url": "{{ site.url }}",
-    "email": {{ site.email | dump | safe }},
-    "telephone": {{ site.phone | tel | dump | safe }},
-    "priceRange": "££"
-  }
+  {{ { "@context": "https://schema.org", "@graph": [business] } | dump | safe }}
+  </script>
+{%- elif pageKey == "classes" and classes.weekly.classes %}
+  {%- set events = [] %}
+  {%- for c in classes.weekly.classes %}
+    {%- set t = c.time | timeRange %}
+    {%- set ev = {
+        "@type": "Event",
+        "name": c.name,
+        "description": c.text,
+        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode" if c.format == "online" else "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "location": { "@type": "VirtualLocation", "url": site.url + "/classes.html" } if c.format == "online" else { "@type": "Place", "name": c.where or "Miracle Breath class", "address": { "@type": "PostalAddress", "addressLocality": ("Feering" if (c.where and "Feering" in c.where) else undefined), "addressRegion": "Essex", "addressCountry": "GB" } },
+        "eventSchedule": { "@type": "Schedule", "byDay": "https://schema.org/" + c.day, "repeatFrequency": "P1W", "scheduleTimezone": "Europe/London", "startTime": t.start if t else undefined, "endTime": t.end if t else undefined },
+        "organizer": { "@id": site.url + "/#business" },
+        "performer": { "@type": "Person", "name": "Samantha Harden" },
+        "url": site.url + "/classes.html"
+      } %}
+    {%- set events = (events.push(ev), events) %}
+  {%- endfor %}
+
+  <script type="application/ld+json">
+  {{ { "@context": "https://schema.org", "@graph": [business].concat(events) } | dump | safe }}
   </script>
 {%- endif %}
 </head>
