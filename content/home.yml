@@ -1,6 +1,6 @@
 seo:
-  title: Miracle Breath — Transformational SOMA Breathwork with Samantha Harden
-  description: Miracle Breath offers transformational SOMA Breath breathwork for healing, balance, energy and inner change. Guided breathwork with Samantha Harden — online and in person.
+  title: Miracle Breath | Transformational SOMA Breathwork with Samantha Harden
+  description: Miracle Breath offers transformational SOMA Breath breathwork for healing, balance, energy and inner change. Guided sessions with Samantha Harden, online and in person.
 hero:
   eyebrow: SOMA Breath® · Online & In Person
   headline: Transformational breathwork for *healing, balance, energy* and inner change.
@@ -33,7 +33,7 @@ welcome:
 benefits:
   eyebrow: Why breathwork
   title: What a few minutes of breath can do
-  intro: Conscious breathing is one of the simplest, most portable wellbeing tools there is — and the effects can ripple through every part of life.
+  intro: Conscious breathing is one of the simplest, most portable wellbeing tools there is, and the effects can ripple through every part of life.
   cards:
     - icon: leaf
       colour: gold
@@ -42,7 +42,7 @@ benefits:
     - icon: bolt
       colour: gold
       title: Energy & clarity
-      text: Oxygenate, awaken and sharpen focus — a natural lift without the caffeine crash.
+      text: Oxygenate, wake up and sharpen your focus. A natural lift without the caffeine crash.
     - icon: drop
       colour: green
       title: Deeper rest
@@ -66,8 +66,7 @@ for_you:
 samantha:
   eyebrow: Your guide
   title: Hi, I'm Samantha
-  body: |-
-    I started Miracle Breath after breathwork quietly turned my own life around. I'm a **certified SOMA Breath® instructor** with an **ADHD Awareness Diploma**, and my sessions are warm and unfussy — no need to be flexible, spiritual, or any good at "switching off" already.
+  body: I started Miracle Breath after breathwork quietly turned my own life around. I'm a **certified SOMA Breath® instructor** with an **ADHD Awareness Diploma**, and my sessions are warm and unfussy. You don't need to be flexible, spiritual, or any good at "switching off" already.
   button:
     label: Read my story
     link: /about.html
@@ -75,7 +74,7 @@ explore:
   cards:
     - icon: eye
       title: What is SOMA Breath®?
-      text: A dynamic method combining rhythmic breathing, breath retention, music, meditation and visualisation — ancient wisdom shaped for modern life.
+      text: A dynamic method combining rhythmic breathing, breath retention, music, meditation and visualisation. Ancient wisdom, shaped for modern life.
       link_label: Discover the method →
       link: /soma-breath.html
     - icon: heart

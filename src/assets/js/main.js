@@ -398,8 +398,8 @@
         return res.json();
       }).then(function () {
         setStatus(isNewsletter
-          ? "Lovely — you're on the list."
-          : "Thank you — your message is on its way. I usually reply within two working days.", true);
+          ? "Lovely, you're on the list."
+          : "Thank you, your message is on its way. I usually reply within two working days.", true);
         form.reset();
       }).catch(function () {
         setStatus("Sorry, something went wrong. Please email samantha@miraclebreath.co.uk directly.", false);
