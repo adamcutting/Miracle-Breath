@@ -31,6 +31,7 @@ pageKey: contact
               <div><strong>Where</strong><span>{{ p.details.where | inline | safe }}</span></div>
             </div>
           </div>
+          {% include "social.njk" %}
         </div>
 
         {#- Enquiries always go to samantha@ via FormSubmit (activated for that address). Changing it needs a new activation. #}

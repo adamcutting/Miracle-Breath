@@ -1051,9 +1051,11 @@ p { margin: 0 0 1.15em; }
 }
 .site-footer .brand { color: #fff; }
 .footer__about { color: var(--sage-400); max-width: 34ch; font-size: 0.96rem; margin-top: 1rem; }
-.footer__col h4 {
+.footer__col h2 {
   color: var(--sage-200);
   font-family: var(--font-body);
+  font-weight: 700;
+  line-height: 1.4;
   font-size: 0.82rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -2378,3 +2380,81 @@ h1, h2, h3, h4 { color: #fff; }
 .session-card .date-badge { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; min-width: 4.2rem; }
 .session-card .date-badge .d { color: var(--j-text); }
 .session-card .date-badge .m { color: var(--j-gold); font-size: 0.66rem; }
+
+/* ---------- Fixes (Oct 2026 review) ---------- */
+/* Nothing may widen the page on phones (iOS ignores overflow-x:hidden on body) */
+html, body { overflow-x: clip; }
+/* Side-on reveals slide up instead on narrow screens, so they never poke past the edge */
+@media (max-width: 860px) {
+  .js .reveal--left, .js .reveal--right { transform: translateY(24px); }
+}
+/* Contact: let the details column shrink and long email addresses wrap */
+.contact__grid > * { min-width: 0; }
+.contact__item a { overflow-wrap: anywhere; }
+.form-status:empty { min-height: 0; }
+/* Portrait badge: name above title */
+.about__badge strong, .about__badge span { display: block; }
+.about__badge span { margin-top: 0.15rem; line-height: 1.4; }
+/* Scroll hint only where the hero has room for it */
+@media (max-height: 1000px) { .scroll-hint { display: none; } }
+/* Homepage card links: legible gold, like the other document links */
+.feature-card a.cert-link {
+  font-weight: 700;
+  color: var(--j-gold);
+  border-bottom: 1.5px solid var(--j-gold);
+  padding-bottom: 1px;
+}
+.feature-card a.cert-link:hover { color: var(--j-text); }
+/* Breathing pattern buttons: readable timing text on the selected button */
+.breath-patterns button[aria-pressed="true"] span { opacity: 1; color: #0f3d37; }
+
+/* ---------- Quick wins (Oct 2026 review) ---------- */
+/* Card lists aren't sequences, so no 01/02/03 numbering */
+.step::before { content: none; }
+.step h3 { margin-top: 0; }
+
+/* Class day badges: solid gold, bold dark text, readable in bright light */
+.session-card .date-badge, .day-badge {
+  background: var(--j-gold);
+  border: 0;
+  border-radius: 12px;
+  color: #062320;
+}
+.session-card .date-badge .d { color: #062320; font-family: var(--font-body); font-weight: 800; font-size: 1.35rem; letter-spacing: 0.01em; }
+.session-card .date-badge .m { color: #3b3413; font-weight: 700; font-size: 0.68rem; }
+.session-card .when { color: var(--j-text); font-size: 1rem; }
+
+/* Homepage weekly classes strip */
+.classes-strip { padding-block: clamp(2rem, 4vw, 3rem); border-block: 1px solid var(--j-border); background: rgba(255,255,255,0.025); }
+.classes-strip__inner { display: grid; grid-template-columns: minmax(200px, 1fr) 3fr; gap: 1.5rem 3rem; align-items: center; }
+.classes-strip__head h2 { font-size: clamp(1.35rem, 1rem + 1vw, 1.75rem); margin: 0 0 0.4rem; }
+.classes-strip__link { font-weight: 700; font-size: 0.92rem; color: var(--j-gold); border-bottom: 1.5px solid var(--j-gold); }
+.classes-strip__link:hover { color: var(--j-text); }
+.classes-strip__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem 1.5rem; }
+.classes-strip__list li { display: flex; gap: 0.9rem; align-items: center; }
+.day-badge { flex: none; display: grid; place-items: center; width: 3.4rem; height: 3.4rem; font-weight: 800; font-size: 1.05rem; }
+.classes-strip__text { display: grid; line-height: 1.35; }
+.classes-strip__text strong { color: var(--j-text); font-size: 1rem; }
+.classes-strip__text span { color: var(--j-soft); font-size: 0.9rem; }
+@media (max-width: 760px) { .classes-strip__inner { grid-template-columns: 1fr; } }
+
+/* Social icons (footer + contact page) */
+.social { list-style: none; margin: 1.25rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.social a { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--j-border-2, rgba(255,255,255,0.25)); color: var(--j-soft); transition: color 0.25s, border-color 0.25s; }
+.social a:hover { color: var(--j-gold); border-color: var(--j-gold); }
+.social svg { width: 18px; height: 18px; }
+
+/* Phones: shorter scroll */
+@media (max-width: 640px) {
+  .section { padding-block: 3.25rem; }
+  .pillars { grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 2rem; }
+  .pillar { padding: 1.4rem 0.9rem; }
+  .pillar .ring { width: 52px; height: 52px; margin-bottom: 0.75rem; }
+  .pillar .ring svg { width: 24px; height: 24px; }
+  .pillar h3 { font-size: 1.02rem; }
+  .pillar p { font-size: 0.85rem; }
+}
+/* Contact form: fields never wider than the card (long dropdown options) */
+.contact-form > *, .contact-form .field { min-width: 0; }
+.contact-form .field input, .contact-form .field select, .contact-form .field textarea { width: 100%; max-width: 100%; min-width: 0; }
+@media (max-width: 640px) { .contact-form { padding: 1.5rem 1.25rem; } }

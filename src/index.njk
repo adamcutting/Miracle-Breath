@@ -39,6 +39,8 @@ pageKey: home
       </a>
     </section>
 
+{% include "classes-strip.njk" %}
+
     <!-- ============ WELCOME ============ -->
     <section class="section" id="welcome" aria-labelledby="welcome-title">
       <div class="container split">
@@ -94,7 +96,9 @@ pageKey: home
       <div class="container split reverse">
         <div class="portrait-card reveal" role="img" aria-label="{{ about.portrait.image_alt }}">
           {% photo about.portrait.image, "", "portrait", { class: "photo" } %}
+          {%- if about.portrait.show_badge %}
           <div class="about__badge"><strong>{{ about.portrait.name | inline | safe }}</strong><span>{{ about.portrait.role | inline | safe }}</span></div>
+          {%- endif %}
         </div>
         <div class="reveal d1">
           <p class="eyebrow">{{ p.samantha.eyebrow | inline | safe }}</p>
@@ -114,7 +118,7 @@ pageKey: home
             <div class="icon" aria-hidden="true">{{ icon(c.icon) }}</div>
             <h3>{{ c.title | heading | safe }}</h3>
             <p>{{ c.text | inline | safe }}</p>
-            <p style="margin-top:1rem"><a class="cert-link" href="{{ c.link }}" style="color:var(--sage-700);font-weight:700;border-bottom:1.5px solid var(--gold-400)">{{ c.link_label | inline | safe }}</a></p>
+            <p style="margin-top:1rem"><a class="cert-link" href="{{ c.link }}">{{ c.link_label | inline | safe }}</a></p>
           </article>
           {%- endfor %}
         </div>

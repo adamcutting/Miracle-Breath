@@ -178,6 +178,13 @@ content:
                 fields:
                   - { name: icon, component: icon }
                   - { name: text, label: Badge text, type: string, required: true }
+          - name: classes_strip
+            label: Weekly classes strip
+            description: The class times themselves come from the Classes page, so you only update them there.
+            type: object
+            fields:
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: link_label, label: Link words, type: string, required: true }
           - name: welcome
             label: Welcome section (photo + text)
             type: object
@@ -249,6 +256,7 @@ content:
               - { name: image_alt, label: Describe the photo, type: string, description: "e.g. 'Samantha Harden smiling outdoors'." }
               - { name: name, label: Name on the badge, type: string }
               - { name: role, label: Title on the badge, type: string }
+              - { name: show_badge, label: Show name badge on the photo, type: boolean, description: "Switch on once the photo is really you." }
           - name: story
             label: My story
             type: object
@@ -554,4 +562,14 @@ content:
       - { name: footer_about, label: Footer description, type: text }
       - { name: footer_where, label: Footer location line, type: string }
       - { name: footer_tagline, label: Footer bottom line, type: string }
+      - name: social
+        label: Social media links
+        description: Paste the full link to each profile (e.g. https://instagram.com/yourname). Icons only appear for the ones you fill in.
+        type: object
+        fields:
+          - { name: instagram, label: Instagram, type: string }
+          - { name: facebook, label: Facebook, type: string }
+          - { name: tiktok, label: TikTok, type: string }
+          - { name: youtube, label: YouTube, type: string }
+          - { name: linkedin, label: LinkedIn, type: string }
       - { name: enquiry_copy_to, label: Also send enquiries to, type: string, description: "A copy of every enquiry-form message also goes to this address (as well as samantha@miraclebreath.co.uk). Leave empty to stop the copies. Several addresses can be separated with commas." }

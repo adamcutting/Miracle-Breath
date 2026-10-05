@@ -1,0 +1,23 @@
+{#- Homepage strip listing the weekly classes. Reads the Classes page content, so times are edited in one place. -#}
+{%- if classes.show_in_menu and classes.weekly.classes and classes.weekly.classes.length %}
+{%- set days = { Monday: "Mon", Tuesday: "Tue", Wednesday: "Wed", Thursday: "Thu", Friday: "Fri", Saturday: "Sat", Sunday: "Sun" } %}
+    <section class="classes-strip" aria-labelledby="strip-title">
+      <div class="container classes-strip__inner">
+        <div class="classes-strip__head">
+          <h2 id="strip-title">{{ home.classes_strip.title | heading | safe }}</h2>
+          <a class="classes-strip__link" href="/classes.html">{{ home.classes_strip.link_label | inline | safe }}</a>
+        </div>
+        <ul class="classes-strip__list">
+          {%- for c in classes.weekly.classes %}
+          <li>
+            <span class="day-badge">{{ days[c.day] or c.day }}</span>
+            <span class="classes-strip__text">
+              <strong>{{ c.name }}</strong>
+              <span>{{ c.time }} · {{ "Online" if c.format == "online" else c.where }}</span>
+            </span>
+          </li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </section>
+{%- endif %}

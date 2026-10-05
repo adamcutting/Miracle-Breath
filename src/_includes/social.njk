@@ -1,0 +1,11 @@
+{#- Social profile icons; only the ones filled in under Site settings are shown. -#}
+{%- from "icons.njk" import icon -%}
+{%- set nets = [["instagram", "Instagram"], ["facebook", "Facebook"], ["tiktok", "TikTok"], ["youtube", "YouTube"], ["linkedin", "LinkedIn"]] %}
+{%- set any = false %}{% for n in nets %}{% if site.social and site.social[n[0]] %}{% set any = true %}{% endif %}{% endfor %}
+{%- if any %}
+<ul class="social">
+  {%- for n in nets %}{% if site.social[n[0]] %}
+  <li><a href="{{ site.social[n[0]] }}" target="_blank" rel="noopener" aria-label="Miracle Breath on {{ n[1] }}">{{ icon(n[0], "1.8") }}</a></li>
+  {%- endif %}{% endfor %}
+</ul>
+{%- endif %}

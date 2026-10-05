@@ -18,6 +18,9 @@ hero:
       text: ADHD-aware & beginner-friendly
     - icon: screen
       text: Online & in person
+classes_strip:
+  title: Join a weekly class
+  link_label: See class details
 welcome:
   image: /assets/photos/welcome-forest.jpg
   image_alt: A child sitting among daisies in a sunlit forest at golden hour

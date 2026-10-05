@@ -106,9 +106,10 @@
             <span style="color:#fff">Miracle Breath</span>
           </a>
           <p class="footer__about">{{ site.footer_about | inline | safe }}</p>
+          {% include "social.njk" %}
         </div>
         <div class="footer__col">
-          <h4>Explore</h4>
+          <h2>Explore</h2>
           <ul>
             <li><a href="/about.html">About Samantha</a></li>
             <li><a href="/soma-breath.html">SOMA Breath</a></li>
@@ -123,7 +124,7 @@
           </ul>
         </div>
         <div class="footer__col">
-          <h4>Get in touch</h4>
+          <h2>Get in touch</h2>
           <ul>
             <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
             {%- if site.phone %}

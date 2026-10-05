@@ -13,7 +13,9 @@ pageKey: about
       <div class="container split">
         <div class="portrait-card reveal" role="img" aria-label="{{ p.portrait.image_alt }}">
           {% photo p.portrait.image, "", "portrait", { class: "photo" } %}
+          {%- if p.portrait.show_badge %}
           <div class="about__badge"><strong>{{ p.portrait.name | inline | safe }}</strong><span>{{ p.portrait.role | inline | safe }}</span></div>
+          {%- endif %}
         </div>
         <div class="reveal d1">
           <p class="eyebrow">{{ p.story.eyebrow | inline | safe }}</p>
