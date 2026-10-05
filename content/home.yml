@@ -84,9 +84,9 @@ explore:
       link: /healing.html
     - icon: calendar
       title: Sessions & booking
-      text: Classes, workshops and private sessions, online and in person. Get in touch and we’ll find the right fit for you.
-      link_label: Book / Enquire →
-      link: /contact.html
+      text: Weekly classes at Prested Hall in Feering and online, plus private and workplace sessions.
+      link_label: See class times →
+      link: /classes.html
 cta:
   eyebrow: Your breath is waiting
   title: Ready to explore the power of your breath?

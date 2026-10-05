@@ -22,7 +22,7 @@ function check(fields, data, where) {
       else if (!Array.isArray(v)) report(`Expected a list: ${where}.${k}`);
       else v.forEach((item, i) => check(f.fields, item, `${where}.${k}[${i}]`));
     }
-    if (f.type === "select" && v && !f.options.values.some((o) => o.value === v)) report(`Unknown option "${v}": ${where}.${k}`);
+    if (f.type === "select" && v && !f.options.values.some((o) => (typeof o === "object" ? o.value : o) === v)) report(`Unknown option "${v}": ${where}.${k}`);
   }
 }
 

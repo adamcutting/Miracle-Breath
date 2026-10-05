@@ -1,0 +1,56 @@
+show_in_menu: true
+seo:
+  title: Weekly Breathwork Classes in Essex & Online | Miracle Breath
+  description: Weekly SOMA Breath classes with Samantha Harden at Prested Hall in Feering, Essex, plus an online Sunday sleep session. Beginner-friendly and fully guided.
+hero:
+  title: Classes
+  intro: Weekly breathwork classes at Prested Hall in Feering, Essex, and online from home. Every class is beginner-friendly and fully guided.
+weekly:
+  eyebrow: Every week
+  title: Weekly classes
+  intro: Come to one, or make it part of your week. Get in touch to book your place.
+  classes:
+    - name: Sunday Sleep Session
+      day: Sunday
+      time: 9–10pm
+      format: online
+      where: Online
+      text: A slow, calming breath and meditation practice to end the weekend and help you drift into a good night's sleep. Join from home, camera optional.
+      price: ""
+    - name: Lunchtime Breath
+      day: Tuesday
+      time: 12–1pm
+      format: inperson
+      where: Prested Hall, Feering
+      text: A midday reset. Step away from the to-do list, breathe, and head back into your afternoon calmer and clearer.
+      price: ""
+    - name: Evening Breath
+      day: Thursday
+      time: 8.30–9.30pm
+      format: inperson
+      where: Prested Hall, Feering
+      text: Let the day go. A guided SOMA Breath session to unwind your body and quiet a busy mind before bed.
+      price: ""
+  button: Book a place
+venue:
+  eyebrow: In person
+  title: Prested Hall, Feering
+  body: |-
+    In-person classes take place at **Prested Hall** in Feering, Essex. Mats and blankets are provided, so just wear something comfortable.
+  map_link: https://www.google.com/maps/search/?api=1&query=Prested+Hall+Feering+Essex
+  map_label: Open in Google Maps
+notice:
+  title: Before your first class
+  text: Breathwork is gentle, but some techniques aren't suitable for everyone. If you are pregnant or have a heart condition, epilepsy, high blood pressure or a respiratory condition, please speak with Samantha and your GP first. You'll be asked to read and sign the participation and waiver agreement before your first class.
+  document: /assets/docs/miracle-breath-participation-waiver.pdf
+  link_label: Read the participation & waiver agreement (PDF)
+cta:
+  eyebrow: Can't make these times?
+  title: Private and team sessions too
+  text: I also run one-to-one sessions and sessions for workplaces. Get in touch and we'll find something that works for you.
+  primary:
+    label: Get in touch
+    link: /contact.html
+  secondary:
+    label: What is SOMA Breath?
+    link: /soma-breath.html

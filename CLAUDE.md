@@ -49,9 +49,11 @@ Pages rebuilds the live site automatically. Live domain: `miraclebreath.co.uk`.
 
 ## Pages
 `index.html` (Home), `about.html`, `soma-breath.html`, `healing.html`,
-`contact.html`, `404.html` — built from `src/*.njk`. `timetable.html` is parked
-in `archive/` until real dates/booking exist (`_redirects` sends its old URLs
-home; restore nav/footer/CTA links when it returns).
+`classes.html`, `corporate.html`, `contact.html`, `404.html` — built from
+`src/*.njk`. Classes and Corporate have a `show_in_menu` switch (off = not in
+nav/footer/sitemap, `noindex`, but still reachable for preview). The old
+`timetable` URLs redirect to `/classes`. Links to `/contact.html?interest=…`
+pre-select the enquiry type (main.js).
 
 ## Local dev
 `npm install`, then `npm start` (dev server with live reload) or

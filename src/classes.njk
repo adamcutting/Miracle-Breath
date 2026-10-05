@@ -1,0 +1,57 @@
+---
+layout: base.njk
+permalink: classes.html
+pageKey: classes
+---
+{%- set p = classes -%}
+{%- set days = { Monday: "Mon", Tuesday: "Tue", Wednesday: "Wed", Thursday: "Thu", Friday: "Fri", Saturday: "Sat", Sunday: "Sun" } -%}
+{%- set hero = p.hero %}{% set crumb = "Classes" %}
+{% include "page-hero.njk" %}
+
+    <!-- Weekly classes -->
+    <section class="section" aria-labelledby="weekly-title">
+      <div class="container">
+        <div class="text-center center-block reveal">
+          <p class="eyebrow center">{{ p.weekly.eyebrow | inline | safe }}</p>
+          <h2 class="section-title center-block" id="weekly-title">{{ p.weekly.title | heading | safe }}</h2>
+          <p class="section-intro center-block">{{ p.weekly.intro | inline | safe }}</p>
+        </div>
+        <div class="sessions" style="margin-top:3rem">
+          {%- for c in p.weekly.classes %}
+          <article class="session-card reveal d{{ (loop.index0 % 3) + 1 }}">
+            <div class="session-card__top">
+              <div><h3>{{ c.name | heading | safe }}</h3></div>
+              <div class="date-badge"><span class="d">{{ days[c.day] or c.day }}</span><span class="m">Weekly</span></div>
+            </div>
+            <div class="meta"><span class="tagpill{% if c.format == 'online' %} online{% endif %}">{{ "Online" if c.format == "online" else "In person" }}</span>{% if c.where and c.format != "online" %}<span class="tagpill">{{ c.where }}</span>{% endif %}</div>
+            <p class="when">{{ c.day }} · {{ c.time }}</p>
+            <p>{{ c.text | inline | safe }}</p>
+            {%- if c.price %}
+            <p class="price-from">{{ c.price | inline | safe }}</p>
+            {%- endif %}
+            <a class="btn btn--ghost" href="/contact.html?interest=group">{{ p.weekly.button or "Book a place" }}</a>
+          </article>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Venue -->
+    <section class="section highlight-band" aria-labelledby="venue-title">
+      <div class="container">
+        <div class="text-center center-block reveal" style="max-width:62ch">
+          <p class="eyebrow center">{{ p.venue.eyebrow | inline | safe }}</p>
+          <h2 class="section-title center-block" id="venue-title">{{ p.venue.title | heading | safe }}</h2>
+          {{ p.venue.body | md | safe }}
+          {%- if p.venue.map_link %}
+          <p style="margin-top:1.2rem"><a class="btn btn--ghost" href="{{ p.venue.map_link }}" target="_blank" rel="noopener">{{ p.venue.map_label or "Open in Google Maps" }} <span class="arrow">↗</span></a></p>
+          {%- endif %}
+        </div>
+      </div>
+    </section>
+
+{%- set notice = p.notice %}
+{% include "notice.njk" %}
+
+{%- set cta = p.cta %}{% set ctaClass = " services" %}{% set ctaLabel = "Get in touch" %}{% set ctaContactQuery = "" %}
+{% include "cta.njk" %}

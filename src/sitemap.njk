@@ -5,6 +5,7 @@ eleventyExcludeFromCollections: true
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {%- set paths = ["/", "/about.html", "/soma-breath.html", "/healing.html", "/contact.html"] %}
+{%- if classes.show_in_menu %}{% set paths = (paths.push("/classes.html"), paths) %}{% endif %}
 {%- if corporate.show_in_menu %}{% set paths = (paths.push("/corporate.html"), paths) %}{% endif %}
 {%- for path in paths %}
   <url><loc>{{ site.url }}{{ path }}</loc></url>

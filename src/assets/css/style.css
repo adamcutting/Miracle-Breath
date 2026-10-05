@@ -2366,3 +2366,15 @@ h1, h2, h3, h4 { color: #fff; }
   padding-bottom: 1px;
 }
 .cred a.cert-link:hover, .notice a.cert-link:hover { color: var(--j-text); }
+
+/* Small laptops: tighten the menu so up to seven links fit beside the button */
+@media (min-width: 1025px) and (max-width: 1240px) {
+  .nav__links { gap: 1.05rem; }
+  .nav__links a { font-size: 0.92rem; }
+  .nav__cta .btn { padding-inline: 1.1rem; }
+}
+
+/* Class day badges on the dark theme: stacked day + "Weekly", readable */
+.session-card .date-badge { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; min-width: 4.2rem; }
+.session-card .date-badge .d { color: var(--j-text); }
+.session-card .date-badge .m { color: var(--j-gold); font-size: 0.66rem; }

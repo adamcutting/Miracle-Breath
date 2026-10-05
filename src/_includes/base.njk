@@ -1,4 +1,4 @@
-{%- set pages = { home: home, about: about, soma: soma, healing: healing, contact: contact, corporate: corporate } -%}
+{%- set pages = { home: home, about: about, soma: soma, healing: healing, contact: contact, corporate: corporate, classes: classes } -%}
 {%- set hidden = (pages[pageKey].show_in_menu === false) -%}
 {%- set seo = pages[pageKey].seo -%}
 {%- set url = site.url + ("/" if permalink == "index.html" else "/" + permalink) -%}
@@ -62,6 +62,7 @@
     { key: "about", href: "/about.html", label: "About" },
     { key: "soma", href: "/soma-breath.html", label: "SOMA Breath" },
     { key: "healing", href: "/healing.html", label: "Healing" },
+    { key: "classes", href: "/classes.html", label: "Classes", show: classes.show_in_menu },
     { key: "corporate", href: "/corporate.html", label: "Corporate", show: corporate.show_in_menu },
     { key: "contact", href: "/contact.html", label: "Contact" }
   ] %}
@@ -112,6 +113,9 @@
             <li><a href="/about.html">About Samantha</a></li>
             <li><a href="/soma-breath.html">SOMA Breath</a></li>
             <li><a href="/healing.html">Healing</a></li>
+            {%- if classes.show_in_menu %}
+            <li><a href="/classes.html">Classes</a></li>
+            {%- endif %}
             {%- if corporate.show_in_menu %}
             <li><a href="/corporate.html">Corporate</a></li>
             {%- endif %}
