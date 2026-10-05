@@ -1,31 +1,41 @@
-show_in_menu: false
+show_in_menu: true
 seo:
   title: Breathwork for Teams & Workplaces | Miracle Breath
-  description: Guided SOMA Breath sessions for businesses, online or at your workplace. Practical breathwork to help teams manage pressure, focus better and avoid burnout, led by Samantha Harden.
+  description: Guided SOMA Breath sessions for businesses, online or at your
+    workplace. Practical breathwork to help teams manage pressure, focus better
+    and avoid burnout, led by Samantha Harden.
 hero:
   title: Breathwork for your team
-  intro: Practical, guided breathwork for busy workplaces. Online or in person, and no experience needed.
+  intro: Practical, guided breathwork for busy workplaces. Online or in person,
+    and no experience needed.
 why:
   image: /assets/photos/glimpse-1.jpg
   image_alt: A small group doing a guided exercise together on a beach
   eyebrow: Why I do this
   title: I know what high-pressure work feels like
-  body: |-
-    For fifteen years I worked in private client wealth management in London. Long days, client dinners and a pace that never really let up. I didn't notice how much it was costing me until I burnt out.
+  body: >-
+    For fifteen years I worked in private client wealth management in London.
+    Long days, client dinners and a pace that never really let up. I didn't
+    notice how much it was costing me until I burnt out.
 
-    Breathwork is the tool I wish I'd had back then. It takes minutes, it needs no equipment, and once people know how to use it they can reach for it at their desk, before a difficult meeting, or at the end of a long day.
+
+    Breathwork is the tool I wish I'd had back then. It takes minutes, it needs
+    no equipment, and once people know how to use it they can reach for it at
+    their desk, before a difficult meeting, or at the end of a long day.
   button:
     label: Read my story
     link: /about.html
 benefits:
   eyebrow: What your team gets
   title: Calmer, clearer people
-  intro: A short, guided session can shift how people feel for the rest of the day. Regular practice builds a skill they keep.
+  intro: A short, guided session can shift how people feel for the rest of the
+    day. Regular practice builds a skill they keep.
   cards:
     - icon: leaf
       colour: green
       title: Steadier under pressure
-      text: Simple techniques people can use in the moment, before a presentation or after a tough call.
+      text: Simple techniques people can use in the moment, before a presentation or
+        after a tough call.
     - icon: sun
       colour: gold
       title: Sharper focus
@@ -33,7 +43,8 @@ benefits:
     - icon: drop
       colour: green
       title: Better rest
-      text: Wind-down practices that help people switch off in the evening and sleep more easily.
+      text: Wind-down practices that help people switch off in the evening and sleep
+        more easily.
     - icon: heart
       colour: gold
       title: Fewer burnt-out people
@@ -41,30 +52,36 @@ benefits:
 formats:
   eyebrow: How it can work
   title: Sessions shaped around your team
-  intro: "Every workplace is different, so I'll suggest a format once I understand what you need. A few common starting points:"
+  intro: "Every workplace is different, so I'll suggest a format once I understand
+    what you need. A few common starting points:"
   cards:
     - title: A one-off session
-      text: An introduction to breathwork for the whole team, ideal for a wellbeing week or team day.
+      text: An introduction to breathwork for the whole team, ideal for a wellbeing
+        week or team day.
     - title: A regular reset
-      text: Short, guided sessions on a weekly or monthly rhythm, so the practice becomes a habit.
+      text: Short, guided sessions on a weekly or monthly rhythm, so the practice
+        becomes a habit.
     - title: A workshop
-      text: A longer session with time to understand how the breath affects stress and focus, and to practise.
+      text: A longer session with time to understand how the breath affects stress and
+        focus, and to practise.
     - title: Online for remote teams
       text: Sessions over video call, so everyone can join from wherever they work.
 inclusive:
   eyebrow: For every kind of mind
   title: Neuro-inclusive by design
-  body: |-
-    I hold an **ADHD Awareness Diploma**, and my sessions are made for busy and sensitive minds. Nobody is asked to sit perfectly still or empty their head, and cameras can stay off online. It's a gentle, accessible way to support the neurodivergent people on your team as well as everyone else.
+  body: I hold an **ADHD Awareness Diploma**, and my sessions are made for busy
+    and sensitive minds. Nobody is asked to sit perfectly still or empty their
+    head, and cameras can stay off online. It's a gentle, accessible way to
+    support the neurodivergent people on your team as well as everyone else.
 band:
   image: /assets/photos/ambient-breath.jpg
   eyebrow: A few minutes is enough
   quote: Your breath is the one wellbeing tool every person in your team already has.
-  cite: ""
 cta:
   eyebrow: Let's talk
   title: Bring breathwork to your workplace
-  text: Tell me a little about your team and what you're hoping for, and I'll come back to you with some ideas.
+  text: Tell me a little about your team and what you're hoping for, and I'll come
+    back to you with some ideas.
   primary:
     label: Enquire about team sessions
     link: /contact.html
