@@ -2458,3 +2458,62 @@ html, body { overflow-x: clip; }
 .contact-form > *, .contact-form .field { min-width: 0; }
 .contact-form .field input, .contact-form .field select, .contact-form .field textarea { width: 100%; max-width: 100%; min-width: 0; }
 @media (max-width: 640px) { .contact-form { padding: 1.5rem 1.25rem; } }
+
+/* =====================================================================
+   Refresh (Oct 2026): calmer, less template-like
+   ===================================================================== */
+/* Section labels: a quiet italic kicker instead of tracked gold capitals */
+.eyebrow {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 1.08rem;
+  color: var(--j-gold);
+  margin-bottom: 0.5rem;
+}
+.eyebrow::before, .eyebrow.center::before { display: none; }
+.ambient .eyebrow { color: var(--gold-300); }
+/* No decorative rule under every heading */
+.text-center .section-title::after, .cta-band h2::after { content: none; }
+
+/* Headline italics: same colour, no gradient */
+.hero h1 em, h1 em, h2 em {
+  background: none; -webkit-background-clip: border-box; background-clip: border-box;
+  color: inherit; -webkit-text-fill-color: currentColor; animation: none;
+}
+
+/* Lead paragraph used for page intros */
+.lead-intro {
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.4rem);
+  line-height: 1.65;
+  color: var(--j-text);
+  max-width: 60ch;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Fewer boxes: benefits, steps and expectations sit on the page, not in cards */
+.pillar, .pillar:hover {
+  background: none; border: 0; box-shadow: none; transform: none; padding: 1rem 0.75rem;
+}
+.step, .step:hover, .expect__item, .expect__item:hover {
+  background: none; border: 0; box-shadow: none; transform: none; border-radius: 0;
+  border-top: 1px solid var(--j-border); padding: 1.4rem 0 0;
+}
+.steps, .expect { gap: 1.5rem 2rem; }
+
+/* Gentle fades only: no sliding or wiping */
+.js .reveal, .js .reveal--left, .js .reveal--right, .js .reveal--media {
+  transform: none; clip-path: none;
+}
+
+/* Tighter rhythm between sections */
+.section { padding-block: clamp(3.5rem, 7vw, 6rem); }
+.page-hero { padding: clamp(7.5rem, 12vw, 9.5rem) 0 clamp(2rem, 4vw, 3rem); }
+@media (max-width: 640px) {
+  .section { padding-block: 3.25rem; }
+  .pillar { padding: 0.75rem 0.25rem; }
+  .step, .expect__item { padding-top: 1.1rem; }
+}

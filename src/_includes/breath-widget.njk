@@ -1,0 +1,43 @@
+{#- Guided breathing exercise. Expects `tryit` (eyebrow, title, intro, note). The widget itself is fixed. -#}
+    <section class="section breathe-section" id="breathe" aria-labelledby="try-title">
+      <div class="container">
+        <div class="text-center center-block reveal">
+          <p class="eyebrow center">{{ tryit.eyebrow | inline | safe }}</p>
+          <h2 class="section-title center-block" id="try-title">{{ tryit.title | heading | safe }}</h2>
+          <p class="section-intro center-block">{{ tryit.intro | inline | safe }}</p>
+        </div>
+        <div class="breath-box reveal">
+          <div class="breath-patterns" role="group" aria-label="Choose a breathing pattern">
+            <button data-pattern="calm" aria-pressed="true">Calm <span>4·7·8</span></button>
+            <button data-pattern="box" aria-pressed="false">Box <span>4·4·4·4</span></button>
+            <button data-pattern="relax" aria-pressed="false">Relax <span>4·6</span></button>
+          </div>
+          <p class="breath-hint" id="breath-hint">Best for winding down and sleep.</p>
+
+          <div class="breath-stage">
+            <svg class="breath-progress" viewBox="0 0 240 240" aria-hidden="true">
+              <circle class="bp-track" cx="120" cy="120" r="112" />
+              <circle class="bp-fill" cx="120" cy="120" r="112" />
+            </svg>
+            <span class="breath-ring"></span>
+            <span class="breath-ring"></span>
+            <div class="breath-orb" aria-hidden="true"></div>
+            <div class="breath-readout">
+              <p class="breath-phase" aria-live="polite">Ready</p>
+              <p class="breath-count" aria-hidden="true"></p>
+            </div>
+          </div>
+
+          <div class="breath-rounds" aria-hidden="true"></div>
+
+          <div class="breath-controls">
+            <button class="btn btn--lg" data-breath-toggle>Begin</button>
+            <button class="breath-sound" data-breath-sound type="button" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+              Sound
+            </button>
+          </div>
+          <p class="breath-note">{{ tryit.note | inline | safe }}</p>
+        </div>
+      </div>
+    </section>

@@ -45,6 +45,7 @@ components:
         - { value: /classes.html, label: Classes page }
         - { value: /corporate.html, label: Corporate page }
         - { value: /contact.html, label: Contact page }
+        - { value: '#breathe', label: The breathing exercise on this page }
   button:
     type: object
     label: Button
@@ -166,8 +167,7 @@ content:
             label: Welcome banner (top of the page)
             type: object
             fields:
-              - { name: eyebrow, label: Small line above the headline, type: string }
-              - { name: headline, label: Headline, type: string, required: true, description: "Put *stars* around words to make them gold and italic, e.g. Breathwork for *healing* and calm." }
+              - { name: headline, label: Headline, type: string, required: true, description: "Put *stars* around words to make them italic." }
               - { name: intro, label: Intro text, type: text }
               - { name: primary, component: button, label: Main button }
               - { name: secondary, component: optional_button }
@@ -203,6 +203,15 @@ content:
               - { name: title, label: Heading, type: string, required: true }
               - { name: intro, label: Intro text, type: text }
               - { name: cards, component: pillar_cards }
+          - name: try_it
+            label: Guided breath exercise
+            description: The breathing circle itself can't be changed here, only the words around it.
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: intro, label: Intro text, type: text }
+              - { name: note, label: Safety note under the circle, type: text }
           - name: for_you
             label: "'If this sounds like you' section"
             type: object
@@ -340,6 +349,8 @@ content:
             label: Ancient wisdom, modern science
             type: object
             fields:
+              - { name: image, component: photo }
+              - { name: image_alt, label: Describe the photo, type: string }
               - { name: eyebrow, label: Small heading above, type: string }
               - { name: title, label: Heading, type: string, required: true }
               - { name: body, component: body }
@@ -391,6 +402,8 @@ content:
             label: Nervous-system section
             type: object
             fields:
+              - { name: image, component: photo }
+              - { name: image_alt, label: Describe the photo, type: string }
               - { name: eyebrow, label: Small heading above, type: string }
               - { name: title, label: Heading, type: string, required: true }
               - { name: body, component: body }

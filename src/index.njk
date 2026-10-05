@@ -16,9 +16,7 @@ pageKey: home
               <img src="/assets/img/logo-full.png" width="489" height="393" alt="" fetchpriority="high" decoding="async" />
             </picture>
           </div>
-          <p class="hero__wordmark">Miracle Breath</p>
         </div>
-        <p class="eyebrow center">{{ p.hero.eyebrow | inline | safe }}</p>
         <h1>{{ p.hero.headline | heading | safe }}</h1>
         <p class="hero__lead center-block">{{ p.hero.intro | inline | safe }}</p>
         <div class="hero__actions" style="justify-content:center">
@@ -75,6 +73,10 @@ pageKey: home
         </div>
       </div>
     </section>
+
+    <!-- ============ TRY A BREATH ============ -->
+{%- set tryit = p.try_it %}
+{% include "breath-widget.njk" %}
 
     <!-- ============ SPEAKS TO YOU ============ -->
     <section class="section highlight-band" aria-labelledby="you-title">

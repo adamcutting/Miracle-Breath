@@ -2,15 +2,14 @@ seo:
   title: Miracle Breath | Transformational SOMA Breathwork with Samantha Harden
   description: Miracle Breath offers transformational SOMA Breath breathwork for healing, balance, energy and inner change. Guided sessions with Samantha Harden, online and in person.
 hero:
-  eyebrow: SOMA Breath® · Online & In Person
-  headline: Transformational breathwork for *healing, balance, energy* and inner change.
+  headline: Transformational breathwork for healing, balance, energy and inner change.
   intro: A calm space to slow down and breathe properly again. Guided breathwork and meditation to quiet a busy mind and bring you back to yourself.
   primary:
     label: Book / Enquire
     link: /contact.html
   secondary:
-    label: Explore the method
-    link: /soma-breath.html
+    label: Try a one-minute breath
+    link: '#breathe'
   badges:
     - icon: award
       text: SOMA Breath® Certified
@@ -54,6 +53,11 @@ benefits:
       colour: gold
       title: Emotional release
       text: Create space to process, soften tension and reconnect with a deeper sense of self.
+try_it:
+  eyebrow: Try it now
+  title: Take a minute to breathe
+  intro: Choose a pattern, press Begin and follow the circle. It only takes a minute, and you'll feel the difference.
+  note: A gentle taster, not medical advice. Please don't practise while driving; if you feel light-headed, simply return to normal breathing.
 for_you:
   eyebrow: If this sounds like you
   title: For the mind that won't switch off

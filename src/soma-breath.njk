@@ -13,7 +13,7 @@ pageKey: soma
       <div class="container">
         <div class="quote-feature reveal" style="max-width:62ch">
           <p class="eyebrow center">{{ p.intro.eyebrow | inline | safe }}</p>
-          <blockquote style="font-size:clamp(1.3rem,1rem+1.2vw,1.9rem)">{{ p.intro.quote | inline | safe }}</blockquote>
+          <p class="lead-intro">{{ p.intro.quote | inline | safe }}</p>
         </div>
       </div>
     </section>
@@ -44,22 +44,8 @@ pageKey: soma
     <!-- Science + ancient wisdom -->
     <section class="section" aria-labelledby="sci-title">
       <div class="container split">
-        <div class="split__art reveal" role="img" aria-label="A rising sun over flowing waves, blending ancient and modern">
-          <svg viewBox="0 0 500 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="sci" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4efe4"/><stop offset="1" stop-color="#e9c371" stop-opacity="0.5"/></linearGradient>
-            </defs>
-            <rect width="500" height="400" fill="url(#sci)"/>
-            <circle cx="250" cy="175" r="58" fill="#e9c371"/>
-            <g stroke="#d6ad61" stroke-width="2.5" stroke-linecap="round" opacity="0.8">
-              <path d="M250 95v-24M250 279v-24M334 175h24M142 175h24M312 113l17-17M171 254l-17 17M312 237l17 17M188 113l-17-17"/>
-            </g>
-            <g fill="none" stroke-linecap="round">
-              <path d="M-20 250 Q 125 218 250 250 T 520 250" stroke="#8a9c80" stroke-width="3.5" opacity="0.7"/>
-              <path d="M-20 295 Q 125 268 250 295 T 520 295" stroke="#586b4b" stroke-width="3" opacity="0.6"/>
-              <path d="M-20 338 Q 125 318 250 338 T 520 338" stroke="#a6b69b" stroke-width="2.5" opacity="0.5"/>
-            </g>
-          </svg>
+        <div class="split__art reveal">
+          {% photo p.science.image, p.science.image_alt, "split" %}
         </div>
         <div class="reveal d1">
           <p class="eyebrow">{{ p.science.eyebrow | inline | safe }}</p>
@@ -92,49 +78,9 @@ pageKey: soma
       </div>
     </section>
 
-    <!-- Try it (the breathing widget itself is fixed; only the words around it are editable) -->
-    <section class="section breathe-section" id="breathe" aria-labelledby="try-title">
-      <div class="container">
-        <div class="text-center center-block reveal">
-          <p class="eyebrow center">{{ p.try_it.eyebrow | inline | safe }}</p>
-          <h2 class="section-title center-block" id="try-title">{{ p.try_it.title | heading | safe }}</h2>
-          <p class="section-intro center-block">{{ p.try_it.intro | inline | safe }}</p>
-        </div>
-        <div class="breath-box reveal">
-          <div class="breath-patterns" role="group" aria-label="Choose a breathing pattern">
-            <button data-pattern="calm" aria-pressed="true">Calm <span>4·7·8</span></button>
-            <button data-pattern="box" aria-pressed="false">Box <span>4·4·4·4</span></button>
-            <button data-pattern="relax" aria-pressed="false">Relax <span>4·6</span></button>
-          </div>
-          <p class="breath-hint" id="breath-hint">Best for winding down and sleep.</p>
-
-          <div class="breath-stage">
-            <svg class="breath-progress" viewBox="0 0 240 240" aria-hidden="true">
-              <circle class="bp-track" cx="120" cy="120" r="112" />
-              <circle class="bp-fill" cx="120" cy="120" r="112" />
-            </svg>
-            <span class="breath-ring"></span>
-            <span class="breath-ring"></span>
-            <div class="breath-orb" aria-hidden="true"></div>
-            <div class="breath-readout">
-              <p class="breath-phase" aria-live="polite">Ready</p>
-              <p class="breath-count" aria-hidden="true"></p>
-            </div>
-          </div>
-
-          <div class="breath-rounds" aria-hidden="true"></div>
-
-          <div class="breath-controls">
-            <button class="btn btn--lg" data-breath-toggle>Begin</button>
-            <button class="breath-sound" data-breath-sound type="button" aria-pressed="false">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
-              Sound
-            </button>
-          </div>
-          <p class="breath-note">{{ p.try_it.note | inline | safe }}</p>
-        </div>
-      </div>
-    </section>
+    <!-- Try it -->
+{%- set tryit = p.try_it %}
+{% include "breath-widget.njk" %}
 
     <!-- Safety notice -->
 {%- set notice = p.notice %}

@@ -13,7 +13,7 @@ pageKey: healing
       <div class="container">
         <div class="quote-feature reveal" style="max-width:64ch">
           <p class="eyebrow center">{{ p.intro.eyebrow | inline | safe }}</p>
-          <blockquote style="font-size:clamp(1.3rem,1rem+1.2vw,1.9rem)">{{ p.intro.quote | inline | safe }}</blockquote>
+          <p class="lead-intro">{{ p.intro.quote | inline | safe }}</p>
         </div>
       </div>
     </section>
@@ -41,18 +41,8 @@ pageKey: healing
     <!-- Nervous system split -->
     <section class="section" aria-labelledby="ns-title">
       <div class="container split">
-        <div class="split__art reveal" role="img" aria-label="An agitated line softening into a calm, steady wave">
-          <svg viewBox="0 0 500 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="healbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#586b4b"/><stop offset="1" stop-color="#333d2c"/></linearGradient>
-            </defs>
-            <rect width="500" height="400" fill="url(#healbg)"/>
-            <path d="M-20 200 L 40 200 60 130 80 270 100 150 120 250 140 170 160 230 185 200 L 250 200" fill="none" stroke="#e9c371" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
-            <path d="M250 200 Q 330 150 410 200 T 560 200" fill="none" stroke="#a6b69b" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
-            <path d="M-20 260 Q 125 235 250 260 T 520 260" fill="none" stroke="#8a9c80" stroke-width="2.5" opacity="0.5"/>
-            <path d="M-20 300 Q 125 282 250 300 T 520 300" fill="none" stroke="#8a9c80" stroke-width="2" opacity="0.35"/>
-            <circle cx="410" cy="200" r="6" fill="#f6dca0"/>
-          </svg>
+        <div class="split__art reveal">
+          {% photo p.nervous_system.image, p.nervous_system.image_alt, "split" %}
         </div>
         <div class="reveal d1">
           <p class="eyebrow">{{ p.nervous_system.eyebrow | inline | safe }}</p>
