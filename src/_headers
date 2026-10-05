@@ -2,7 +2,10 @@
 # https://developers.cloudflare.com/pages/configuration/headers/
 
 # Cache images for a day, revalidate in the background
-/assets/img/*
+/assets/img/*.txt
+  Content-Type: text/plain; charset=utf-8
+
+/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
 # Fonts (Google Fonts are remote; this covers any local ones later)

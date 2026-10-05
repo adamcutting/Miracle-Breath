@@ -25,7 +25,21 @@ export default function (eleventyConfig) {
   for (const p of ["css", "js", "img", "docs"]) {
     eleventyConfig.addPassthroughCopy(`src/assets/${p}`);
   }
-  eleventyConfig.addPassthroughCopy({ "src/_headers": "_headers", "src/_redirects": "_redirects", "src/robots.txt": "robots.txt" });
+  eleventyConfig.addPassthroughCopy({ "src/_headers": "_headers", "src/_redirects": "_redirects" });
+
+  // Text files (llms.txt, robots.txt) are plain text: undo the HTML escaping
+  eleventyConfig.addTransform("plain-text", function (content) {
+    if (!(this.page.outputPath || "").endsWith(".txt")) return content;
+    return content.replace(/&amp;/g, "&").replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+  });
+
+  // Cloudflare serves pages without ".html" (and 308-redirects to that form), so
+  // link straight to the clean address: /about.html#x -> /about#x
+  eleventyConfig.addTransform("clean-links", function (content) {
+    if (!(this.page.outputPath || "").endsWith(".html")) return content;
+    return content.replace(/href="\/([a-z0-9-]+)\.html([?#][^"]*)?"/g, (m, slug, rest) =>
+      `href="/${slug === "index" ? "" : slug}${rest || ""}"`);
+  });
 
   /* ---------- Text filters ---------- */
 

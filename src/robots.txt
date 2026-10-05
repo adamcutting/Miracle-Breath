@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://miraclebreath.co.uk/sitemap.xml

@@ -1,7 +1,7 @@
 {%- set pages = { home: home, about: about, soma: soma, healing: healing, contact: contact, corporate: corporate, classes: classes } -%}
 {%- set hidden = (pages[pageKey].show_in_menu === false) -%}
 {%- set seo = pages[pageKey].seo -%}
-{%- set url = site.url + ("/" if permalink == "index.html" else "/" + permalink) -%}
+{%- set url = site.url + ("/" if permalink == "index.html" else "/" + permalink | replace(".html", "")) -%}
 <!DOCTYPE html>
 <html lang="en">
 <head>

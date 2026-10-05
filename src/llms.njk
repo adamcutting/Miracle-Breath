@@ -1,0 +1,54 @@
+---
+permalink: llms.txt
+eleventyExcludeFromCollections: true
+---
+{#- Plain-text summary for AI assistants (https://llmstxt.org). Built from the site content, so it stays current. -#}
+{%- set u = site.url -%}
+# Miracle Breath
+
+> {{ home.seo.description }}
+
+Miracle Breath is run by {{ about.portrait.name }} ({{ about.qualifications.items[0].title if about.qualifications.items.length else "Certified SOMA Breath Instructor" }}), offering guided SOMA Breath breathwork and meditation online and in person around Feering, Essex, UK. Sessions are beginner-friendly, ADHD-aware and suitable for busy or sensitive minds.
+
+## Key facts
+
+- Practitioner: {{ about.portrait.name }}
+{%- for q in about.qualifications.items %}
+- Qualification: {{ q.title }}{% if q.text %}. {{ q.text }}{% endif %}
+{%- endfor %}
+- Where: {{ contact.details.where }}
+- Email: {{ site.email }}
+{%- if site.phone %}
+- Phone: {{ site.phone }}
+{%- endif %}
+- Booking: enquire via {{ u }}/contact or by email
+{%- for k, v in site.social %}{% if v %}
+- {{ k | capitalize }}: {{ v }}
+{%- endif %}{% endfor %}
+
+{%- if classes.show_in_menu and classes.weekly.classes.length %}
+
+## Weekly classes
+{% for c in classes.weekly.classes %}
+- {{ c.name }}: every {{ c.day }}, {{ c.time }}, {{ "online" if c.format == "online" else c.where }}{% if c.price %}, {{ c.price }}{% endif %}. {{ c.text }}
+{%- endfor %}
+{%- endif %}
+
+## Pages
+
+- [Home]({{ u }}/): {{ home.seo.description }}
+- [About Samantha]({{ u }}/about): {{ about.seo.description }}
+- [What is SOMA Breath?]({{ u }}/soma-breath): {{ soma.seo.description }}
+- [Healing]({{ u }}/healing): {{ healing.seo.description }}
+{%- if classes.show_in_menu %}
+- [Classes]({{ u }}/classes): {{ classes.seo.description }}
+{%- endif %}
+{%- if corporate.show_in_menu %}
+- [Corporate]({{ u }}/corporate): {{ corporate.seo.description }}
+{%- endif %}
+- [Contact]({{ u }}/contact): {{ contact.seo.description }}
+
+## Health and safety
+
+- {{ soma.notice.text }}
+- Participation & waiver agreement: {{ u }}/assets/docs/miracle-breath-participation-waiver.pdf
