@@ -15,7 +15,8 @@ function check(fields, data, where) {
   for (const k of Object.keys(data ?? {})) if (!byName[k]) report(`Not in .pages.yml (would be dropped on save): ${where}.${k}`);
   for (const [k, f] of Object.entries(byName)) {
     const v = data?.[k];
-    if (v === undefined) { report(`Missing from content: ${where}.${k}`); continue; }
+    // Pages CMS omits empty optional fields, so only required fields and sections must exist.
+    if (v === undefined) { if (f.required || f.type === "object") report(`Missing from content: ${where}.${k}`); continue; }
     if (f.type === "object") {
       if (!f.list) check(f.fields, v, `${where}.${k}`);
       else if (!Array.isArray(v)) report(`Expected a list: ${where}.${k}`);
