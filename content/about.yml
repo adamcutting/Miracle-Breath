@@ -94,8 +94,10 @@ qualifications:
       certificate: /assets/docs/samantha-harden-soma-breath-instructor.pdf
     - icon: certificate
       title: ADHD Awareness Diploma
-      text: Specialist understanding of attention, focus and neurodiversity, informing
-        a genuinely inclusive, ADHD-friendly approach to breathwork.
+      text: A CPD-certified diploma from New Skills Academy giving a specialist
+        understanding of attention, focus and neurodiversity, which shapes a
+        genuinely inclusive, ADHD-friendly approach to breathwork.
+      certificate: /assets/docs/samantha-harden-adhd-awareness-diploma.pdf
 quote:
   text: '"Your breath is always with you. Learning to use it well can change
     everything."'
