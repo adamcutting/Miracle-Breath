@@ -28,7 +28,7 @@ why:
     link: /about.html
 benefits:
   eyebrow: What your team gets
-  title: Calmer, clearer people
+  title: Calmer, clearer, focused people
   intro: A short, guided session can shift how people feel for the rest of the
     day. Regular practice builds a skill they keep.
   cards:
@@ -50,6 +50,10 @@ benefits:
       colour: gold
       title: Fewer burnt-out people
       text: A practical way to look after wellbeing before stress turns into time off.
+    - icon: leaf
+      colour: gold
+      title: Abundance mindset
+      text: Think limitless. Build boundless.
 formats:
   eyebrow: How it can work
   title: Sessions shaped around your team
