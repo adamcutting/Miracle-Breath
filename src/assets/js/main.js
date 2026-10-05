@@ -373,6 +373,15 @@
   })();
 
   /* ---------- Forms (AJAX submit) ---------- */
+  /* Pre-select the enquiry type from ?interest=… (e.g. links from the Corporate page) */
+  var interest = new URLSearchParams(location.search).get("interest");
+  var interestSelect = document.getElementById("interest");
+  if (interest && interestSelect) {
+    Array.prototype.some.call(interestSelect.options, function (o) {
+      if (o.text.toLowerCase().indexOf(interest.toLowerCase()) !== -1) { interestSelect.value = o.value; return true; }
+    });
+  }
+
   document.querySelectorAll("[data-send-form]").forEach(function (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();

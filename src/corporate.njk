@@ -1,0 +1,81 @@
+---
+layout: base.njk
+permalink: corporate.html
+pageKey: corporate
+---
+{%- from "icons.njk" import icon -%}
+{%- set p = corporate -%}
+{%- set hero = p.hero %}{% set crumb = "Corporate" %}
+{% include "page-hero.njk" %}
+
+    <!-- Why (photo + story) -->
+    <section class="section" aria-labelledby="why-title">
+      <div class="container split">
+        <div class="split__art reveal">
+          {% photo p.why.image, p.why.image_alt, "split" %}
+        </div>
+        <div class="reveal d1">
+          <p class="eyebrow">{{ p.why.eyebrow | inline | safe }}</p>
+          <h2 class="section-title" id="why-title">{{ p.why.title | heading | safe }}</h2>
+          {{ p.why.body | md | safe }}
+          <a class="btn btn--ghost" href="{{ p.why.button.link }}">{{ p.why.button.label | inline | safe }} <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="section services" aria-labelledby="ben-title">
+      <div class="container">
+        <div class="text-center center-block reveal">
+          <p class="eyebrow center">{{ p.benefits.eyebrow | inline | safe }}</p>
+          <h2 class="section-title center-block" id="ben-title">{{ p.benefits.title | heading | safe }}</h2>
+          <p class="section-intro center-block">{{ p.benefits.intro | inline | safe }}</p>
+        </div>
+        <div class="pillars">
+          {%- for c in p.benefits.cards %}
+          <article class="pillar{% if c.colour == 'green' %} green{% endif %} reveal d{{ (loop.index0 % 4) + 1 }}">
+            <div class="ring" aria-hidden="true">{{ icon(c.icon) }}</div>
+            <h3>{{ c.title | heading | safe }}</h3>
+            <p>{{ c.text | inline | safe }}</p>
+          </article>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Formats -->
+    <section class="section" aria-labelledby="formats-title">
+      <div class="container">
+        <div class="text-center center-block reveal">
+          <p class="eyebrow center">{{ p.formats.eyebrow | inline | safe }}</p>
+          <h2 class="section-title center-block" id="formats-title">{{ p.formats.title | heading | safe }}</h2>
+          <p class="section-intro center-block">{{ p.formats.intro | inline | safe }}</p>
+        </div>
+        <div class="steps cols{% if p.formats.cards.length == 5 %} steps--5{% endif %}">
+          {%- for c in p.formats.cards %}
+          <article class="step reveal d{{ (loop.index0 % 4) + 1 }}">
+            <h3>{{ c.title | heading | safe }}</h3>
+            <p>{{ c.text | inline | safe }}</p>
+          </article>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Neuro-inclusive -->
+    <section class="section highlight-band" aria-labelledby="incl-title">
+      <div class="container">
+        <div class="text-center center-block reveal" style="max-width:62ch">
+          <p class="eyebrow center">{{ p.inclusive.eyebrow | inline | safe }}</p>
+          <h2 class="section-title center-block" id="incl-title">{{ p.inclusive.title | heading | safe }}</h2>
+          {{ p.inclusive.body | md | safe }}
+        </div>
+      </div>
+    </section>
+
+{%- set band = p.band %}
+{% include "ambient.njk" %}
+
+    <!-- CTA -->
+{%- set cta = p.cta %}{% set ctaClass = " services" %}{% set ctaLabel = "Get in touch" %}{% set ctaContactQuery = "?interest=corporate" %}
+{% include "cta.njk" %}

@@ -397,6 +397,52 @@ content:
           - { name: band, component: band }
           - { name: cta, component: cta }
 
+      # ------------------------------------------------------------- CORPORATE
+      - name: corporate
+        label: Corporate
+        type: file
+        path: content/corporate.yml
+        format: yaml
+        fields:
+          - { name: show_in_menu, label: Show this page on the website, type: boolean, description: "When off, the page still exists at miraclebreath.co.uk/corporate for you to check, but it isn't in the menu or on Google. Switch on when you're happy with it." }
+          - { name: seo, component: seo }
+          - { name: hero, component: page_hero }
+          - name: why
+            label: Why I do this (photo + text)
+            type: object
+            fields:
+              - { name: image, component: photo }
+              - { name: image_alt, label: Describe the photo, type: string }
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: body, component: body }
+              - { name: button, component: button }
+          - name: benefits
+            label: What your team gets (cards)
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: intro, label: Intro text, type: text }
+              - { name: cards, component: pillar_cards }
+          - name: formats
+            label: Session formats
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: intro, label: Intro text, type: text }
+              - { name: cards, component: numbered_cards }
+          - name: inclusive
+            label: Neuro-inclusive section
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: body, component: body }
+          - { name: band, component: band }
+          - { name: cta, component: cta, description: "A button that goes to the Contact page will pre-select 'Corporate / team wellbeing' on the enquiry form." }
+
       # --------------------------------------------------------------- CONTACT
       - name: contact
         label: Contact

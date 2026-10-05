@@ -6,7 +6,7 @@
           <h2>{{ cta.title | heading | safe }}</h2>
           <p>{{ cta.text | inline | safe }}</p>
           <div class="hero__actions">
-            <a class="btn btn--gold btn--lg" href="{{ cta.primary.link }}">{{ cta.primary.label | inline | safe }} <span class="arrow">→</span></a>
+            <a class="btn btn--gold btn--lg" href="{{ cta.primary.link }}{% if ctaContactQuery and cta.primary.link == '/contact.html' %}{{ ctaContactQuery }}{% endif %}">{{ cta.primary.label | inline | safe }} <span class="arrow">→</span></a>
             {%- if cta.secondary and cta.secondary.label %}
             <a class="btn btn--light btn--lg" href="{{ cta.secondary.link }}">{{ cta.secondary.label | inline | safe }}</a>
             {%- endif %}
