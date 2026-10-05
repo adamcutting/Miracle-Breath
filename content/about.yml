@@ -1,0 +1,77 @@
+seo:
+  title: About Samantha Harden — Miracle Breath
+  description: Meet Samantha Harden, founder of Miracle Breath. A certified SOMA Breath® facilitator with an ADHD Awareness Diploma, helping people find calm, healing and transformation through conscious breathing.
+hero:
+  title: Meet Samantha
+  intro: The person you'll actually be breathing with. Here's a little about me and why Miracle Breath exists.
+portrait:
+  image: /assets/photos/about-portrait.jpg
+  image_alt: Calm, atmospheric image evoking the practice
+  name: Samantha Harden
+  role: Founder · Certified SOMA Breath Facilitator
+story:
+  eyebrow: My story
+  title: How Miracle Breath began
+  body: |-
+    I'm Samantha, a mum of two young boys. For fifteen years I worked in private client wealth management in London: long, intensive days, client dinners and "work drinks" that slowly take their toll, the kind of pace where your sleep, your home life and your sense of yourself all start to suffer.
+
+    When my eldest was diagnosed with ADHD at six, going through the process with him led me to my own diagnosis too. Then in 2024 I was diagnosed with breast cancer. The treatment was a lumpectomy and lymph node removal, followed by several weeks of intensive radiotherapy, and the chemo-induced menopause pushed my ADHD symptoms to an all-time high. On top of everything else I was completely burnt out and struggling to cope. I couldn't carry on the way I was, so I went looking for something that might help.
+
+    That's when I found SOMA Breath®, and it genuinely changed my life. There's a point in radiotherapy where you're asked to hold your breath to shield your heart and keep the treatment accurate. Under that kind of stress I'd found it almost impossible, and my treatment had to restart, but with breathwork my breath-hold improved remarkably quickly. Better sleep, a calmer nervous system, room to actually feel things: all of it helped me rebuild.
+
+    These days I no longer take ADHD or anxiety medication, and I feel calm, happy and focused. I trained as a SOMA Breath facilitator so I could offer the same thing to other people, whether you're navigating neurodiversity, recovering from something hard, or simply spinning too many plates.
+  signature: — Samantha
+approach:
+  eyebrow: What to expect
+  title: What it's actually like
+  intro: No experience needed, no pressure, no judgement — just a supportive environment and the gentle guidance of your own breath.
+  cards:
+    - title: Grounded & welcoming
+      text: Every session is beginner-friendly and fully guided. Come exactly as you are — curious, sceptical or somewhere in between.
+    - title: Modern meets ancient
+      text: The work blends modern, evidence-informed breathing techniques with the calm and intention of ancient practice.
+    - title: Inclusive & supportive
+      text: Especially mindful of neurodiversity, overwhelm and high-pressure lives — adaptable to how you feel on the day.
+first_session:
+  eyebrow: Your first time
+  title: What to expect in a session
+  intro: A little reassurance, because the unknown is the hardest part. Here's roughly how it goes.
+  items:
+    - icon: clock
+      title: Around 45–75 minutes
+      text: Time to arrive, settle, breathe and rest. Never rushed.
+    - icon: tick
+      title: Just wear comfy clothes
+      text: Lie down or sit. Mats and blankets provided in person; a quiet spot is all you need online.
+    - icon: video
+      title: Camera off is fine
+      text: Online sessions are camera-optional — keep yours off and simply follow my voice.
+    - icon: heart
+      title: Emotion is welcome
+      text: Some people feel energised, some feel tearful, some drift off. All of it is completely normal.
+qualifications:
+  eyebrow: Training & credentials
+  title: Qualified, certified and always learning
+  intro: Samantha holds the following professional qualifications.
+  items:
+    - icon: award
+      title: Certified SOMA Breath Facilitator
+      text: Trained and certified in the SOMA Breath method to guide rhythmic breathwork, meditation and journey experiences safely.
+      certificate: /assets/docs/samantha-harden-soma-breath-facilitator.pdf
+    - icon: certificate
+      title: ADHD Awareness Diploma
+      text: Specialist understanding of attention, focus and neurodiversity, informing a genuinely inclusive, ADHD-friendly approach to breathwork.
+      certificate: ""
+quote:
+  text: '"Your breath is always with you. Learning to use it well can change everything."'
+  cite: Samantha Harden · Founder of Miracle Breath
+cta:
+  eyebrow: Let's begin
+  title: Curious to experience it for yourself?
+  text: Send a message — there's no commitment, just an open door.
+  primary:
+    label: Book / Enquire
+    link: /contact.html
+  secondary:
+    label: Explore SOMA Breath
+    link: /soma-breath.html

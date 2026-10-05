@@ -1,0 +1,76 @@
+---
+layout: base.njk
+permalink: contact.html
+pageKey: contact
+---
+{%- from "icons.njk" import icon -%}
+{%- set p = contact -%}
+{%- set hero = p.hero %}{% set crumb = "Contact" %}
+{% include "page-hero.njk" %}
+
+    <section class="section" id="enquiry" aria-labelledby="contact-title">
+      <div class="container contact__grid">
+        <div class="reveal">
+          <p class="eyebrow">{{ p.details.eyebrow | inline | safe }}</p>
+          <h2 class="section-title" id="contact-title">{{ p.details.title | heading | safe }}</h2>
+          <p class="section-intro" style="margin-bottom:2rem">{{ p.details.intro | inline | safe }}</p>
+
+          <div class="contact__info">
+            <div class="contact__item">
+              <span class="icon" aria-hidden="true">{{ icon("mail") }}</span>
+              <div><strong>Email</strong><span><a href="mailto:{{ site.email }}">{{ site.email }}</a></span></div>
+            </div>
+            {%- if site.phone %}
+            <div class="contact__item">
+              <span class="icon" aria-hidden="true">{{ icon("phone") }}</span>
+              <div><strong>Phone</strong><span><a href="tel:{{ site.phone | tel }}">{{ site.phone }}</a></span></div>
+            </div>
+            {%- endif %}
+            <div class="contact__item">
+              <span class="icon" aria-hidden="true">{{ icon("pin") }}</span>
+              <div><strong>Where</strong><span>{{ p.details.where | inline | safe }}</span></div>
+            </div>
+          </div>
+        </div>
+
+        {#- Enquiries always go to samantha@ via FormSubmit (activated for that address). Changing it needs a new activation. #}
+        <form class="contact-form reveal d1" data-send-form="https://formsubmit.co/ajax/samantha@miraclebreath.co.uk" aria-labelledby="contact-title">
+          <input type="hidden" name="_subject" value="New enquiry — miraclebreath.co.uk" />
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" />
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" autocomplete="name" placeholder="Your name" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+          </div>
+          <div class="field">
+            <label for="interest">I'm interested in…</label>
+            <select id="interest" name="interest">
+              {%- for o in p.form.interest_options %}
+              <option>{{ o }}</option>
+              {%- endfor %}
+            </select>
+          </div>
+          <div class="field">
+            <label for="format">Preferred format</label>
+            <select id="format" name="format">
+              <option>No preference</option>
+              <option>Online</option>
+              <option>In person</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="{{ p.form.message_placeholder }}"></textarea>
+          </div>
+          <button class="btn btn--lg" type="submit">{{ p.form.button }} <span class="arrow">→</span></button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+          <p class="form-note">{{ p.form.privacy_note | inline | safe }}</p>
+        </form>
+      </div>
+    </section>
+
+{%- set band = p.band %}
+{% include "ambient.njk" %}

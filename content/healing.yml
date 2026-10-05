@@ -1,0 +1,71 @@
+seo:
+  title: Healing & Wellbeing through Breath — Miracle Breath
+  description: How breathwork can support healing — calming the nervous system, easing stress and burnout, supporting emotional release and neurodiversity-friendly wellbeing.
+hero:
+  title: Healing through the breath
+  intro: How something as ordinary as breathing can settle a frazzled nervous system, loosen held tension, and help you feel at home in your body again.
+intro:
+  eyebrow: A grounded approach
+  quote: By working consciously with the breath, people may begin to calm the nervous system, release tension, improve focus and reconnect body and mind — supporting emotional resilience, greater physical ease and recovery from stress.
+dimensions:
+  eyebrow: Whole-person wellbeing
+  title: Body, mind and emotion
+  intro: Breathwork doesn't isolate one part of you; it supports the whole. Here's how it can help.
+  cards:
+    - icon: leaf
+      colour: green
+      title: Physical ease
+      text: Release held tension, support better breathing patterns, and invite a deeper sense of physical relaxation and recovery.
+    - icon: cloud
+      colour: gold
+      title: Mental clarity
+      text: Quiet the mental noise, improve focus and concentration, and create the spaciousness to think and feel more clearly.
+    - icon: heart
+      colour: green
+      title: Emotional balance
+      text: Make room to process and release, soften overwhelm, and reconnect with a steadier, more resilient sense of self.
+nervous_system:
+  eyebrow: Nervous-system support
+  title: From fight-or-flight to rest-and-restore
+  body: |-
+    So much of modern life keeps us in a low-level state of alert — wired, busy and braced. Conscious breathing is one of the few tools that speaks directly to the nervous system, gently signalling that it's safe to soften.
+
+    With practice, that shift becomes easier to find. Many people notice they recover from stress more quickly, sleep more deeply, and carry a calmer baseline into everyday life.
+  button:
+    label: How the method works
+    link: /soma-breath.html
+who:
+  eyebrow: Especially supportive for
+  title: When it helps most
+  intro: Structured breathing can feel particularly supportive when life is asking a lot of you.
+  cards:
+    - title: Stress & overwhelm
+      text: A practical, in-the-moment way to interrupt spiralling stress and find your feet again.
+    - title: Burnout & corporate pressure
+      text: Restorative tools for high-pressure lives — to recover, reset and protect your energy.
+    - title: Neurodiversity
+      text: Gentle, inclusive support for overstimulation, focus and regulation — including ADHD-friendly approaches.
+    - title: Sleep & recovery
+      text: Wind-down practices that calm a racing mind and help your body find genuine rest.
+    - title: Emotional release
+      text: A safe, supported space to feel, soften and let go of what you've been holding.
+    - title: Reconnection
+      text: For anyone feeling stretched thin and longing to feel like themselves again.
+notice:
+  title: Supportive, not a substitute
+  text: Breathwork can be a wonderful complement to your wellbeing, but it isn't a replacement for medical or mental-health care. If you have a health condition or any concerns, please consult your GP or a qualified professional. A full waiver and important information will be shared before your first session.
+band:
+  image: /assets/photos/ambient-forest.jpg
+  eyebrow: Room to breathe
+  quote: You don't have to fix yourself. You just have to turn up and breathe.
+  cite: ""
+cta:
+  eyebrow: Carrying a lot right now?
+  title: Let's start with a single breath
+  text: No need to have it all figured out. Message me and we'll find a gentle place to begin.
+  primary:
+    label: Book / Enquire
+    link: /contact.html
+  secondary:
+    label: Explore SOMA Breath
+    link: /soma-breath.html

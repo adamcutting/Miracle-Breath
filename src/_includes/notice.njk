@@ -1,0 +1,9 @@
+{#- Boxed health / safety notice. Expects `notice` (title, text). -#}
+    <section class="section" aria-label="Important information">
+      <div class="container">
+        <div class="notice reveal">
+          <h3>{{ notice.title | heading | safe }}</h3>
+          {{ notice.text | md | safe }}
+        </div>
+      </div>
+    </section>

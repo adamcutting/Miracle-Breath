@@ -1,0 +1,139 @@
+{%- set pages = { home: home, about: about, soma: soma, healing: healing, contact: contact } -%}
+{%- set seo = pages[pageKey].seo -%}
+{%- set url = site.url + ("/" if permalink == "index.html" else "/" + permalink) -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>document.documentElement.classList.add("js");if("scrollRestoration"in history)history.scrollRestoration="manual";</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ seo.title }}</title>
+  <meta name="description" content="{{ seo.description }}" />
+  <meta name="theme-color" content="#333d2c" />
+  <meta name="author" content="Miracle Breath" />
+
+  <link rel="canonical" href="{{ url }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{{ seo.title }}" />
+  <meta property="og:description" content="{{ seo.description }}" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:url" content="{{ url }}" />
+  <meta property="og:image" content="{{ site.url }}/assets/img/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ seo.title }}" />
+  <meta name="twitter:description" content="{{ seo.description }}" />
+  <meta name="twitter:image" content="{{ site.url }}/assets/img/og-image.jpg" />
+
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png" />
+  <link rel="apple-touch-icon" href="/assets/img/favicon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+{%- if pageKey == "home" %}
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HealthAndBeautyBusiness",
+    "name": "Miracle Breath",
+    "description": {{ seo.description | dump | safe }},
+    "founder": { "@type": "Person", "name": "Samantha Harden" },
+    "areaServed": "United Kingdom (online & in person)",
+    "url": "{{ site.url }}",
+    "email": {{ site.email | dump | safe }},
+    "telephone": {{ site.phone | tel | dump | safe }},
+    "priceRange": "££"
+  }
+  </script>
+{%- endif %}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  {%- set nav = [
+    { key: "home", href: "/", label: "Home" },
+    { key: "about", href: "/about.html", label: "About" },
+    { key: "soma", href: "/soma-breath.html", label: "SOMA Breath" },
+    { key: "healing", href: "/healing.html", label: "Healing" },
+    { key: "contact", href: "/contact.html", label: "Contact" }
+  ] %}
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/" aria-label="Miracle Breath home">
+        <img class="brand__mark" src="/assets/img/emblem-sm.png" width="96" height="96" alt="" />
+        <span>Miracle Breath<small>Breathwork &amp; Healing</small></span>
+      </a>
+      <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primary-menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav__menu" id="primary-menu" aria-label="Primary">
+        <ul class="nav__links">
+          {%- for item in nav %}
+          <li><a href="{{ item.href }}"{% if item.key == pageKey %} class="is-active" aria-current="page"{% endif %}>{{ item.label }}</a></li>
+          {%- endfor %}
+        </ul>
+        <div class="nav__cta">
+          {%- if pageKey == "contact" %}
+          <a class="btn" href="#enquiry">Send a message <span class="arrow">→</span></a>
+          {%- else %}
+          <a class="btn" href="/contact.html">{{ site.nav_button | inline | safe }} <span class="arrow">→</span></a>
+          {%- endif %}
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+{{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <a class="brand" href="/" aria-label="Miracle Breath home">
+            <img class="brand__mark" src="/assets/img/emblem-sm.png" width="96" height="96" alt="" />
+            <span style="color:#fff">Miracle Breath</span>
+          </a>
+          <p class="footer__about">{{ site.footer_about | inline | safe }}</p>
+        </div>
+        <div class="footer__col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/about.html">About Samantha</a></li>
+            <li><a href="/soma-breath.html">SOMA Breath</a></li>
+            <li><a href="/healing.html">Healing</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+            {%- if site.phone %}
+            <li><a href="tel:{{ site.phone | tel }}">{{ site.phone }}</a></li>
+            {%- endif %}
+            <li>{{ site.footer_where | inline | safe }}</li>
+            <li><a href="/contact.html">Send an enquiry</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span data-year>2026</span> Miracle Breath · Breathwork &amp; wellbeing.</span>
+        <span>{{ site.footer_tagline | inline | safe }}</span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
+
+  <script src="/assets/js/main.js" defer></script>
+  <script>window.addEventListener("load",function(){setTimeout(function(){if(!window.__mbReady){document.querySelectorAll(".reveal").forEach(function(e){e.classList.add("in");});}},1500);});</script>
+</body>
+</html>

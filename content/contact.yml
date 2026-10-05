@@ -1,0 +1,27 @@
+seo:
+  title: Contact — Miracle Breath
+  description: Get in touch with Miracle Breath. Ready to explore the power of your breath? Send an enquiry to learn more about sessions and upcoming events with Samantha Harden.
+hero:
+  title: Let's connect
+  intro: Ready to explore the power of your breath? Get in touch to learn more about sessions and upcoming events.
+details:
+  eyebrow: Say hello
+  title: Reach out, anytime
+  intro: Whether you have a question, want to book, or simply feel curious — I'd love to hear from you. I read and reply to every message personally, usually within two working days.
+  where: Online & in person · Essex, UK
+form:
+  interest_options:
+    - A group class
+    - A workshop / SOMA journey
+    - Private 1:1 breathwork
+    - Corporate / team wellbeing
+    - Learning more about SOMA Breath®
+    - Just saying hello
+  message_placeholder: Tell me a little about what you're looking for…
+  button: Send message
+  privacy_note: We'll never share your details.
+band:
+  image: /assets/photos/ambient-water.jpg
+  eyebrow: Whenever you're ready
+  quote: Whatever kind of day it's been, your next breath is a good place to start.
+  cite: Samantha Harden, Miracle Breath

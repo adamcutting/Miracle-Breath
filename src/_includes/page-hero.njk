@@ -1,0 +1,9 @@
+{#- Title banner at the top of inner pages. Expects `hero` (title, intro) and `crumb`. -#}
+    <section class="page-hero">
+      <div class="seeds" aria-hidden="true"></div>
+      <div class="container" style="position:relative;z-index:2">
+        <p class="breadcrumb"><a href="/">Home</a> <span>/</span> {{ crumb }}</p>
+        <h1>{{ hero.title | heading | safe }}</h1>
+        <p>{{ hero.intro | inline | safe }}</p>
+      </div>
+    </section>

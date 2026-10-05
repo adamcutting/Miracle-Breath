@@ -1,0 +1,95 @@
+---
+layout: base.njk
+permalink: healing.html
+pageKey: healing
+---
+{%- from "icons.njk" import icon -%}
+{%- set p = healing -%}
+{%- set hero = p.hero %}{% set crumb = "Healing" %}
+{% include "page-hero.njk" %}
+
+    <!-- Intro -->
+    <section class="section" aria-labelledby="intro-title">
+      <div class="container">
+        <div class="quote-feature reveal" style="max-width:64ch">
+          <p class="eyebrow center">{{ p.intro.eyebrow | inline | safe }}</p>
+          <blockquote style="font-size:clamp(1.3rem,1rem+1.2vw,1.9rem)">{{ p.intro.quote | inline | safe }}</blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- Three dimensions -->
+    <section class="section services" aria-labelledby="dim-title">
+      <div class="container">
+        <div class="text-center center-block reveal">
+          <p class="eyebrow center">{{ p.dimensions.eyebrow | inline | safe }}</p>
+          <h2 class="section-title center-block" id="dim-title">{{ p.dimensions.title | heading | safe }}</h2>
+          <p class="section-intro center-block">{{ p.dimensions.intro | inline | safe }}</p>
+        </div>
+        <div class="pillars">
+          {%- for c in p.dimensions.cards %}
+          <article class="pillar{% if c.colour == 'green' %} green{% endif %} reveal d{{ (loop.index0 % 4) + 1 }}">
+            <div class="ring" aria-hidden="true">{{ icon(c.icon) }}</div>
+            <h3>{{ c.title | heading | safe }}</h3>
+            <p>{{ c.text | inline | safe }}</p>
+          </article>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Nervous system split -->
+    <section class="section" aria-labelledby="ns-title">
+      <div class="container split">
+        <div class="split__art reveal" role="img" aria-label="An agitated line softening into a calm, steady wave">
+          <svg viewBox="0 0 500 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="healbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#586b4b"/><stop offset="1" stop-color="#333d2c"/></linearGradient>
+            </defs>
+            <rect width="500" height="400" fill="url(#healbg)"/>
+            <path d="M-20 200 L 40 200 60 130 80 270 100 150 120 250 140 170 160 230 185 200 L 250 200" fill="none" stroke="#e9c371" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+            <path d="M250 200 Q 330 150 410 200 T 560 200" fill="none" stroke="#a6b69b" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+            <path d="M-20 260 Q 125 235 250 260 T 520 260" fill="none" stroke="#8a9c80" stroke-width="2.5" opacity="0.5"/>
+            <path d="M-20 300 Q 125 282 250 300 T 520 300" fill="none" stroke="#8a9c80" stroke-width="2" opacity="0.35"/>
+            <circle cx="410" cy="200" r="6" fill="#f6dca0"/>
+          </svg>
+        </div>
+        <div class="reveal d1">
+          <p class="eyebrow">{{ p.nervous_system.eyebrow | inline | safe }}</p>
+          <h2 class="section-title" id="ns-title">{{ p.nervous_system.title | heading | safe }}</h2>
+          {{ p.nervous_system.body | md | safe }}
+          <a class="btn btn--ghost" href="{{ p.nervous_system.button.link }}">{{ p.nervous_system.button.label | inline | safe }} <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who it helps -->
+    <section class="section services" aria-labelledby="who-title">
+      <div class="container">
+        <div class="text-center center-block reveal">
+          <p class="eyebrow center">{{ p.who.eyebrow | inline | safe }}</p>
+          <h2 class="section-title center-block" id="who-title">{{ p.who.title | heading | safe }}</h2>
+          <p class="section-intro center-block">{{ p.who.intro | inline | safe }}</p>
+        </div>
+        <div class="steps cols{% if p.who.cards.length == 5 %} steps--5{% endif %}">
+          {%- for c in p.who.cards %}
+          <article class="step reveal d{{ (loop.index0 % 4) + 1 }}">
+            <h3>{{ c.title | heading | safe }}</h3>
+            <p>{{ c.text | inline | safe }}</p>
+          </article>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Notice -->
+{%- set notice = p.notice %}
+{% include "notice.njk" %}
+
+    <!-- AMBIENT BAND -->
+{%- set band = p.band %}
+{% include "ambient.njk" %}
+
+    <!-- CTA -->
+{%- set cta = p.cta %}{% set ctaClass = " services" %}{% set ctaLabel = "Get started" %}
+{% include "cta.njk" %}

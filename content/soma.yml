@@ -1,0 +1,78 @@
+seo:
+  title: What is SOMA Breath? — Miracle Breath
+  description: SOMA Breath is a guided breathwork method combining rhythmic breathing, breath retention, meditation, music and visualisation — blending ancient pranayama with modern science.
+hero:
+  title: What is SOMA Breath®?
+  intro: A dynamic breathwork practice that brings together rhythmic breathing, music, meditation and visualisation to create a powerful mind-body experience.
+intro:
+  eyebrow: The method
+  quote: SOMA Breath is a dynamic breathwork practice that combines guided rhythmic breathing, music, meditation and visualisation. Inspired by ancient breathing traditions and shaped for modern life, it is designed to help improve focus, reduce stress, increase energy and support a deeper sense of inner balance.
+elements:
+  eyebrow: How it works
+  title: Five elements, woven into one experience
+  intro: Each session layers these together, gently guiding your body and mind into a deeply restorative state.
+  cards:
+    - title: Rhythmic breathing
+      text: Structured, musical breathing patterns that energise the body and bring the nervous system into a balanced rhythm.
+    - title: Breath retention
+      text: Comfortable, guided breath holds that train resilience and invite a profound sense of stillness and clarity.
+    - title: Meditation
+      text: Moments of focused awareness that quiet mental chatter and deepen your connection to the present.
+    - title: Music & sound
+      text: Carefully composed soundscapes that carry the practice, set the pace and help you drop into the experience.
+    - title: Visualisation
+      text: Gentle guided imagery that channels intention, supports healing and leaves you feeling renewed.
+band:
+  image: /assets/photos/ambient-bowl.jpg
+  eyebrow: Carried by sound
+  quote: Music and resonance guide the breath, and the breath guides you home.
+  cite: ""
+science:
+  eyebrow: Ancient wisdom, modern science
+  title: Time-honoured breath, understood anew
+  body: |-
+    SOMA Breath draws on pranayama-based breathing techniques refined over thousands of years, and pairs them with our modern understanding of the body, the nervous system and the power of music and sound.
+
+    SOMA Breath was developed by Niraj Naik and is taught by certified facilitators and instructors worldwide. The result is a practice that feels both grounding and credible. It's gentle enough for beginners, solid enough to trust, and made for a busy life.
+  small_print: SOMA Breath® is a registered method; Samantha is a certified SOMA Breath facilitator.
+  button:
+    label: See how it supports healing
+    link: /healing.html
+benefits:
+  eyebrow: What people experience
+  title: What people tend to notice
+  cards:
+    - icon: sun
+      colour: gold
+      title: Sharper focus
+      text: A clearer, calmer mind that's easier to direct and harder to overwhelm.
+    - icon: leaf
+      colour: green
+      title: Less stress
+      text: A nervous system that settles more easily, more often.
+    - icon: bolt
+      colour: gold
+      title: More energy
+      text: A natural sense of vitality and aliveness that lasts beyond the session.
+    - icon: smile
+      colour: green
+      title: Inner balance
+      text: A deeper, steadier connection to yourself and how you feel.
+try_it:
+  eyebrow: Experience a moment
+  title: Try a guided breath
+  intro: A simple taste of rhythmic breathing. Choose a pattern and follow the circle — full SOMA journeys go much deeper.
+  note: A gentle taster, not medical advice. Please don't practise while driving; if you feel light-headed, simply return to normal breathing.
+notice:
+  title: Important information
+  text: Breathwork is generally safe and gentle, but some techniques aren't suitable for everyone. If you are pregnant or have a heart condition, epilepsy, high blood pressure or a respiratory condition, please speak with Samantha and your GP before taking part. A full waiver and health guidance will be provided before your first session.
+cta:
+  eyebrow: Ready to go deeper?
+  title: Experience a full SOMA Breath journey
+  text: Join a guided session online or in person and feel the difference for yourself.
+  primary:
+    label: Book / Enquire
+    link: /contact.html
+  secondary:
+    label: Explore healing
+    link: /healing.html

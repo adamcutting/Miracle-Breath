@@ -1,0 +1,16 @@
+{#- Dark call-to-action band. Expects `cta` (eyebrow, title, text, primary, secondary) and `ctaClass`. -#}
+    <section class="section{{ ctaClass }}" aria-label="{{ ctaLabel or 'Get in touch' }}">
+      <div class="container">
+        <div class="cta-band reveal">
+          <p class="eyebrow center" style="color:var(--gold-400)">{{ cta.eyebrow | inline | safe }}</p>
+          <h2>{{ cta.title | heading | safe }}</h2>
+          <p>{{ cta.text | inline | safe }}</p>
+          <div class="hero__actions">
+            <a class="btn btn--gold btn--lg" href="{{ cta.primary.link }}">{{ cta.primary.label | inline | safe }} <span class="arrow">→</span></a>
+            {%- if cta.secondary and cta.secondary.label %}
+            <a class="btn btn--light btn--lg" href="{{ cta.secondary.link }}">{{ cta.secondary.label | inline | safe }}</a>
+            {%- endif %}
+          </div>
+        </div>
+      </div>
+    </section>

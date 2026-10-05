@@ -1,0 +1,100 @@
+seo:
+  title: Miracle Breath — Transformational SOMA Breathwork with Samantha Harden
+  description: Miracle Breath offers transformational SOMA Breath breathwork for healing, balance, energy and inner change. Guided breathwork with Samantha Harden — online and in person.
+hero:
+  eyebrow: SOMA Breath® · Online & In Person
+  headline: Transformational breathwork for *healing, balance, energy* and inner change.
+  intro: A calm space to slow down and breathe properly again. Guided breathwork and meditation to quiet a busy mind and bring you back to yourself.
+  primary:
+    label: Book / Enquire
+    link: /contact.html
+  secondary:
+    label: Explore the method
+    link: /soma-breath.html
+  badges:
+    - icon: award
+      text: SOMA Breath® Certified
+    - icon: tick-circle
+      text: ADHD-aware & beginner-friendly
+    - icon: screen
+      text: Online & in person
+welcome:
+  image: /assets/photos/welcome-forest.jpg
+  image_alt: A child sitting among daisies in a sunlit forest at golden hour
+  eyebrow: Welcome
+  title: A breath of calm, energy and change
+  body: |-
+    Most of us breathe on autopilot all day, shoulders up by our ears, never quite catching up with ourselves. Miracle Breath is somewhere to put that down for an hour and actually breathe.
+
+    I teach the **SOMA Breath®** method: simple rhythmic breathing set to music, with a little meditation woven through. It works whether you arrive frazzled and wired, or just want a reliable way to switch off. No experience required, and nothing you have to "get right".
+  button:
+    label: Meet Samantha
+    link: /about.html
+benefits:
+  eyebrow: Why breathwork
+  title: What a few minutes of breath can do
+  intro: Conscious breathing is one of the simplest, most portable wellbeing tools there is — and the effects can ripple through every part of life.
+  cards:
+    - icon: leaf
+      colour: gold
+      title: Calm & balance
+      text: Soothe a busy nervous system and find a steadier baseline, even on demanding days.
+    - icon: bolt
+      colour: gold
+      title: Energy & clarity
+      text: Oxygenate, awaken and sharpen focus — a natural lift without the caffeine crash.
+    - icon: drop
+      colour: green
+      title: Deeper rest
+      text: Wind-down practices quiet the mind so you sleep more easily and wake more restored.
+    - icon: heart
+      colour: gold
+      title: Emotional release
+      text: Create space to process, soften tension and reconnect with a deeper sense of self.
+for_you:
+  eyebrow: If this sounds like you
+  title: For the mind that won't switch off
+  body: |-
+    You lie awake at 11pm with a head full of open tabs. You're tired but wired, running on coffee and to-do lists. Maybe focus feels slippery, or the world is just turned up too loud.
+
+    You're exactly who I built this for. I hold an **ADHD Awareness Diploma**, and my sessions are made for busy and sensitive minds. You won't be asked to sit perfectly still or empty your head. You just breathe, and let things go quiet for a while.
+  button:
+    label: How breathwork helps
+    link: /healing.html
+  image: /assets/photos/mind-stickynotes.jpg
+  image_alt: A man at a desk covered in sticky notes reading 'take a break', 'stop' and 'chill'
+samantha:
+  eyebrow: Your guide
+  title: Hi, I'm Samantha
+  body: |-
+    I started Miracle Breath after breathwork quietly turned my own life around. I'm a **certified SOMA Breath® facilitator** with an **ADHD Awareness Diploma**, and my sessions are warm and unfussy — no need to be flexible, spiritual, or any good at "switching off" already.
+  button:
+    label: Read my story
+    link: /about.html
+explore:
+  cards:
+    - icon: eye
+      title: What is SOMA Breath®?
+      text: A dynamic method combining rhythmic breathing, breath retention, music, meditation and visualisation — ancient wisdom shaped for modern life.
+      link_label: Discover the method →
+      link: /soma-breath.html
+    - icon: heart
+      title: Healing & wellbeing
+      text: Gentle, grounded support for stress, nervous-system regulation, emotional release, burnout and neurodiversity-friendly calm.
+      link_label: Explore healing →
+      link: /healing.html
+    - icon: calendar
+      title: Sessions & booking
+      text: Classes, workshops and private sessions, online and in person. Get in touch and we’ll find the right fit for you.
+      link_label: Book / Enquire →
+      link: /contact.html
+cta:
+  eyebrow: Your breath is waiting
+  title: Ready to explore the power of your breath?
+  text: Whether you're curious or ready to begin, get in touch to learn more about sessions and upcoming events. I'd love to hear from you.
+  primary:
+    label: Get in touch
+    link: /contact.html
+  secondary:
+    label: About the sessions
+    link: /soma-breath.html

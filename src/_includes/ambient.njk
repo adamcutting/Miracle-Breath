@@ -1,0 +1,11 @@
+{#- Full-width photo band with a short quote. Expects `band` (image, eyebrow, quote, cite). -#}
+    <section class="ambient" aria-label="{{ band.eyebrow }}">
+      {% photo band.image, "", "ambient", { class: "ambient__img" } %}
+      <div class="container">
+        <p class="eyebrow center">{{ band.eyebrow | inline | safe }}</p>
+        <blockquote>{{ band.quote | inline | safe }}</blockquote>
+        {%- if band.cite %}
+        <cite>{{ band.cite | inline | safe }}</cite>
+        {%- endif %}
+      </div>
+    </section>

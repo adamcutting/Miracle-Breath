@@ -1,0 +1,16 @@
+{
+  "name": "miracle-breath",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "check": "node scripts/check-content.js"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "@11ty/eleventy-img": "^7.0.0",
+    "js-yaml": "^4.3.2",
+    "markdown-it": "^15.0.2"
+  }
+}

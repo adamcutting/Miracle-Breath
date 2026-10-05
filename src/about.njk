@@ -1,0 +1,106 @@
+---
+layout: base.njk
+permalink: about.html
+pageKey: about
+---
+{%- from "icons.njk" import icon -%}
+{%- set p = about -%}
+{%- set hero = p.hero %}{% set crumb = "About" %}
+{% include "page-hero.njk" %}
+
+    <!-- ============ STORY ============ -->
+    <section class="section" aria-labelledby="story-title">
+      <div class="container split">
+        <div class="portrait-card reveal" role="img" aria-label="{{ p.portrait.image_alt }}">
+          {% photo p.portrait.image, "", "portrait", { class: "photo" } %}
+          <div class="about__badge"><strong>{{ p.portrait.name | inline | safe }}</strong><span>{{ p.portrait.role | inline | safe }}</span></div>
+        </div>
+        <div class="reveal d1">
+          <p class="eyebrow">{{ p.story.eyebrow | inline | safe }}</p>
+          <h2 class="section-title" id="story-title">{{ p.story.title | heading | safe }}</h2>
+          {{ p.story.body | md | safe }}
+          {%- if p.story.signature %}
+          <p class="about__signature">{{ p.story.signature | inline | safe }}</p>
+          {%- endif %}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PHILOSOPHY ============ -->
+    <section class="section services" aria-labelledby="philo-title">
+      <div class="container">
+        <div class="text-center center-block reveal">
+          <p class="eyebrow center">{{ p.approach.eyebrow | inline | safe }}</p>
+          <h2 class="section-title center-block" id="philo-title">{{ p.approach.title | heading | safe }}</h2>
+          <p class="section-intro center-block">{{ p.approach.intro | inline | safe }}</p>
+        </div>
+        <div class="steps cols{% if p.approach.cards.length == 5 %} steps--5{% endif %}">
+          {%- for c in p.approach.cards %}
+          <article class="step reveal d{{ (loop.index0 % 4) + 1 }}">
+            <h3>{{ c.title | heading | safe }}</h3>
+            <p>{{ c.text | inline | safe }}</p>
+          </article>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FIRST SESSION ============ -->
+    <section class="section highlight-band" aria-labelledby="first-title">
+      <div class="container">
+        <div class="text-center center-block reveal">
+          <p class="eyebrow center">{{ p.first_session.eyebrow | inline | safe }}</p>
+          <h2 class="section-title center-block" id="first-title">{{ p.first_session.title | heading | safe }}</h2>
+          <p class="section-intro center-block">{{ p.first_session.intro | inline | safe }}</p>
+        </div>
+        <div class="expect">
+          {%- for c in p.first_session.items %}
+          <div class="expect__item reveal d{{ (loop.index0 % 3) + 1 }}">
+            <span class="ei" aria-hidden="true">{{ icon(c.icon) }}</span>
+            <div><h3>{{ c.title | heading | safe }}</h3><p>{{ c.text | inline | safe }}</p></div>
+          </div>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ QUALIFICATIONS ============ -->
+    <section class="section" aria-labelledby="quals-title">
+      <div class="container">
+        <div class="reveal">
+          <p class="eyebrow">{{ p.qualifications.eyebrow | inline | safe }}</p>
+          <h2 class="section-title" id="quals-title">{{ p.qualifications.title | heading | safe }}</h2>
+          <p class="section-intro">{{ p.qualifications.intro | inline | safe }}</p>
+        </div>
+        <div class="creds">
+          {%- for c in p.qualifications.items %}
+          <article class="cred reveal d{{ (loop.index0 % 4) + 1 }}">
+            <span class="seal" aria-hidden="true">{{ icon(c.icon) }}</span>
+            <div>
+              <h3>{{ c.title | heading | safe }}</h3>
+              <p>{{ c.text | inline | safe }}</p>
+              {%- if c.certificate %}
+              <a class="cert-link" href="{{ c.certificate }}" target="_blank" rel="noopener" aria-label="View certificate for {{ c.title }} (PDF)">View certificate <span aria-hidden="true">↗</span></a>
+              {%- endif %}
+            </div>
+          </article>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ QUOTE ============ -->
+    <section class="section services" aria-label="A few words from Samantha">
+      <div class="container">
+        <div class="quote-feature reveal">
+          <blockquote>{{ p.quote.text | inline | safe }}</blockquote>
+          {%- if p.quote.cite %}
+          <cite>{{ p.quote.cite | inline | safe }}</cite>
+          {%- endif %}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+{%- set cta = p.cta %}{% set ctaClass = "" %}{% set ctaLabel = "Get in touch" %}
+{% include "cta.njk" %}

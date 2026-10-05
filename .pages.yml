@@ -1,0 +1,454 @@
+# Pages CMS configuration — https://pagescms.org/docs/configuration/
+# Defines the editing screens Samantha sees at app.pagescms.org.
+# Every key in content/*.yml must have a field here, or Pages CMS drops it on save.
+
+media:
+  - name: photos
+    label: Photos
+    input: src/assets/photos
+    output: /assets/photos
+    categories: [image]
+    rename: safe
+  - name: documents
+    label: Documents (PDF)
+    input: src/assets/docs
+    output: /assets/docs
+    extensions: [pdf]
+    rename: safe
+
+components:
+  body:
+    type: rich-text
+    label: Main text
+    description: Leave a blank line between paragraphs.
+    options:
+      format: markdown
+      media: false
+      switcher: false
+  photo:
+    type: image
+    label: Photo
+    required: true
+    description: Upload a photo from your phone or computer, or pick one already in the library. It is resized automatically.
+    options:
+      media: photos
+  link:
+    type: select
+    label: Goes to
+    default: /contact.html
+    options:
+      values:
+        - { value: /, label: Home page }
+        - { value: /about.html, label: About page }
+        - { value: /soma-breath.html, label: SOMA Breath page }
+        - { value: /healing.html, label: Healing page }
+        - { value: /contact.html, label: Contact page }
+  button:
+    type: object
+    label: Button
+    fields:
+      - { name: label, label: Button words, type: string, required: true }
+      - { name: link, component: link }
+  optional_button:
+    type: object
+    label: Second button (leave the words empty to hide it)
+    fields:
+      - { name: label, label: Button words, type: string }
+      - { name: link, component: link }
+  icon:
+    type: select
+    label: Icon
+    default: leaf
+    options:
+      values:
+        - { value: leaf, label: Leaf }
+        - { value: heart, label: Heart }
+        - { value: bolt, label: Lightning bolt }
+        - { value: drop, label: Water drop }
+        - { value: sun, label: Sun }
+        - { value: smile, label: Smiling face }
+        - { value: cloud, label: Thought cloud }
+        - { value: eye, label: Eye }
+        - { value: calendar, label: Calendar }
+        - { value: clock, label: Clock }
+        - { value: tick, label: Tick }
+        - { value: tick-circle, label: Tick in a circle }
+        - { value: award, label: Award ribbon }
+        - { value: certificate, label: Certificate }
+        - { value: video, label: Video camera }
+        - { value: screen, label: Screen }
+  colour:
+    type: select
+    label: Icon colour
+    default: gold
+    options:
+      values:
+        - { value: gold, label: Gold }
+        - { value: green, label: Sage green }
+  seo:
+    type: object
+    label: Google & sharing
+    description: What shows in Google results and when the page is shared on WhatsApp or Facebook.
+    fields:
+      - { name: title, label: Page title, type: string, required: true, description: "Shown in the browser tab and as the Google headline. Keep it under about 60 characters." }
+      - { name: description, label: Page summary, type: text, required: true, description: "One or two sentences. Google shows about 155 characters." }
+  page_hero:
+    type: object
+    label: Top of page
+    fields:
+      - { name: title, label: Page heading, type: string, required: true }
+      - { name: intro, label: Intro line, type: text }
+  heading_block:
+    type: object
+    fields:
+      - { name: eyebrow, label: Small heading above, type: string }
+      - { name: title, label: Heading, type: string, required: true }
+      - { name: intro, label: Intro text, type: text }
+  cta:
+    type: object
+    label: Invitation box (dark green, near the bottom)
+    fields:
+      - { name: eyebrow, label: Small heading above, type: string }
+      - { name: title, label: Heading, type: string, required: true }
+      - { name: text, label: Text, type: text }
+      - { name: primary, component: button, label: Gold button }
+      - { name: secondary, component: optional_button }
+  band:
+    type: object
+    label: Photo band with quote
+    fields:
+      - { name: image, component: photo, label: Background photo, description: "A wide, calm photo works best. It sits behind the quote with a dark wash, so busy photos are fine." }
+      - { name: eyebrow, label: Small heading above, type: string }
+      - { name: quote, label: Quote, type: text, required: true }
+      - { name: cite, label: Who said it (optional), type: string }
+  notice:
+    type: object
+    label: Health notice box
+    fields:
+      - { name: title, label: Heading, type: string, required: true }
+      - { name: text, label: Text, type: text, required: true }
+  pillar_cards:
+    type: object
+    label: Cards
+    list: { min: 1, max: 8, collapsible: { collapsed: true, summary: "{title}" } }
+    fields:
+      - { name: icon, component: icon }
+      - { name: colour, component: colour }
+      - { name: title, label: Card heading, type: string, required: true }
+      - { name: text, label: Card text, type: text }
+  numbered_cards:
+    type: object
+    label: Numbered cards
+    description: Numbered automatically (01, 02, 03…).
+    list: { min: 1, max: 9, collapsible: { collapsed: true, summary: "{title}" } }
+    fields:
+      - { name: title, label: Card heading, type: string, required: true }
+      - { name: text, label: Card text, type: text }
+
+content:
+  - name: pages
+    label: Pages
+    type: group
+    items:
+      # ------------------------------------------------------------------ HOME
+      - name: home
+        label: Home
+        type: file
+        path: content/home.yml
+        format: yaml
+        fields:
+          - { name: seo, component: seo }
+          - name: hero
+            label: Welcome banner (top of the page)
+            type: object
+            fields:
+              - { name: eyebrow, label: Small line above the headline, type: string }
+              - { name: headline, label: Headline, type: string, required: true, description: "Put *stars* around words to make them gold and italic, e.g. Breathwork for *healing* and calm." }
+              - { name: intro, label: Intro text, type: text }
+              - { name: primary, component: button, label: Main button }
+              - { name: secondary, component: optional_button }
+              - name: badges
+                label: Little badges under the buttons
+                type: object
+                list: { min: 0, max: 4, collapsible: { collapsed: true, summary: "{text}" } }
+                fields:
+                  - { name: icon, component: icon }
+                  - { name: text, label: Badge text, type: string, required: true }
+          - name: welcome
+            label: Welcome section (photo + text)
+            type: object
+            fields:
+              - { name: image, component: photo }
+              - { name: image_alt, label: Describe the photo, type: string, description: "A short description for people using screen readers, e.g. 'Sunlight through trees'." }
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: body, component: body }
+              - { name: button, component: button }
+          - name: benefits
+            label: Why breathwork (cards)
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: intro, label: Intro text, type: text }
+              - { name: cards, component: pillar_cards }
+          - name: for_you
+            label: "'If this sounds like you' section"
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: body, component: body }
+              - { name: button, component: button }
+              - { name: image, component: photo }
+              - { name: image_alt, label: Describe the photo, type: string }
+          - name: samantha
+            label: Meet Samantha (short version)
+            description: The portrait photo and name badge here come from the About page.
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: body, component: body }
+              - { name: button, component: button }
+          - name: explore
+            label: Three link cards
+            type: object
+            fields:
+              - name: cards
+                label: Cards
+                type: object
+                list: { min: 1, max: 6, collapsible: { collapsed: true, summary: "{title}" } }
+                fields:
+                  - { name: icon, component: icon }
+                  - { name: title, label: Card heading, type: string, required: true }
+                  - { name: text, label: Card text, type: text }
+                  - { name: link_label, label: Link words, type: string, description: "e.g. Discover the method →" }
+                  - { name: link, component: link }
+          - { name: cta, component: cta }
+
+      # ----------------------------------------------------------------- ABOUT
+      - name: about
+        label: About
+        type: file
+        path: content/about.yml
+        format: yaml
+        fields:
+          - { name: seo, component: seo }
+          - { name: hero, component: page_hero }
+          - name: portrait
+            label: Portrait photo & name badge
+            description: Also used on the Home page.
+            type: object
+            fields:
+              - { name: image, component: photo, label: Portrait photo, description: "An upright (portrait-shaped) photo works best." }
+              - { name: image_alt, label: Describe the photo, type: string, description: "e.g. 'Samantha Harden smiling outdoors'." }
+              - { name: name, label: Name on the badge, type: string }
+              - { name: role, label: Title on the badge, type: string }
+          - name: story
+            label: My story
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: body, component: body, label: Story }
+              - { name: signature, label: Sign-off, type: string }
+          - name: approach
+            label: What it's actually like
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: intro, label: Intro text, type: text }
+              - { name: cards, component: numbered_cards }
+          - name: first_session
+            label: What to expect in a session
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: intro, label: Intro text, type: text }
+              - name: items
+                label: Points
+                type: object
+                list: { min: 1, max: 8, collapsible: { collapsed: true, summary: "{title}" } }
+                fields:
+                  - { name: icon, component: icon }
+                  - { name: title, label: Heading, type: string, required: true }
+                  - { name: text, label: Text, type: text }
+          - name: qualifications
+            label: Qualifications
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: intro, label: Intro text, type: text }
+              - name: items
+                label: Qualifications
+                type: object
+                list: { min: 1, max: 8, collapsible: { collapsed: true, summary: "{title}" } }
+                fields:
+                  - { name: icon, component: icon }
+                  - { name: title, label: Qualification, type: string, required: true }
+                  - { name: text, label: Description, type: text }
+                  - { name: certificate, label: Certificate PDF (optional), type: file, description: "Upload the certificate to show a 'View certificate' link.", options: { media: documents } }
+          - name: quote
+            label: Quote
+            type: object
+            fields:
+              - { name: text, label: Quote, type: text, required: true }
+              - { name: cite, label: Who said it, type: string }
+          - { name: cta, component: cta }
+
+      # ----------------------------------------------------------- SOMA BREATH
+      - name: soma
+        label: SOMA Breath
+        type: file
+        path: content/soma.yml
+        format: yaml
+        fields:
+          - { name: seo, component: seo }
+          - { name: hero, component: page_hero, description: "The ® symbol is raised automatically in headings." }
+          - name: intro
+            label: Opening quote
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: quote, label: Quote, type: text, required: true }
+          - name: elements
+            label: How it works
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: intro, label: Intro text, type: text }
+              - { name: cards, component: numbered_cards }
+          - { name: band, component: band }
+          - name: science
+            label: Ancient wisdom, modern science
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: body, component: body }
+              - { name: small_print, label: Small print, type: string }
+              - { name: button, component: button }
+          - name: benefits
+            label: What people notice (cards)
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: cards, component: pillar_cards }
+          - name: try_it
+            label: Guided breath exercise
+            description: The breathing circle itself can't be changed here, only the words around it.
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: intro, label: Intro text, type: text }
+              - { name: note, label: Safety note under the circle, type: text }
+          - { name: notice, component: notice }
+          - { name: cta, component: cta }
+
+      # --------------------------------------------------------------- HEALING
+      - name: healing
+        label: Healing
+        type: file
+        path: content/healing.yml
+        format: yaml
+        fields:
+          - { name: seo, component: seo }
+          - { name: hero, component: page_hero }
+          - name: intro
+            label: Opening quote
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: quote, label: Quote, type: text, required: true }
+          - name: dimensions
+            label: Body, mind and emotion (cards)
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: intro, label: Intro text, type: text }
+              - { name: cards, component: pillar_cards }
+          - name: nervous_system
+            label: Nervous-system section
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: body, component: body }
+              - { name: button, component: button }
+          - name: who
+            label: When it helps most
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: intro, label: Intro text, type: text }
+              - { name: cards, component: numbered_cards }
+          - { name: notice, component: notice }
+          - { name: band, component: band }
+          - { name: cta, component: cta }
+
+      # --------------------------------------------------------------- CONTACT
+      - name: contact
+        label: Contact
+        type: file
+        path: content/contact.yml
+        format: yaml
+        fields:
+          - { name: seo, component: seo }
+          - { name: hero, component: page_hero }
+          - name: details
+            label: Contact details
+            description: Your email address and phone number are in Site settings.
+            type: object
+            fields:
+              - { name: eyebrow, label: Small heading above, type: string }
+              - { name: title, label: Heading, type: string, required: true }
+              - { name: intro, label: Intro text, type: text }
+              - { name: where, label: Where you work, type: string }
+          - name: form
+            label: Enquiry form
+            description: Messages from the form always arrive at samantha@miraclebreath.co.uk.
+            type: object
+            fields:
+              - { name: interest_options, label: "'I'm interested in' choices", type: string, list: true }
+              - { name: message_placeholder, label: Hint text in the message box, type: string }
+              - { name: button, label: Send button words, type: string, required: true }
+              - { name: privacy_note, label: Note under the button, type: string }
+          - { name: band, component: band }
+
+      # ------------------------------------------------------------------- 404
+      - name: notfound
+        label: Page not found
+        description: Shown when someone follows a broken link.
+        type: file
+        path: content/notfound.yml
+        format: yaml
+        fields:
+          - { name: eyebrow, label: Small heading above, type: string }
+          - { name: title, label: Heading, type: string, required: true }
+          - { name: text, label: Text, type: text }
+          - { name: button, label: Button words, type: string, required: true }
+
+  # ----------------------------------------------------------------- SETTINGS
+  - name: site
+    label: Site settings
+    description: Contact details and footer text used on every page.
+    type: file
+    path: content/site.yml
+    format: yaml
+    fields:
+      - { name: url, label: Website address, type: string, hidden: true }
+      - { name: email, label: Email address, type: string, required: true, description: "Shown on the Contact page and in the footer. (The enquiry form always sends to samantha@miraclebreath.co.uk.)" }
+      - { name: phone, label: Phone number, type: string, description: "Write it the normal UK way, e.g. 07867 725291. Leave empty to hide it." }
+      - { name: nav_button, label: Button in the top menu, type: string, required: true }
+      - { name: footer_about, label: Footer description, type: text }
+      - { name: footer_where, label: Footer location line, type: string }
+      - { name: footer_tagline, label: Footer bottom line, type: string }

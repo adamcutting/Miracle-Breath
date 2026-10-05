@@ -1,3 +1,7 @@
+---
+permalink: 404.html
+---
+{%- set p = notfound -%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,11 +9,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lost your breath? — Miracle Breath</title>
   <meta name="robots" content="noindex" />
-  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Nunito+Sans:opsz,wght@6..12,400;6..12,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
   <style>
     .nf {
       min-height: 100svh;
@@ -38,11 +42,11 @@
   <main class="nf">
     <div>
       <div class="nf__orb" aria-hidden="true"></div>
-      <p class="eyebrow center" style="justify-content:center">Error 404</p>
-      <h1>Lost your breath?</h1>
-      <p>This page seems to have drifted away on the exhale. Let's guide you gently back to calm.</p>
+      <p class="eyebrow center" style="justify-content:center">{{ p.eyebrow | inline | safe }}</p>
+      <h1>{{ p.title | heading | safe }}</h1>
+      <p>{{ p.text | inline | safe }}</p>
       <p style="margin-top:2rem">
-        <a class="btn btn--lg" href="index.html">Return home <span class="arrow">→</span></a>
+        <a class="btn btn--lg" href="/">{{ p.button | inline | safe }} <span class="arrow">→</span></a>
       </p>
     </div>
   </main>
