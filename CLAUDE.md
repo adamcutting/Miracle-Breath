@@ -71,6 +71,12 @@ pre-select the enquiry type (main.js).
   other branches get preview URLs. Domains: `miraclebreath.co.uk` + `www`.
 - A failed build leaves the previous deployment live.
 - `src/_headers` sets caching + security headers.
+- SEO/AI: `src/sitemap.njk`, `src/robots.njk` (welcomes AI crawlers) and
+  `src/llms.njk` (plain-text summary at /llms.txt) are generated from content;
+  add new pages to all three. Canonical URLs and internal links use the clean
+  form (`/about`, via the `clean-links` transform). JSON-LD for the business
+  (home) and weekly classes (classes page) lives in `base.njk`. Cloudflare's
+  AI bot policies are all set to Allow; Bot Preference Sync is off.
 
 ## Email & forms
 - **Zoho Mail free plan (EU DC)** hosts mail: `samantha@` (owner) and `adam@`.
