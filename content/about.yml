@@ -1,6 +1,6 @@
 seo:
   title: About Samantha Harden — Miracle Breath
-  description: Meet Samantha Harden, founder of Miracle Breath. A certified SOMA Breath® facilitator with an ADHD Awareness Diploma, helping people find calm, healing and transformation through conscious breathing.
+  description: Meet Samantha Harden, founder of Miracle Breath. A certified SOMA Breath® instructor with an ADHD Awareness Diploma, helping people find calm, healing and transformation through conscious breathing.
 hero:
   title: Meet Samantha
   intro: The person you'll actually be breathing with. Here's a little about me and why Miracle Breath exists.
@@ -8,7 +8,7 @@ portrait:
   image: /assets/photos/about-portrait.jpg
   image_alt: Calm, atmospheric image evoking the practice
   name: Samantha Harden
-  role: Founder · Certified SOMA Breath Facilitator
+  role: Founder · Certified SOMA Breath Instructor
 story:
   eyebrow: My story
   title: How Miracle Breath began
@@ -19,7 +19,7 @@ story:
 
     That's when I found SOMA Breath®, and it genuinely changed my life. There's a point in radiotherapy where you're asked to hold your breath to shield your heart and keep the treatment accurate. Under that kind of stress I'd found it almost impossible, and my treatment had to restart, but with breathwork my breath-hold improved remarkably quickly. Better sleep, a calmer nervous system, room to actually feel things: all of it helped me rebuild.
 
-    These days I no longer take ADHD or anxiety medication, and I feel calm, happy and focused. I trained as a SOMA Breath facilitator so I could offer the same thing to other people, whether you're navigating neurodiversity, recovering from something hard, or simply spinning too many plates.
+    These days I no longer take ADHD or anxiety medication, and I feel calm, happy and focused. I trained as a SOMA Breath instructor so I could offer the same thing to other people, whether you're navigating neurodiversity, recovering from something hard, or simply spinning too many plates.
   signature: — Samantha
 approach:
   eyebrow: What to expect
@@ -55,9 +55,9 @@ qualifications:
   intro: Samantha holds the following professional qualifications.
   items:
     - icon: award
-      title: Certified SOMA Breath Facilitator
-      text: Trained and certified in the SOMA Breath method to guide rhythmic breathwork, meditation and journey experiences safely.
-      certificate: /assets/docs/samantha-harden-soma-breath-facilitator.pdf
+      title: Certified SOMA Breath Instructor
+      text: 45 hours of instructor training and certification in the SOMA Breath method, qualified to teach and guide rhythmic breathwork, meditation and journey experiences safely.
+      certificate: /assets/docs/samantha-harden-soma-breath-instructor.pdf
     - icon: certificate
       title: ADHD Awareness Diploma
       text: Specialist understanding of attention, focus and neurodiversity, informing a genuinely inclusive, ADHD-friendly approach to breathwork.

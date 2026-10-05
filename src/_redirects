@@ -1,3 +1,6 @@
 # Timetable hidden for now — redirect old URLs home (remove when timetable returns)
 /timetable / 301
 /timetable.html / 301
+
+# Facilitator certificate replaced by the Instructor certificate (Sept 2026)
+/assets/docs/samantha-harden-soma-breath-facilitator.pdf /assets/docs/samantha-harden-soma-breath-instructor.pdf 301
