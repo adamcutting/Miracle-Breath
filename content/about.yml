@@ -68,9 +68,6 @@ first_session:
   intro: A little reassurance, because the unknown is the hardest part. Here's
     roughly how it goes.
   items:
-    - icon: clock
-      title: Around 45–75 minutes
-      text: Time to arrive, settle, breathe and rest. Never rushed.
     - icon: tick
       title: Just wear comfy clothes
       text: Lie down or sit. Mats and blankets provided in person; a quiet spot is all
