@@ -2,77 +2,45 @@
 
 Website for Miracle Breath, a breathwork and meditation practice run by
 Samantha Harden, offering the SOMA Breath method online and in person.
+Live at **https://miraclebreath.co.uk**.
 
-Tagline: *Transformational breathwork for healing, balance, energy and inner change.*
+## Editing the site (for Samantha)
 
-It's a static site built to run on GitHub Pages with no build step.
+All text and photos are edited at **https://app.pagescms.org**. Sign in with
+your Miracle Breath email address. Press **Save** and the live site updates
+about a minute later. See the separate handover guide for step-by-step help.
 
-## Pages
+## How it works
 
-- **Home** (`index.html`) — introduction, benefits, a taste of the practice
-- **About** (`about.html`) — Samantha's story, what to expect, qualifications
-- **SOMA Breath** (`soma-breath.html`) — what the method is and how it works
-- **Healing** (`healing.html`) — how breathwork can support wellbeing
-- **Timetable** (`timetable.html`) — sessions, filterable by format, with pricing
-- **Contact** (`contact.html`) — enquiry form and details
-- **404** (`404.html`) — custom not-found page
-
-## Built with
-
-Plain HTML, CSS and vanilla JavaScript. No frameworks, no dependencies, no
-tracking. Type is Fraunces (headings) and Nunito Sans (body) from Google
-Fonts. The palette is taken from the logo: sage green (`#8a9c80`) and warm
-gold (`#d6ad61`) on cream (`#faf8f2`).
-
-Features worth noting:
-
-- Interactive guided-breathing exercise (4-7-8, box, 4-6 patterns)
-- Filterable session timetable
-- Photographic "ambient" bands and an image gallery
-- Subtle motion: cross-page view transitions, scroll reveals, image
-  parallax, a breathing-logo hero. All disabled under `prefers-reduced-motion`
-- Accessible: skip link, ARIA labelling, keyboard-friendly nav and widgets,
-  focus management on the mobile menu
-- WebP images with JPEG/PNG fallback; lazy loading; sized to avoid layout shift
+- Page text lives in `content/*.yml`, one file per page plus `site.yml` for
+  contact details and footer text. Pages CMS edits these files; `.pages.yml`
+  describes its editing screens.
+- Photos live in `src/assets/photos/` and are resized to WebP + JPEG at build.
+- Templates are in `src/` ([Eleventy](https://www.11ty.dev/), Nunjucks). The
+  shipped site is plain HTML, CSS and vanilla JavaScript with no tracking.
+- Hosting is Cloudflare Pages, connected to this repo: every push to `main`
+  (including each Pages CMS save) builds and deploys automatically.
 
 ## Running locally
 
-Any static server works:
-
 ```bash
-python3 -m http.server 8000      # then open http://localhost:8000
-# or: npx serve .
+npm install
+npm start          # dev server with live reload
+npm run build      # build into _site/
+npm run check      # confirm content/*.yml and .pages.yml still match
 ```
 
-## Deploying to Cloudflare Pages
+## Cloudflare Pages settings
 
-Hosted on Cloudflare Pages (free), connected to this GitHub repo — it
-rebuilds automatically on every push.
+- Production branch: `main`
+- Build command: `npm run build`
+- Build output directory: `_site`
+- Node version: 22 (from `.nvmrc`)
 
-In the Cloudflare dashboard: **Workers & Pages → Create → Pages → Connect to
-Git**, pick this repo, then:
+## Features worth noting
 
-- **Framework preset:** None
-- **Build command:** *(leave empty)*
-- **Build output directory:** `/`
-
-That's it — it's plain static files. `_headers` adds caching and security
-headers. A custom domain (e.g. `miraclebreath.co.uk`) can be attached under
-the project's **Custom domains** tab.
-
-The site also still works on GitHub Pages (the `.nojekyll` marker is harmless).
-
-## Images
-
-The photographs are royalty-free placeholders from Unsplash, chosen to match
-the palette. They stand in for real photography of Samantha and the space.
-To swap them, replace the files in `assets/img/` keeping the same names
-(`about-portrait`, `ambient-breath`, `ambient-forest`, `ambient-bowl`,
-`ambient-water`, `glimpse-1/2/3`); both the `.jpg` and `.webp` versions.
-
-## Placeholder content
-
-This is a concept. Samantha's full biography, contact details, real session
-dates and booking, named testimonials, certificate links and the formal
-waiver / health information are placeholders to be replaced with real
-details. Prices shown are indicative.
+- Interactive guided-breathing exercise (4-7-8, box, 4-6 patterns)
+- Subtle motion: cross-page view transitions, scroll reveals, image
+  parallax, a breathing-logo hero, all disabled under `prefers-reduced-motion`
+- Accessible: skip link, ARIA labelling, keyboard-friendly nav and widgets
+- Responsive WebP images with JPEG fallback, lazy loading, explicit sizes

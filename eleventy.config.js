@@ -62,7 +62,7 @@ export default function (eleventyConfig) {
     const meta = await Image(file, {
       widths: [SLOT_WIDTH[slot] ?? 1100],
       formats: ["webp", "jpeg"],
-      outputDir: "_site/assets/img/p/",
+      outputDir: path.join(eleventyConfig.directories.output, "assets/img/p/"),
       urlPath: "/assets/img/p/",
       sharpWebpOptions: { quality: 70 },
       sharpJpegOptions: { quality: 72, mozjpeg: true, progressive: true },
